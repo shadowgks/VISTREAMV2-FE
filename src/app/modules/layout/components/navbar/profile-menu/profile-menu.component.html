@@ -1,4 +1,4 @@
-<div class="relative ml-3">
+<div class="relative ml-3 z-10">
   <!-- Profile Button -->
   <button
     (click)="toggleMenu()"
@@ -11,7 +11,7 @@
       clickOutside
       (clickOutside)="isMenuOpen = false"
       class="h-9 w-9 rounded-md"
-      src=""
+      src="https://plus.unsplash.com/premium_photo-1676049462062-e8ec9b661675?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       alt="" />
   </button>
   <!-- Dropdown -->
@@ -24,7 +24,7 @@
     class="absolute right-0 mt-2 w-60 origin-top-right transform rounded-md bg-white py-4 shadow-custom ring-1 ring-transparent ring-opacity-5 transition focus:outline-none dark:bg-night-600">
     <div class="flext-row flex items-center px-4 pb-4">
       <div class="w-10 shrink-0">
-        <img class="rounded-md" src="#" alt="" />
+        <img class="rounded-md w-10 h-10" src="https://plus.unsplash.com/premium_photo-1676049462062-e8ec9b661675?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
       </div>
       <div class="overflow-hidden px-2 text-sm font-semibold text-gray-700 dark:text-night-50">
         Luciano Oliveira
@@ -48,6 +48,7 @@
         Settings
       </li>
       <li
+        (click)="logout()"
         routerLink="/auth"
         class="block cursor-pointer rounded-md px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-primary-500 dark:text-night-200 dark:hover:bg-night-500 dark:hover:text-primary-500">
         Sign out

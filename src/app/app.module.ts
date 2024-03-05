@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from './modules/dashboard/components/modal/modal.component';
+import { ModalComponent } from './modules/dashboard/components/modals/modal-actor/modal-actor.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -13,8 +13,6 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    
-
   ]
 })
 export class AppModule { }

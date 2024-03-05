@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { TaskComponent } from './pages/task/task.component';
+import { ActorsComponent } from './pages/actors/actors.component';
+import { MoviesComponent } from './pages/movies/movies.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'movies', pathMatch: 'full' },
-      { path: 'movies', component: TaskComponent },
+      { path: '', redirectTo: 'actors', pathMatch: 'full' },
+      { path: 'actors', component: ActorsComponent },
+      { path: 'movies', component: MoviesComponent },
       { path: '**', redirectTo: 'error/404' },
     ],
   },

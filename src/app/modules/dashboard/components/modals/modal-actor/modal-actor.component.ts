@@ -7,11 +7,11 @@ import { MaterialModule } from 'src/app/material.module';
   selector: 'app-modal',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  templateUrl: './modal-actor.component.html',
+  styleUrl: './modal-actor.component.scss'
 })
 export class ModalComponent implements OnInit{
-  title = 'Create Movie'
+  title = 'Create Actor'
   isedit = false;
 
   constructor(private formBuilder:FormBuilder){

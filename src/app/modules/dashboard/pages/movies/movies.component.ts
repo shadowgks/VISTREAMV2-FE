@@ -4,22 +4,21 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/material.module';
-import { ModalComponent } from '../../components/modal/modal.component';
-
+import { ModalComponent } from '../../components/modals/modal-actor/modal-actor.component';
 
 @Component({
-  selector: 'app-task',
+  selector: 'app-movies',
   standalone: true,
   imports: [CommonModule, MatSlideToggleModule, MaterialModule],
-  templateUrl: './task.component.html',
-  styleUrl: './task.component.scss'
+  templateUrl: './movies.component.html',
+  styleUrl: './movies.component.scss'
 })
-export class TaskComponent {
 
+export class MoviesComponent {
   constructor(private dialog: MatDialog, private store: Store) { }
 
   FunctionAdd() {    
-    this.OpenPopup(0, 'created task');
+    this.OpenPopup(0, 'created movie');
   }
 
   OpenPopup(code: number, title: string) {
