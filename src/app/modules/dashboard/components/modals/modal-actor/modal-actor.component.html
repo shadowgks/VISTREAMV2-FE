@@ -19,11 +19,17 @@
         </button>
     </div>
     <!-- Modal body -->
-    <form [formGroup]="saveForm" (ngSubmit)="saveTask()">
+    <form [formGroup]="saveForm" (ngSubmit)="save()">
         <div class="grid gap-4 mb-4 sm:grid-cols-2">
             <div *ngIf="isedit">
                 <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Id</label>
                 <input formControlName="id" type="text" name="location" id="id"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="">
+            </div>
+            <div class="grid col-span-2">
+                <label for="picture" class="block text-sm font-medium text-gray-900 dark:text-white">Picture</label>
+                <input formControlName="picture" type="file" name="picture" id="picture"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="">
             </div>
@@ -34,60 +40,11 @@
                     placeholder="">
             </div>
             <div>
-                <label for="users"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">users</label>
-                <select formControlName="user" id="status"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option selected="">Choice</option>
-                    <option value="Todo">Todo</option>
-                </select>
-            </div>
-            <div>
-                <label for="to_user"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">assignedToUser</label>
-                <select formControlName="assignedToUser" id="status"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option selected="">Choice</option>
-                    <option value="Todo">Todo</option>
-                </select>
-            </div>
-            <div>
-                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
-                    Date</label>
-                <input ngModel type="datetime-local" name="date" id="price"
+                <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Date Birthday</label>
+                <input ngModel type="date" name="birthday" id="birthday"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="$299">
-            </div>
-            <div>
-                <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
-                    Start</label>
-                <input ngModel type="datetime-local" name="startTime"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="$299">
-            </div>
-            <div>
-                <label for="status"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                <select formControlName="statusTask" id="status"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option selected="">Choice</option>
-                    <option value="Todo">Todo</option>
-                    <option value="InProgress">InProgress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </div>
-            <div>
-                <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tags</label>
-                <input formControlName="tags" type="text" name="tags"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="">
-            </div>
-            <div class="sm:col-span-2">
-                <label for="description"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <textarea formControlName="description" id="description" rows="5"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Write a description..."></textarea>
             </div>
         </div>
         <div class="flex justify-end space-x-4">

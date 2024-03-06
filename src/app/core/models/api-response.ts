@@ -1,6 +1,6 @@
 export interface ApiResponse<T> {
     message: string,
-    result: any,
+    result: T,
     errorsValidation: string,
     error: string
 }

@@ -23,20 +23,12 @@ export class ModalComponent implements OnInit{
   }
 
   saveForm = this.formBuilder.group({
-    id: this.formBuilder.control(0),
-    name: this.formBuilder.control('', Validators.required),
-    description: this.formBuilder.control('', Validators.compose([Validators.required, Validators.email])),
-    tags: this.formBuilder.control('', Validators.required),
-    statusTask: this.formBuilder.control('InProgress', Validators.required),
-    startDate: this.formBuilder.control('', Validators.required),
-    endDate: this.formBuilder.control('', Validators.required),
-    user: this.formBuilder.control('', Validators.required),
-    assignedToUser: this.formBuilder.control(''),
+
   })
 
 
 
-  saveTask(){
+  save(){
     if (this.saveForm.valid) {
       
     }

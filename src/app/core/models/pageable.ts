@@ -1,4 +1,5 @@
 export interface Page<T>{
+    page: any
     content: T,
     pageable: {
         pageNumber: number,
