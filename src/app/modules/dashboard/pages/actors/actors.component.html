@@ -31,7 +31,7 @@
                 <div class="mb-4 flex items-center justify-between">
                     <div class="flex-col items-center">
                         <!--B search -->
-                        <form #searchForm="ngForm" (ngSubmit)="clickNumberPagination(searchForm.value.location)"
+                        <div (ngSubmit)="clickNumberPagination(searchTerm)"
                             class="flex items-center max-w-2xl pe-6 mx-auto">
                             <label for="" class="sr-only">Search</label>
                             <div class="relative w-full">
@@ -44,11 +44,11 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <input type="text" id="location-search" name="location" ngModel
+                                <input type="text" id="searchTerm" name="searchTerm" [(ngModel)]="searchTerm"
                                     class="bg-gray-50 border pr-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Search... " required="">
                             </div>
-                            <button type="submit"
+                            <button type="submit" (click)="search()"
                                 class="inline-flex items-center py-2.5  px-3 ml-2 text-sm font-medium text-white bg-blue-500 rounded-lg border border-blue-700 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 ">
                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="w-5 h-5 mr-2 -ml-1 bi bi-search" viewBox="0 0 16 16">
@@ -57,7 +57,7 @@
                           </path>
                         </svg> -->
                                 Search</button>
-                        </form>
+                        </div>
                         <!--E search -->
                     </div>
                     <!-- 
@@ -120,14 +120,16 @@
                                         </td>
                                         <td class="py-2 pl-2">
                                             <div class="flex gap-2 justify-center">
-                                                <a class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-gray-200 text-gray-400 dark:bg-night-500 dark:text-night-300">
+                                                <a (click)="edit(item.id, item.fullName, item.birthDate)"
+                                                    class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-gray-200 text-gray-400 dark:bg-night-500 dark:text-night-300">
                                                     <svg-icon src="assets/icons/heroicons/outline/cog.svg"
                                                         [svgClass]="'h-5 w-5'"> </svg-icon>
                                                 </a>
-                                                <a  class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-gray-200 text-gray-400 dark:bg-night-500 dark:text-night-300">
-                                                <svg-icon src="assets/icons/heroicons/outline/x.svg"
-                                                    [svgClass]="'h-5 w-5'"> </svg-icon>
-                                            </a>
+                                                <a (click)="delete(item.id)"
+                                                    class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-gray-200 text-gray-400 dark:bg-night-500 dark:text-night-300">
+                                                    <svg-icon src="assets/icons/heroicons/outline/x.svg"
+                                                        [svgClass]="'h-5 w-5'"> </svg-icon>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -165,7 +167,7 @@
         <div class="flex justify-end pt-3">
             <ul *ngIf="state.appData?.result?.page?.content!.length > 0" class="flex items-center space-x-1">
                 <li [ngClass]="0 == (currentPage$ | async) ? 'disableP' : ''">
-                    <a (click)="clickNextOrPrevious(searchForm.value.location, 'previous')"
+                    <a (click)="clickNextOrPrevious(searchTerm, 'previous')"
                         class="relative inline-flex cursor-pointer items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded dark:hover:text-gray-100 dark:border-gray-700 dark:bg-gray-700 dark:hover:bg-blue-400 dark:text-gray-300 hover:bg-gray-100">
                         <span class="sr-only">Previous</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -177,7 +179,7 @@
 
                 </li>
                 <li *ngFor="let pageNumber of [].constructor(state.appData?.result?.page?.totalPages); let i = index">
-                    <a (click)="clickNumberPagination(searchForm.value.location, i)"
+                    <a (click)="clickNumberPagination(searchTerm, i)"
                         class="cursor-pointer px-4 py-2 hover:bg-blue-400 dark:hover:bg-blue-400 hover:text-white dark:text-gray-300 dark:border-gray-700"
                         [ngClass]="i == (currentPage$ | async) 
                         ? 'text-blue-600 border border-blue-600 rounded bg-blue-50 dark:bg-gray-600' 
@@ -203,7 +205,7 @@
                     </a>
                 </li> -->
                 <li>
-                    <a (click)="clickNextOrPrevious(searchForm.value.location, 'next')"
+                    <a (click)="clickNextOrPrevious(searchTerm, 'next')"
                         [ngClass]="(state.appData!.result!.page!.totalPages - 1) == (currentPage$ | async) ? 'disableP' : ''"
                         class="relative inline-flex cursor-pointer items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded dark:hover:text-gray-100 dark:border-gray-700 dark:bg-gray-700 dark:hover:bg-blue-400 dark:text-gray-300 hover:bg-gray-100">
                         <span class="sr-only">Next</span>
@@ -218,4 +220,3 @@
         </div>
     </ng-container>
 </div>
-

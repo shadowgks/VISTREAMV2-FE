@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/material.module';
 import { ModalComponent } from '../../components/modals/modal-actor/modal-actor.component';
 import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
@@ -14,9 +14,6 @@ import { ActorService } from 'src/app/core/services/actor.service';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SharedService } from 'src/app/core/services/shared.service';
-import { PrimengModule } from 'src/app/primeng.module';
-
-
 
 
 
@@ -29,16 +26,15 @@ import { PrimengModule } from 'src/app/primeng.module';
 })
 
 export class ActorsComponent {
-// confirm2($event: MouseEvent) {
-// }
   form!: FormGroup;
   submitted = false;
   error = '';
+  searchTerm = '';
   actorState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Actor>> }>;
 
   constructor(
-    private dialog: MatDialog, 
-    private actorService: ActorService, 
+    private dialog: MatDialog,
+    private actorService: ActorService,
     private _sharedService: SharedService) { }
 
   //current page
@@ -46,11 +42,11 @@ export class ActorsComponent {
   currentPage$ = this.currentPageSubject.asObservable();
 
   //modal
-  FunctionAdd() {    
+  FunctionAdd() {
     this.OpenPopup(0, 'created actor');
   }
 
-  OpenPopup(code: number, title: string) {
+  OpenPopup(code: number, title: string, data?:any) {
     // this.store.dispatch(openpopup());
     this.dialog.open(ModalComponent, {
       width: '50%',
@@ -58,12 +54,13 @@ export class ActorsComponent {
       exitAnimationDuration: '200ms',
       data: {
         code: code,
-        title: title
+        title: title,
+        ...data
       }
     })
   }
 
-  
+
   ngOnInit(): void {
     this.getActors();
     this._sharedService.onDataSaved$.subscribe(() => {
@@ -87,7 +84,7 @@ export class ActorsComponent {
   public clickNumberPagination(name?: string, numOfPage: number = 0) {
     this.actorState$ = this.actorService.getActorsPageble(name, numOfPage).pipe(
       map((response: ApiResponse<Page<Actor>>) => {
-        console.log(response);
+        // console.log(response);
         // this.responseSubject.next(response);
         this.currentPageSubject.next(numOfPage);
         return ({ appState: "app_loaded", appData: response });
@@ -99,8 +96,39 @@ export class ActorsComponent {
 
   public clickNextOrPrevious(name?: string, direction?: string) {
     this.clickNumberPagination(name, direction === 'next' ?
-     this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
+      this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
   }
+
+  delete(id: number) {
+    this.actorState$ = this.actorService.deleteActor(id).pipe(
+      map((response: ApiResponse<any>) => {
+        console.log(response);
+        this.getActors();
+        return ({ appState: "app_loaded", appData: response });
+      }),
+      startWith({ appState: "app_loading" }),
+      catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
+    )
+  }
+
+  edit(id: number, fullName: string, birthDate: string) {
+    this.OpenPopup(1, 'edited actor', {id, fullName, birthDate});
+  }
+
+  public search() {
+    if (this.searchTerm == '') {
+        this.getActors();
+    } else {
+        this.actorState$ = this.actorService.searchActors(this.searchTerm).pipe(
+            map((response: ApiResponse<Page<Actor>>) => {
+              return ({ appState: "app_loaded", appData: response });
+            }),
+            startWith({ appState: "app_loading" }),
+            catchError((error: HttpErrorResponse) => of({ appState: "app_error", error})),
+        )
+    }
+}
+    
 
   // //add modal
   // public onAddCompetition(addForm: NgForm) {
@@ -182,4 +210,6 @@ export class ActorsComponent {
   //     }
   //   )
   // }
+
+
 }

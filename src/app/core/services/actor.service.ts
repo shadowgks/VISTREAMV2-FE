@@ -21,7 +21,19 @@ export class ActorService {
     return this.http.get<ApiResponse<Page<Actor>>>(`${this.apiServerUrl}`);
   }
 
-  public saveActor(competition: Actor): Observable<ApiResponse<Actor>>{
-    return this.http.post<ApiResponse<Actor>>(`${this.apiServerUrl}/create`, competition);
+  public saveActor(actor: Actor): Observable<ApiResponse<Actor>>{
+    return this.http.post<ApiResponse<Actor>>(`${this.apiServerUrl}/create`, actor);
+  }
+
+  public updateActor(id: number, actor: Actor): Observable<ApiResponse<Actor>>{
+    return this.http.put<ApiResponse<Actor>>(`${this.apiServerUrl}/update/${id}`, actor);
+  }
+
+  public deleteActor(id: number): Observable<any>{
+    return this.http.delete<any>(`${this.apiServerUrl}/${id}`);
+  }
+
+  searchActors(searchTerm: string): Observable<ApiResponse<Page<Actor>>>{
+    return this.http.get<ApiResponse<Page<Actor>>>(`${this.apiServerUrl}?searchTerm=${searchTerm}`);
   }
 }
