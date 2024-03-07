@@ -11,8 +11,12 @@ import { Actor } from 'src/app/core/models/actor';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActorService } from 'src/app/core/services/actor.service';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { SharedService } from 'src/app/core/services/shared.service';
+import { PrimengModule } from 'src/app/primeng.module';
+
+
 
 
 
@@ -25,9 +29,17 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 })
 
 export class ActorsComponent {
+// confirm2($event: MouseEvent) {
+// }
+  form!: FormGroup;
+  submitted = false;
+  error = '';
   actorState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Actor>> }>;
 
-  constructor(private dialog: MatDialog, private actorService: ActorService) { }
+  constructor(
+    private dialog: MatDialog, 
+    private actorService: ActorService, 
+    private _sharedService: SharedService) { }
 
   //current page
   private currentPageSubject = new BehaviorSubject<number>(null!);
@@ -54,6 +66,9 @@ export class ActorsComponent {
   
   ngOnInit(): void {
     this.getActors();
+    this._sharedService.onDataSaved$.subscribe(() => {
+      this.getActors();
+    })
   }
 
 

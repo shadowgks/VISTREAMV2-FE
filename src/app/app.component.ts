@@ -13,6 +13,9 @@ import { ResponsiveHelperComponent } from './shared/components/responsive-helper
   imports: [NgClass, RouterOutlet, ResponsiveHelperComponent, CommonModule],
 })
 export class AppComponent {
+confirm2($event: MouseEvent) {
+throw new Error('Method not implemented.');
+}
   title = 'TASKFLOW';
 
   constructor(public themeService: ThemeService) {

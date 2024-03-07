@@ -4,7 +4,6 @@ import { ModalComponent } from './modules/dashboard/components/modals/modal-acto
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [
     
