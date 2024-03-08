@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/material.module';
-import { ModalComponent } from '../../components/modals/modal-actor/modal-actor.component';
+import { ModalComponent } from '../../modals/modal-actor/modal-actor.component';
 
 @Component({
   selector: 'app-movies',

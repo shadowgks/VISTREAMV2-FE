@@ -7,6 +7,10 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./modules/vistream-layout/vistream-layout.module').then((m) => m.VistreamLayoutModule),
+  },
+  {
+    path: 'dashboard',
     loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
   {

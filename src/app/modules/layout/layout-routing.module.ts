@@ -5,11 +5,11 @@ import { CustomGuard } from 'src/app/core/guards/custom.guard';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: LayoutComponent,
     loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule), canActivate: [CustomGuard]
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: 'error/404' },
 ];
 

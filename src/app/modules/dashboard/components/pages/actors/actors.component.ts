@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/material.module';
-import { ModalComponent } from '../../components/modals/modal-actor/modal-actor.component';
 import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';
 import { Page } from 'src/app/core/models/pageable';
@@ -14,6 +13,7 @@ import { ActorService } from 'src/app/core/services/actor.service';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SharedService } from 'src/app/core/services/shared.service';
+import { ModalComponent } from '../../modals/modal-actor/modal-actor.component';
 
 
 
@@ -46,7 +46,7 @@ export class ActorsComponent {
     this.OpenPopup(0, 'created actor');
   }
 
-  OpenPopup(code: number, title: string, data?:any) {
+  OpenPopup(code: number, title: string, data?: any) {
     // this.store.dispatch(openpopup());
     this.dialog.open(ModalComponent, {
       width: '50%',
