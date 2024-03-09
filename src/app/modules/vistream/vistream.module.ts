@@ -4,6 +4,12 @@ import { VistreamComponent } from './vistream.component';
 import { register } from 'swiper/element/bundle';
 import { SliderComponent } from './components/pages/slider/slider.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { MaterialModule } from 'src/app/material.module';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatChipsModule} from '@angular/material/chips';
+
+
+
 
 // register Swiper custom elements
 register();
@@ -12,7 +18,8 @@ register();
 @NgModule({
   declarations: [VistreamComponent, SliderComponent, HomeComponent],
   imports: [
-    VistreamRoutingModule
+    VistreamRoutingModule,
+    MaterialModule, MatTabsModule, MatChipsModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

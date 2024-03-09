@@ -6,6 +6,8 @@ import { NavbarComponent } from './components/pages/navbar/navbar.component';
 import { FooterComponent } from './components/pages/footer/footer.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 // register Swiper custom elements
 register();
@@ -13,6 +15,7 @@ register();
 @NgModule({
   declarations: [VistreamLayoutComponent],
   imports: [ 
+    MatTabsModule,
     CommonModule,
     VistreamLayoutRoutingModule, 
     NavbarComponent, 
