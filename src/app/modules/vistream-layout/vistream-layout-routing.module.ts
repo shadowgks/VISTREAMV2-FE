@@ -10,7 +10,8 @@ const routes: Routes = [
     component: VistreamLayoutComponent,
     loadChildren: () => import('../vistream/vistream.module').then((m) => m.VistreamModule)
   },
-  { path: '**', redirectTo: 'page', pathMatch: 'full' },
+  { path: '', redirectTo: 'page', pathMatch: 'full' },
+  { path: '**', redirectTo: 'error/404' },
 ];
 
 @NgModule({
