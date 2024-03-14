@@ -173,7 +173,7 @@
                                         </div>
                                     </tr>
                                     <tr>
-                                        <div class="flex gap-1 items-center">
+                                        <div class="flex gap-4 items-center overflow-x-scroll w-96">
                                             <ng-container *ngFor="let production of item.productions; let last = last">
                                                 <a [href]="production.id"
                                                     class="text-gray-400 text-sm hover:text-color-links">{{production.name}}</a>
@@ -191,9 +191,24 @@
                                 <div class="grid grid-cols-10 gap-y-4 gap-x-2 w-full overflow-y-scroll h-16 mt-3">
                                     <ng-container *ngFor="let cast of item.credits">
                                         <ng-container *ngIf="cast._knownForDepartment == 'Acting'">
-                                            <img class="w-14 h-14 bg-center object-cover rounded-full"
-                                                [src]="'https://image.tmdb.org/t/p/w200' + cast.credit.profilePath"
-                                                alt="Rounded avatar">
+                                            <div *ngIf="cast.credit.profilePath != 'null'; else profilePathIsNull">
+                                                <img class="w-14 h-14 bg-center object-cover rounded-full"
+                                                    [src]="'https://image.tmdb.org/t/p/w200' + cast.credit.profilePath"
+                                                    alt="Rounded avatar">
+                                            </div>
+                                            <ng-template #profilePathIsNull>
+                                                <div
+                                                    class="relative w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <svg class="absolute w-16 h-16 text-gray-400 -left-1"
+                                                        fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </div>
+                                            </ng-template>
+
                                         </ng-container>
                                     </ng-container>
                                 </div>
