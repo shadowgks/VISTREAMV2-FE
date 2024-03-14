@@ -1,6 +1,6 @@
 import { Country } from "./country";
-import { Credit } from "./credit";
 import { Genre } from "./genre";
+import { MediaCredits } from "./media_credits";
 import { Production } from "./production";
 import { Video } from "./video";
 
@@ -28,7 +28,7 @@ export interface Media{
     countries:        Country[];
     productions:      Production[];
     videos:           Video[];
-    credits:          Credit[];
+    credits:          MediaCredits[];
     seasons:          any[];
     watchlists:       any[];
     serverPlays:      any[];

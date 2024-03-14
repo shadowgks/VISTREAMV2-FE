@@ -6,11 +6,13 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
 import { Page } from 'src/app/core/models/pageable';
 import { MediaService } from 'src/app/core/services/media.service';
+import { DetailsMediaComponent } from '../../details-media/details-media.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-media-cards',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './media-cards.component.html',
   styleUrl: './media-cards.component.scss'
 })
@@ -35,14 +37,6 @@ export class MediaCardsComponent implements OnInit {
       startWith({ appState: "app_loading" }),
       catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
     )
-    //     this._serviceMedia.getMedia(typeMedia).subscribe({
-    //   next(value: ApiResponse<Page<Media>>) {
-    //     console.log(value);
-    //   },
-    //   error(err: HttpErrorResponse) {
-    //     console.log(err);
-    //   },
-    // })
   }
 
 }
