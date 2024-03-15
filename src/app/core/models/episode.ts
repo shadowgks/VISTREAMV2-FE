@@ -1,3 +1,4 @@
+import { MediaServerPlayEpisode } from "./media-server-play-episode";
 import { Season } from "./season";
 
 export interface Episode {
@@ -6,5 +7,5 @@ export interface Episode {
     episodeNumber: number;
     picture: string;
     season: Season; 
-    // serverPlays: MediaServerPlayEpisode[]; 
+    serverPlays: MediaServerPlayEpisode[]; 
   }

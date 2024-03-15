@@ -50,8 +50,9 @@
                 
                 </ng-container> -->
                 <div>
-                    <iframe width="100%" height="600" [src]="'https://d000d.com/e/' + item?.serverPlays" scrolling="no" frameborder="0"
-                        allowfullscreen="true"></iframe>
+                    {{item.serverPlays[0].mediaPath}}
+                    <iframe id="ld" width="100%" height="600" [src]='getSafeUrl(item.serverPlays[0].mediaPath)' scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+
                 </div>
 
                 <!-- session & episodes -->

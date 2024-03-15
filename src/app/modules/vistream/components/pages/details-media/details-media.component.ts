@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';
@@ -21,7 +22,8 @@ export class DetailsMediaComponent implements OnInit{
   itemMedia!: object;
 
   constructor(private _route: ActivatedRoute,
-              private _serviceMedia: MediaService){}
+              private _serviceMedia: MediaService,
+              private sanitizer: DomSanitizer){}
 
   ngOnInit(): void {
     this._route.params.subscribe(p => {
@@ -29,6 +31,10 @@ export class DetailsMediaComponent implements OnInit{
     })
     
     this.getDetailsMedia();
+
+    let d = document.querySelector("#ld");
+    console.log(d);
+    
   }
 
   getDetailsMedia(){
@@ -48,5 +54,9 @@ export class DetailsMediaComponent implements OnInit{
     const hours = Math.floor(duration / 60);    
     const minutes = duration % 60;
     return `${hours}h ${minutes}min`;  
+  }
+
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
