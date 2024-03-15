@@ -46,9 +46,12 @@
                     </ol>
                 </nav>
                 <!-- video -->
+                <!-- <ng-container *ngFor="let serverPlay of item.serverPlays">
+                
+                </ng-container> -->
                 <div>
-                    <video src=""></video>
-                    <!-- <iframe width="100%" height="600" src="#" scrolling="true" frameborder="0" allowfullscreen="true"></iframe> -->
+                    <iframe width="100%" height="600" [src]="'https://d000d.com/e/' + item?.serverPlays" scrolling="no" frameborder="0"
+                        allowfullscreen="true"></iframe>
                 </div>
 
                 <!-- session & episodes -->
@@ -173,7 +176,7 @@
                                         </div>
                                     </tr>
                                     <tr>
-                                        <div class="flex gap-4 items-center overflow-x-scroll w-96">
+                                        <div class="flex gap-2 items-center overflow-x-scroll w-96">
                                             <ng-container *ngFor="let production of item.productions; let last = last">
                                                 <a [href]="production.id"
                                                     class="text-gray-400 text-sm hover:text-color-links">{{production.name}}</a>
