@@ -15,24 +15,9 @@ import { MediaService } from 'src/app/core/services/media.service';
   styleUrl: './movies.component.scss'
 })
 export class MoviesComponent implements OnInit{
-
-  mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Media>> }>;
   typeMedia!: string;
-  constructor(private _serviceMedia: MediaService){}
 
   ngOnInit(): void {
-    this.getMedia("movie");    
-  }
-
-  public getMedia(typeMedia: string) {
-    this.mediaState$ = this._serviceMedia.getMedia(typeMedia).pipe(
-      map((response: ApiResponse<Page<Media>>) => {
-        // this.currentPageSubject.next(response.result.page.number);
-        return ({ appState: "app_loaded", appData: response });
-      }),
-      startWith({ appState: "app_loading"}),
-      catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
-    )
-
+    this.typeMedia = "movie";   
   }
 }

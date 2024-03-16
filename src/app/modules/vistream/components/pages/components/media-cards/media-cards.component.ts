@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
@@ -20,6 +20,8 @@ export class MediaCardsComponent implements OnInit {
 
   mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Media>> }>;
   typeMedia!: string;
+  @Input() typeMediaSend!: string; 
+
 
   //current page
   private currentPageSubject = new BehaviorSubject<number>(null!);
@@ -28,8 +30,9 @@ export class MediaCardsComponent implements OnInit {
   constructor(private _serviceMedia: MediaService) { }
 
   ngOnInit(): void {
-    this.getMedia("movie");
+    this.getMedia(this.typeMediaSend);
   }
+
 
   public getMedia(typeMedia: string) {
     this.mediaState$ = this._serviceMedia.getMedia(typeMedia).pipe(
