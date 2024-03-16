@@ -32,7 +32,7 @@ export class DetailsMediaComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe(p => {
       this.shortLink = p['short_link'];
-    })
+    })    
 
     this.getDetailsMedia();
 

@@ -10,6 +10,7 @@ import { provideStore } from '@ngrx/store';
 import { reducers, metaReducers } from './app/reducers';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEffects } from '@ngrx/effects';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 if (environment.production) {
     enableProdMode()
@@ -24,7 +25,7 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(BrowserModule, AppRoutingModule),
     provideStore(reducers, { metaReducers }),
     provideAnimations(),
-    provideEffects()
+    provideEffects(), provideAnimationsAsync()
 ]
 }).catch((err) => console.error(err))
 
