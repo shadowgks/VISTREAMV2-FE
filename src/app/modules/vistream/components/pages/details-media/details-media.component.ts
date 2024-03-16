@@ -35,10 +35,6 @@ export class DetailsMediaComponent implements OnInit {
     })    
 
     this.getDetailsMedia();
-
-    let d = document.querySelector("#ld");
-    console.log(d);
-
   }
 
   getDetailsMedia() {
@@ -71,7 +67,7 @@ export class DetailsMediaComponent implements OnInit {
 
   OpenPopup(key?: string) {
     this.dialog.open(TrailerComponent, {
-      width: '50%',
+      width: '60%',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '200ms',
       data: {
