@@ -16,9 +16,12 @@ import {MatSidenavModule} from "@angular/material/sidenav"
 import {MatMenuModule} from "@angular/material/menu"
 import {MatListModule} from "@angular/material/list"
 import {MatIconModule} from "@angular/material/icon"
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @NgModule({
     exports:[
+        MatTooltipModule,
         MatCardModule,
         MatFormFieldModule,
         MatInputModule,

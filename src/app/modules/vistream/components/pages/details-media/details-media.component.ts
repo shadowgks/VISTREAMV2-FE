@@ -9,11 +9,13 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
 import { MediaService } from 'src/app/core/services/media.service';
 import { TrailerComponent } from './components/trailer/trailer.component';
+import { MaterialModule } from 'src/app/material.module';
+
 
 @Component({
   selector: 'app-details-media',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MaterialModule],
   templateUrl: './details-media.component.html',
   styleUrl: './details-media.component.scss'
 })
