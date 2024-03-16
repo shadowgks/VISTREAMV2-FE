@@ -5,7 +5,7 @@
             <div class="items-media grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mt-10 my-4">
                 <ng-container *ngFor="let item of state.appData?.result?.page?.content; let i = index">
                     <!-- card -->
-                    <a [routerLink]="['../watch/']+item.shortLink" class="cursor-pointer" data-popover-target="popover-media" data-popover-placement="right">
+                    <a [routerLink]="['/page/watch', item.shortLink]" class="cursor-pointer" data-popover-target="popover-media" data-popover-placement="right">
                         <!-- content Card -->
                         <div>
                             <div class="relative">

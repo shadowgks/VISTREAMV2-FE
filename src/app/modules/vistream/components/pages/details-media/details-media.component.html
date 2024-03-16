@@ -42,18 +42,24 @@
                                     {{item.title}}
                                 </span>
                             </div>
+                            <div class="flex items-center">
+
+                            </div>
                         </li>
                     </ol>
                 </nav>
-                <!-- video -->
                 <!-- <ng-container *ngFor="let serverPlay of item.serverPlays">
                 
                 </ng-container> -->
-                <div>
-                    {{item.serverPlays[0].mediaPath}}
-                    <iframe id="ld" width="100%" height="600" [src]='getSafeUrl(item.serverPlays[0].mediaPath)' scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+                <!-- video -->
+                <ng-container *ngIf="item.serverPlays.length > 0">
+                    <div>
+                        <iframe width="100%" height="600"
+                            [src]='getSafeUrl("https://d000d.com/e/" + item.serverPlays[0].mediaPath)' scrolling="no"
+                            frameborder="0" allowfullscreen="true"></iframe>
+                    </div>
+                </ng-container>
 
-                </div>
 
                 <!-- session & episodes -->
                 <ng-container *ngIf="item.typeMedia != 'movie'">
@@ -95,8 +101,8 @@
                             <div class="md:flex md:justify-between">
                                 <!-- title -->
                                 <p class="text-white text-2xl font-bold">{{item.title}}</p>
-                                <!-- rating
-                                <div class="flex items-center cursor-pointer">
+                                <!-- rating -->
+                                <!-- <div class="flex items-center cursor-pointer">
                                     <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <title>First star</title>
@@ -135,16 +141,52 @@
                                 </div> -->
                             </div>
                             <!-- heading-mini -->
-                            <div class="flex gap-6 my-2">
-                                <span
-                                    class="bg-color-secondary text-white text-xs md:font-medium px-2.5 py-0.5 md:rounded-full uppercase">bluray</span>
-                                <a href="imdb">
-                                    <p class="text-yellow-400 text-sm font-bold"><i class="fa-solid fa-star"></i>
-                                        {{item.voteAverage | number: "1.1-1"}}
-                                    </p>
-                                </a>
-                                <p class="text-gray-400 text-sm font-bold">{{
-                                    getDurationInHoursAndMinutes(item.duration) }}</p>
+                            <div class="flex my-2 justify-between items-end">
+                                <div class="flex gap-6 items-center">
+                                    <span
+                                        class="bg-color-secondary text-white text-xs md:font-medium px-2.5 py-0.5 md:rounded-full uppercase">bluray</span>
+                                    <a href="imdb">
+                                        <p class="text-yellow-400 text-sm font-bold"><i class="fa-solid fa-star"></i>
+                                            {{item.voteAverage | number: "1.1-1"}}
+                                        </p>
+                                    </a>
+                                    <p class="text-gray-400 text-sm font-bold">{{
+                                        getDurationInHoursAndMinutes(item.duration) }}</p>
+                                </div>
+
+                                <div class="cursor-pointer" (click)="popUp('d')">
+                                    <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM10.6935 15.8458L15.4137 13.059C16.1954 12.5974 16.1954 11.4026 15.4137 10.941L10.6935 8.15419C9.93371 7.70561 9 8.28947 9 9.21316V14.7868C9 15.7105 9.93371 16.2944 10.6935 15.8458Z"
+                                                fill="#ff0000"></path>
+                                        </g>
+                                    </svg>
+                                    <!-- <button
+                                        class="bg-red-600 text-white text-xs md:font-medium px-1.5 py-0.5 md:rounded-full uppercase w-full"><svg
+                                            width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M9.49614 7.13176C9.18664 6.9549 8.80639 6.95617 8.49807 7.13509C8.18976 7.31401 8 7.64353 8 8V16C8 16.3565 8.18976 16.686 8.49807 16.8649C8.80639 17.0438 9.18664 17.0451 9.49614 16.8682L16.4961 12.8682C16.8077 12.6902 17 12.3589 17 12C17 11.6411 16.8077 11.3098 16.4961 11.1318L9.49614 7.13176ZM13.9844 12L10 14.2768V9.72318L13.9844 12Z"
+                                                    fill="#ffffff"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M0 12C0 8.25027 0 6.3754 0.954915 5.06107C1.26331 4.6366 1.6366 4.26331 2.06107 3.95491C3.3754 3 5.25027 3 9 3H15C18.7497 3 20.6246 3 21.9389 3.95491C22.3634 4.26331 22.7367 4.6366 23.0451 5.06107C24 6.3754 24 8.25027 24 12C24 15.7497 24 17.6246 23.0451 18.9389C22.7367 19.3634 22.3634 19.7367 21.9389 20.0451C20.6246 21 18.7497 21 15 21H9C5.25027 21 3.3754 21 2.06107 20.0451C1.6366 19.7367 1.26331 19.3634 0.954915 18.9389C0 17.6246 0 15.7497 0 12ZM9 5H15C16.9194 5 18.1983 5.00275 19.1673 5.10773C20.0989 5.20866 20.504 5.38448 20.7634 5.57295C21.018 5.75799 21.242 5.98196 21.4271 6.23664C21.6155 6.49605 21.7913 6.90113 21.8923 7.83269C21.9973 8.80167 22 10.0806 22 12C22 13.9194 21.9973 15.1983 21.8923 16.1673C21.7913 17.0989 21.6155 17.504 21.4271 17.7634C21.242 18.018 21.018 18.242 20.7634 18.4271C20.504 18.6155 20.0989 18.7913 19.1673 18.8923C18.1983 18.9973 16.9194 19 15 19H9C7.08058 19 5.80167 18.9973 4.83269 18.8923C3.90113 18.7913 3.49605 18.6155 3.23664 18.4271C2.98196 18.242 2.75799 18.018 2.57295 17.7634C2.38448 17.504 2.20866 17.0989 2.10773 16.1673C2.00275 15.1983 2 13.9194 2 12C2 10.0806 2.00275 8.80167 2.10773 7.83269C2.20866 6.90113 2.38448 6.49605 2.57295 6.23664C2.75799 5.98196 2.98196 5.75799 3.23664 5.57295C3.49605 5.38448 3.90113 5.20866 4.83269 5.10773C5.80167 5.00275 7.08058 5 9 5Z"
+                                                    fill="#ffffff"></path>
+                                            </g>
+                                        </svg></button> -->
+                                    <!-- <button type="button"
+                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Red</button> -->
+
+                                </div>
+
                             </div>
                             <!-- description -->
                             <div class="my-2">
@@ -218,11 +260,11 @@
                                 </div>
                             </div>
                             <!-- footer trailer -->
-                            <div>
+                            <!-- <div>
                                 <label for="my-modal-4" id="btn-modal-trailer" class="btn modal-trailer">
                                     Trailer
                                 </label>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

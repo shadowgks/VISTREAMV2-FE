@@ -23,7 +23,8 @@ export class ModalComponent implements OnInit {
   submitted = false;
   error = '';
 
-  constructor(private _formBuilder: FormBuilder,
+  constructor(
+    private _formBuilder: FormBuilder,
     private actorService: ActorService,
     private dialog: MatDialog,
     private sharedData: SharedService,

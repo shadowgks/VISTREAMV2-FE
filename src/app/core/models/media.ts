@@ -1,6 +1,6 @@
 import { Country } from "./country";
 import { Genre } from "./genre";
-import { MediaCredits } from "./media-credits";
+import { MediaCredits } from "./media_credits";
 import { Production } from "./production";
 import { Season } from "./season";
 import { ServerPlay } from "./server-play";
