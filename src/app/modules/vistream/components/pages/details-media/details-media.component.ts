@@ -68,10 +68,9 @@ export class DetailsMediaComponent implements OnInit {
   }
 
   OpenPopup(key?: string) {
-    // this.store.dispatch(openpopup());
     this.dialog.open(TrailerComponent, {
       width: '50%',
-      enterAnimationDuration: '200ms',
+      enterAnimationDuration: '300ms',
       exitAnimationDuration: '200ms',
       data: {
         key: key,

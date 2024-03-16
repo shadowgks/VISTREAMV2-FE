@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MaterialModule } from 'src/app/material.module';
 
 
@@ -13,11 +14,16 @@ import { MaterialModule } from 'src/app/material.module';
 export class TrailerComponent {
   key!: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
+  constructor(
+    private sanitizer: DomSanitizer,
+    @Inject(MAT_DIALOG_DATA) private data: any){}
 
   ngOnInit(){
-    console.log(this.data.key);
-    
+    this.key = this.data.key;
+  }
+
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

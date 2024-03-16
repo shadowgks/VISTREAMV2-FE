@@ -154,19 +154,21 @@
                                         getDurationInHoursAndMinutes(item.duration) }}</p>
                                 </div>
 
-                                <div class="cursor-pointer" (click)="popUp('d')">
-                                    <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                        </g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM10.6935 15.8458L15.4137 13.059C16.1954 12.5974 16.1954 11.4026 15.4137 10.941L10.6935 8.15419C9.93371 7.70561 9 8.28947 9 9.21316V14.7868C9 15.7105 9.93371 16.2944 10.6935 15.8458Z"
-                                                fill="#ff0000"></path>
-                                        </g>
-                                    </svg>
-                                    <!-- <button
+                                <ng-container *ngIf="item.trailers && item.trailers.length > 0">
+                                    <div class="cursor-pointer" (click)="popUp(item.trailers[0]._key)">
+                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM10.6935 15.8458L15.4137 13.059C16.1954 12.5974 16.1954 11.4026 15.4137 10.941L10.6935 8.15419C9.93371 7.70561 9 8.28947 9 9.21316V14.7868C9 15.7105 9.93371 16.2944 10.6935 15.8458Z"
+                                                    fill="#ff0000"></path>
+                                            </g>
+                                        </svg>
+                                        <!-- <button
                                         class="bg-red-600 text-white text-xs md:font-medium px-1.5 py-0.5 md:rounded-full uppercase w-full"><svg
                                             width="16px" height="16px" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
@@ -182,10 +184,10 @@
                                                     fill="#ffffff"></path>
                                             </g>
                                         </svg></button> -->
-                                    <!-- <button type="button"
+                                        <!-- <button type="button"
                                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Red</button> -->
-
-                                </div>
+                                    </div>
+                                </ng-container>
 
                             </div>
                             <!-- description -->

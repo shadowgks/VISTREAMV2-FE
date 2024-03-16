@@ -35,4 +35,5 @@ export interface Media{
     watchlists:       any[];
     serverPlays:      ServerPlay[];
     sliders:          any[];
+    trailers:         Video[];
 }
