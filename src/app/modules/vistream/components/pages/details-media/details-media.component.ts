@@ -10,12 +10,13 @@ import { Media } from 'src/app/core/models/media';
 import { MediaService } from 'src/app/core/services/media.service';
 import { TrailerComponent } from './components/trailer/trailer.component';
 import { MaterialModule } from 'src/app/material.module';
+import { AlsoLikesComponent } from './components/also-likes/also-likes.component';
 
 
 @Component({
   selector: 'app-details-media',
   standalone: true,
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, AlsoLikesComponent],
   templateUrl: './details-media.component.html',
   styleUrl: './details-media.component.scss'
 })
