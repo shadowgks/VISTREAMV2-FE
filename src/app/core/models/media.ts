@@ -1,3 +1,4 @@
+import { AlsoLike } from "./also-likes";
 import { Country } from "./country";
 import { Genre } from "./genre";
 import { MediaCredits } from "./media_credits";
@@ -36,4 +37,5 @@ export interface Media{
     serverPlays:      ServerPlay[];
     sliders:          any[];
     trailers:         Video[];
+    alsoLikes:        AlsoLike[];
 }
