@@ -78,7 +78,9 @@
                 </nav>
             </ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="'app_loading'">loading</ng-container>
+        <ng-container *ngSwitchCase="'app_loading'">
+            <app-loading></app-loading>
+        </ng-container>
         <ng-container *ngSwitchCase="'app_error'">error</ng-container>
     </ng-container>
 </ng-container>

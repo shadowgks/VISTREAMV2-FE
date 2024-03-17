@@ -6,13 +6,14 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
 import { Page } from 'src/app/core/models/pageable';
 import { MediaService } from 'src/app/core/services/media.service';
-import { DetailsMediaComponent } from '../../details-media/details-media.component';
+import { DetailsMediaComponent } from '../../details-media.component';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from '../../../loading/loading.component';
 
 @Component({
   selector: 'app-media-cards',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, LoadingComponent],
   templateUrl: './media-cards.component.html',
   styleUrl: './media-cards.component.scss'
 })

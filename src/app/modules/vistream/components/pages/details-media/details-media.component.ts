@@ -11,19 +11,19 @@ import { MediaService } from 'src/app/core/services/media.service';
 import { TrailerComponent } from './components/trailer/trailer.component';
 import { MaterialModule } from 'src/app/material.module';
 import { AlsoLikesComponent } from './components/also-likes/also-likes.component';
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 
 
 @Component({
   selector: 'app-details-media',
   standalone: true,
-  imports: [CommonModule, MaterialModule, AlsoLikesComponent],
+  imports: [CommonModule, MaterialModule, AlsoLikesComponent, BreadCrumbComponent],
   templateUrl: './details-media.component.html',
   styleUrl: './details-media.component.scss'
 })
 export class DetailsMediaComponent implements OnInit {
   mediaDetailsState$!: Observable<{ appState: string, appData?: ApiResponse<Media> }>;
   shortLink!: string;
-  itemMedia!: object;
 
   constructor(private _route: ActivatedRoute,
     private _serviceMedia: MediaService,
@@ -41,8 +41,6 @@ export class DetailsMediaComponent implements OnInit {
   getDetailsMedia() {
     this.mediaDetailsState$ = this._serviceMedia.getDetailsMedia(this.shortLink).pipe(
       map((response: ApiResponse<Media>) => {
-        // this.currentPageSubject.next(response.result.page.number);        
-        this.itemMedia = response.result;
         return ({ appState: "app_loaded", appData: response });
       }
       ),

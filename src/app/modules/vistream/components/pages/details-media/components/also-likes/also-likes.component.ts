@@ -22,7 +22,7 @@ export class AlsoLikesComponent{
     
     
     // Navigate to the current route
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/').then(() => {
       this.router.navigate([currentUrl]);
     });}
 }
