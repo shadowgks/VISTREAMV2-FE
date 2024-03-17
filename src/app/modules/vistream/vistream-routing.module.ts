@@ -13,12 +13,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      {
-        path: 'movies', component: MoviesComponent,
-      },
-      {
-        path: 'series', component: TvSeriesComponent,
-      },
+      { path: 'movies', component: MoviesComponent, },
+      { path: 'series', component: TvSeriesComponent, },
       { path: 'watch/:short_link', component: DetailsMediaComponent },
       { path: '**', redirectTo: 'error/404' },
     ],
