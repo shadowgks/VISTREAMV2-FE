@@ -216,7 +216,7 @@
                                 <div>
                                     <div class="text-gray-500 text-base">Best Casts :</div>
                                 </div>
-                                <div class="flex gap-y-4 gap-x-2 w-full overflow-x-scroll flex-wrap h-16 mt-3">
+                                <div id="casts" class="flex gap-y-4 gap-x-2 w-full overflow-y-scroll flex-wrap h-16 mt-3 overflow-x-hidden">
                                     <ng-container *ngFor="let cast of item.credits">
                                         <div mat-raised-button matTooltip="{{cast._character}}">
                                             <ng-container *ngIf="cast._knownForDepartment == 'Acting'">
@@ -248,7 +248,7 @@
                                 <div>
                                     <div class="text-gray-500 text-base">Production :</div>
                                 </div>
-                                <div class="flex gap-y-4 gap-x-2 w-full overflow-x-scroll flex-wrap h-16 mt-3">
+                                <div id="productions" class="flex gap-y-4 gap-x-2 w-full overflow-y-scroll flex-wrap h-16 mt-3 overflow-y-hidden">
                                     <ng-container *ngFor="let production of item.productions">
                                         <div mat-raised-button matTooltip="{{production.name}}">
                                             <div
