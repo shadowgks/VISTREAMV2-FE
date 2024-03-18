@@ -57,6 +57,8 @@
                         </li>
                         <li
                             *ngFor="let pageNumber of [].constructor(state.appData?.result?.page.totalPages); let i = index">
+                            <ng-container *ngIf="i == 10">
+                            </ng-container>
                             <a (click)="clickNumberPagination('movie', '', i)"
                                 class="cursor-pointer px-3 py-2 leading-tight border bg-color-primary-75 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
                                 [ngClass]="i == (currentPage$ | async) 

@@ -17,9 +17,7 @@ export class AlsoLikesComponent{
 
   reloadCurrentRoute(newUrl:string) {
     // Get the current URL
-    const currentUrl = newUrl;
-    console.log(newUrl);
-    
+    const currentUrl = newUrl;    
     
     // Navigate to the current route
     this.router.navigateByUrl('/').then(() => {

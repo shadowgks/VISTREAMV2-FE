@@ -7,6 +7,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { MaterialModule } from 'src/app/material.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 
 
@@ -18,7 +19,7 @@ register();
 @NgModule({
   declarations: [VistreamComponent, SliderComponent, HomeComponent],
   imports: [
-    VistreamRoutingModule,
+    VistreamRoutingModule, NgxPaginationModule,
     MaterialModule, MatTabsModule, MatChipsModule
   ],
   schemas: [

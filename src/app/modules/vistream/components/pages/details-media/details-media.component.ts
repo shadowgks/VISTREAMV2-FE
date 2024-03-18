@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, map, of, startWith } from 'rxjs';
+import { Observable, catchError, map, of, startWith, switchMap, timer } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
 import { MediaService } from 'src/app/core/services/media.service';
@@ -12,12 +12,13 @@ import { TrailerComponent } from './components/trailer/trailer.component';
 import { MaterialModule } from 'src/app/material.module';
 import { AlsoLikesComponent } from './components/also-likes/also-likes.component';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import { LoadingComponent } from 'src/app/modules/vistream-layout/components/pages/loading/loading.component';
 
 
 @Component({
   selector: 'app-details-media',
   standalone: true,
-  imports: [CommonModule, MaterialModule, AlsoLikesComponent, BreadCrumbComponent],
+  imports: [CommonModule, MaterialModule, AlsoLikesComponent, BreadCrumbComponent, LoadingComponent],
   templateUrl: './details-media.component.html',
   styleUrl: './details-media.component.scss'
 })
@@ -40,13 +41,10 @@ export class DetailsMediaComponent implements OnInit {
 
   getDetailsMedia() {
     this.mediaDetailsState$ = this._serviceMedia.getDetailsMedia(this.shortLink).pipe(
-      map((response: ApiResponse<Media>) => {
-        return ({ appState: "app_loaded", appData: response });
-      }
-      ),
+      map((response: ApiResponse<Media>) => ({ appState: "app_loaded", appData: response })),
       startWith({ appState: "app_loading" }),
       catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
-    )
+    );
   }
 
   getDurationInHoursAndMinutes(duration: number): string {

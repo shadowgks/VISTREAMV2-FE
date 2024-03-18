@@ -84,8 +84,6 @@ export class ActorsComponent {
   public clickNumberPagination(name?: string, numOfPage: number = 0) {
     this.actorState$ = this.actorService.getActorsPageble(name, numOfPage).pipe(
       map((response: ApiResponse<Page<Actor>>) => {
-        // console.log(response);
-        // this.responseSubject.next(response);
         this.currentPageSubject.next(numOfPage);
         return ({ appState: "app_loaded", appData: response });
       }),

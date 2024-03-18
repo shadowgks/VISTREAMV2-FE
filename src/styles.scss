@@ -109,12 +109,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #fff;
 }
 
-.swiper {
-  height: 60vh;
-}
+// .swiper {
+//   height: 60vh;
+// }
 
 .img-media {
   height: 350px;
   -o-object-fit: cover;
      object-fit: cover;
 }/*# sourceMappingURL=style.css.map */
+
+
+
+.ngx-pagination .current{
+	background-color: #88188f !important;
+}
+
+.ngx-pagination a, .ngx-pagination button{
+	color: #fff !important;
+}
+.ngx-pagination a:hover{
+	color: #000;
+}
+.ngx-pagination{
+	display: flex;
+	justify-content: center;
+}
