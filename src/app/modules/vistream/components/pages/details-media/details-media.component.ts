@@ -37,6 +37,8 @@ export class DetailsMediaComponent implements OnInit {
     })    
 
     this.getDetailsMedia();
+
+    window.scrollTo(0, 0);
   }
 
   getDetailsMedia() {
