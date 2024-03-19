@@ -9,8 +9,6 @@ import { MediaService } from 'src/app/core/services/media.service';
 
 @Component({
   selector: 'app-movies',
-  standalone: true,
-  imports: [MediaCardsComponent],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })

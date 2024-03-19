@@ -3,10 +3,8 @@ import { MediaCardsComponent } from "../details-media/components/media-cards/med
 
 @Component({
     selector: 'app-tv-series',
-    standalone: true,
     templateUrl: './tv-series.component.html',
     styleUrl: './tv-series.component.scss',
-    imports: [MediaCardsComponent]
 })
 export class TvSeriesComponent {
   typeMedia!: string;

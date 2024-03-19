@@ -14,13 +14,18 @@ export class MediaService {
   constructor(private http: HttpClient) { }
 
   //Media  
-  public getMedia(typeMedia: string, searchTerm: string='', numPage: number=0, numSize: number=30): Observable<ApiResponse<Page<Media>>>{
-    return this.http.get<ApiResponse<Page<Media>>>(`${this.apiServerUrl}?typeMedia=${typeMedia}&searchTerm=${searchTerm}&numPage=${numPage}&numSize=${numSize}`);
+  public getMedia(typeMedia: string, searchTerm: string='', numPage: number=0, numSize: number=30): Observable<ApiResponse<Page<Media[]>>>{
+    return this.http.get<ApiResponse<Page<Media[]>>>(`${this.apiServerUrl}?typeMedia=${typeMedia}&searchTerm=${searchTerm}&numPage=${numPage}&numSize=${numSize}`);
   }
 
   public getDetailsMedia(shortLink: string): Observable<ApiResponse<Media>>{
     return this.http.get<ApiResponse<Media>>(`${this.apiServerUrl}/${shortLink}`);
   }
+
+  public getMediaRecommended(typeMedia?: string, limitData?: number): Observable<ApiResponse<Media[]>>{
+    return this.http.get<ApiResponse<Media[]>>(`${this.apiServerUrl}/recommended?type_media=${typeMedia}&limit_data=${limitData}`);
+  } 
+  
 
   
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VistreamComponent } from './vistream.component';
+import { TvSeriesComponent } from './components/pages/tv-series/tv-series.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { MoviesComponent } from './components/pages/movies/movies.component';
-import { TvSeriesComponent } from './components/pages/tv-series/tv-series.component';
 import { DetailsMediaComponent } from './components/pages/details-media/details-media.component';
 
 const routes: Routes = [

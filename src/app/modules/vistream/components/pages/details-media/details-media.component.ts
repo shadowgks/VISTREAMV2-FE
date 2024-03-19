@@ -17,8 +17,6 @@ import { LoadingComponent } from 'src/app/modules/vistream-layout/components/pag
 
 @Component({
   selector: 'app-details-media',
-  standalone: true,
-  imports: [CommonModule, MaterialModule, AlsoLikesComponent, BreadCrumbComponent, LoadingComponent],
   templateUrl: './details-media.component.html',
   styleUrl: './details-media.component.scss'
 })

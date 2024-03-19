@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-slider',
-  standalone: false,
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss'
 })

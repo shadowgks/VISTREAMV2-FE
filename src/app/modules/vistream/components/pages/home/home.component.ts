@@ -6,16 +6,21 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Slider } from 'src/app/core/models/slider';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SliderService } from 'src/app/core/services/slider.service';
+import { Media } from 'src/app/core/models/media';
+
 
 @Component({
     selector: 'app-home',
-    standalone: false,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-    IsEnabeld: boolean = true;
+    isEnabeld: boolean = true;
+    typeMedia: string = 'movie';
+    limitData: number = 12;
     slidersState$!: Observable<{ appState: string, appData?: ApiResponse<Slider> }>;
+    mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Media[]> }>;
+
 
     constructor(
         private _mediaService: MediaService,
@@ -26,33 +31,20 @@ export class HomeComponent implements OnInit {
     }
 
     getSliderByIsEnabled() {
-        this.slidersState$ = this._sliderService.getSliderByIsEnabled(this.IsEnabeld).pipe(
+        this.slidersState$ = this._sliderService.getSliderByIsEnabled(this.isEnabeld).pipe(
             map((response: ApiResponse<Slider>) => ({ appState: "app_loaded", appData: response })),
             startWith({ appState: "app_loading" }),
             catchError((error: HttpErrorResponse) => of({ appState: "error", error }))
         )
     }
 
-
-
-    //scrol
-    @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-    isAtStart: boolean = true;
-    isAtEnd: boolean = false;
-
-    scrollLeft() {
-        this.scrollContainer.nativeElement.scrollLeft -= 100; // Adjust the scroll amount as needed
-        this.updateScrollState();
+    getRecommendedMedia() {
+        this.mediaState$ = this._mediaService.getMediaRecommended(this.typeMedia, this.limitData).pipe(
+            map((response: ApiResponse<Media[]>) => ({ appState: "app_loaded", appData: response })),
+            startWith({ appState: "app_loading" }),
+            catchError((error: HttpErrorResponse) => of({ appState: "error", error }))
+        )
     }
 
-    scrollRight() {
-        this.scrollContainer.nativeElement.scrollLeft += 100; // Adjust the scroll amount as needed
-        this.updateScrollState();
-    }
 
-    updateScrollState() {
-        const container = this.scrollContainer.nativeElement;
-        this.isAtStart = container.scrollLeft === 0;
-        this.isAtEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth;
-    }
 }
