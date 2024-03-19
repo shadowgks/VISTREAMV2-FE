@@ -3,7 +3,38 @@
 
 <div class="w-container m-auto">
     <!-- Recommended -->
-    <app-recommended [data]=""></app-recommended>
+    <section>
+        <!-- heading -->
+        <div class="md:flex md:items-center gap-10">
+            <h2 class="text-white font-bold text-3xl">Recommended
+                <hr class="w-32 mt-2 border-2 border-color-three">
+            </h2>
+            <div class="tabs mt-8 flex justify-center md:block md:m-0">
+                <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option selected="">Movies</mat-chip-option>
+                    <mat-chip-option>Series</mat-chip-option>
+                </mat-chip-listbox>
+                <!-- <ul class="flex text-sm font-medium text-center" id="myTab"
+                    role="tablist">
+                    <li class="mr-2">
+                        <span
+                            class="cursor-pointer bg-color-secondary text-white text-xs font-medium mr-2 px-6 py-2 rounded"
+                            id="movies-tab" data-tabs-target="#movies" type="button" role="tab" aria-controls="movies"
+                            aria-selected="false">Movies</span>
+                    </li>
+                    <li class="mr-2">
+                        <span
+                            class="cursor-pointer bg-color-secondary text-white text-xs font-medium mr-2 px-6 py-2 rounded"
+                            id="series-tab" data-tabs-target="#series" type="button" role="tab" aria-controls="series"
+                            aria-selected="false">Tv-shows</span>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+        <!-- tag movies or series Recomended-->
+        <app-recommended [dataMedia]="(mediaState$ | async)"></app-recommended>
+
+    </section>
 
     <!-- Latest Movies -->
     <section class="mt-14">

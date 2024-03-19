@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AlsoLike } from 'src/app/core/models/also-likes';
 import { CardComponent } from '../card/card.component';
+import { Media } from 'src/app/core/models/media';
 
 @Component({
   selector: 'app-also-likes',
@@ -10,5 +10,5 @@ import { CardComponent } from '../card/card.component';
   styleUrl: './also-likes.component.scss'
 })
 export class AlsoLikesComponent {
-  @Input() alsoLikes!: AlsoLike[];
+  @Input() alsoLikes!: Media[];
 }

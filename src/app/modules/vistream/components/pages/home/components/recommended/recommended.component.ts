@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recommended',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './recommended.component.scss'
 })
 export class RecommendedComponent {
-  
+  @Input() dataMedia: any;
 }
