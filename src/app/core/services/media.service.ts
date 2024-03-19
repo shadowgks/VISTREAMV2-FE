@@ -4,7 +4,6 @@ import { Media } from '../models/media';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../models/api-response';
 import { Page } from '../models/pageable';
-import { Slider } from '../models/slider';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +23,5 @@ export class MediaService {
   }
 
   
-  //Sliders
-  public getSliders(): Observable<ApiResponse<Slider>>{
-    return this.http.get<ApiResponse<Slider>>(`${this.apiServerUrl}/sliders`);
-  }
 
-  public getSliderByIsEnabled(isEnabled: boolean): Observable<ApiResponse<Slider>>{
-    return this.http.get<ApiResponse<Slider>>(`${this.apiServerUrl}/sliders/${isEnabled}`);
-  }
 }
