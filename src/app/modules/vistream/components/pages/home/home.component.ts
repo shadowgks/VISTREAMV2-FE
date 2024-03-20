@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SliderComponent } from "../slider/slider.component";
+import { SliderComponent } from "./components/slider/slider.component";
 import { MediaService } from 'src/app/core/services/media.service';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';
@@ -17,6 +17,7 @@ import { Media } from 'src/app/core/models/media';
 export class HomeComponent implements OnInit {
     isEnabeld: boolean = true;
     typeMedia: string = 'movie';
+    movie!:string;
     limitData: number = 12;
     slidersState$!: Observable<{ appState: string, appData?: ApiResponse<Slider> }>;
     mediaRecommendedState$!: Observable<{ appState: string, appData?: ApiResponse<Media[]> }>;
@@ -34,6 +35,11 @@ export class HomeComponent implements OnInit {
         this.getRecommendedMedia();
         this.getLatsetMovies();
         this.getLatsetTv();
+    }
+
+    changeType(value?: number){
+        value == 1 ? this.typeMedia = 'movie' : this.typeMedia = 'tv'
+        this.getRecommendedMedia();
     }
 
     getSliderByIsEnabled() {

@@ -13,7 +13,7 @@ export class SliderComponent implements OnInit {
   @Input() data: any;
 
   ngOnInit(): void {
-    console.log(this.data.app_loaded);
+
   }
 
   getDurationInHoursAndMinutes(duration: number): string {

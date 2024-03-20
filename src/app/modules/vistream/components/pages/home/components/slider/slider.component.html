@@ -1,12 +1,3 @@
-<!-- B Slider -->
-<!-- Slider main container -->
-<!-- <ng-container [ngSwitch]="data.appState">
-    <ng-container *ngSwitchCase="'app_loaded'">
-        {{data.appData}}
-    </ng-container>
-</ng-container> -->
-
-
 <swiper-container loop="true" speed="1000" class="swiper mb-10">
     <!-- Additional required wrapper -->
     <!-- Slides -->
@@ -48,14 +39,11 @@
                     </ng-container>
                 </ng-container>
             </ng-container>
+            <ng-container *ngSwitchCase="'app_loading'">
+                <app-loading></app-loading>
+            </ng-container>
+            <ng-container *ngSwitchCase="'app_error'">
+            </ng-container>
         </ng-container>
     </ng-container>
-
-
-    <!-- If we need pagination -->
-    <!-- <div class="swiper-pagination"></div> -->
-
-    <!-- If we need navigation buttons -->
-    <!-- <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div> -->
 </swiper-container>

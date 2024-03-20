@@ -11,8 +11,8 @@
             </h2>
             <div class="tabs mt-8 flex justify-center md:block md:m-0">
                 <mat-chip-listbox aria-label="Fish selection">
-                    <mat-chip-option selected="">Movies</mat-chip-option>
-                    <mat-chip-option>Series</mat-chip-option>
+                    <mat-chip-option (click)="changeType(1)" selected="">Movies</mat-chip-option>
+                    <mat-chip-option (click)="changeType(2)">Series</mat-chip-option>
                 </mat-chip-listbox>
                 <!-- <ul class="flex text-sm font-medium text-center" id="myTab"
                     role="tablist">

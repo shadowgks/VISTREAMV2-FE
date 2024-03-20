@@ -8,7 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SliderComponent } from './components/pages/slider/slider.component';
+import { SliderComponent } from './components/pages/home/components/slider/slider.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { DetailsMediaComponent } from './components/pages/details-media/details-media.component';
 import { AlsoLikesComponent } from './components/pages/details-media/components/also-likes/also-likes.component';
