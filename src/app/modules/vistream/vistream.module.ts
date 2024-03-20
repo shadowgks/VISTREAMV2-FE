@@ -18,6 +18,8 @@ import { MediaCardsComponent } from './components/pages/details-media/components
 import { MoviesComponent } from './components/pages/movies/movies.component';
 import { LoadingComponent } from '../vistream-layout/components/pages/loading/loading.component';
 import { RecommendedComponent } from './components/pages/home/components/recommended/recommended.component';
+import { LatestMoviesComponent } from './components/pages/home/components/latest-movies/latest-movies.component';
+import { LatestSeriesComponent } from './components/pages/home/components/latest-series/latest-series.component';
 
 
 // register Swiper custom elements
@@ -36,7 +38,9 @@ register();
     AlsoLikesComponent,
     DetailsMediaComponent,
     LoadingComponent,
-    RecommendedComponent
+    RecommendedComponent,
+    LatestMoviesComponent,
+    LatestSeriesComponent
   ],
 
   imports: [

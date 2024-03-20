@@ -19,7 +19,10 @@ export class HomeComponent implements OnInit {
     typeMedia: string = 'movie';
     limitData: number = 12;
     slidersState$!: Observable<{ appState: string, appData?: ApiResponse<Slider> }>;
-    mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Media[]> }>;
+    mediaRecommendedState$!: Observable<{ appState: string, appData?: ApiResponse<Media[]> }>;
+    latsetMoviesState$!: Observable<{ appState: string, appData?: ApiResponse<Media[]> }>;
+    latsetTvState$!: Observable<{ appState: string, appData?: ApiResponse<Media[]> }>;
+
 
 
     constructor(
@@ -29,6 +32,8 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         this.getSliderByIsEnabled();
         this.getRecommendedMedia();
+        this.getLatsetMovies();
+        this.getLatsetTv();
     }
 
     getSliderByIsEnabled() {
@@ -40,7 +45,23 @@ export class HomeComponent implements OnInit {
     }
 
     getRecommendedMedia() {
-        this.mediaState$ = this._mediaService.getMediaRecommended(this.typeMedia, this.limitData).pipe(
+        this.mediaRecommendedState$ = this._mediaService.getMediaRecommendedAndLatest('popularity', this.typeMedia, this.limitData).pipe(
+            map((response: ApiResponse<Media[]>) => ({ appState: "app_loaded", appData: response })),
+            startWith({ appState: "app_loading" }),
+            catchError((error: HttpErrorResponse) => of({ appState: "error", error }))
+        )
+    }
+
+    getLatsetMovies() {
+        this.latsetMoviesState$ = this._mediaService.getMediaRecommendedAndLatest('releaseDate', 'movie', this.limitData).pipe(
+            map((response: ApiResponse<Media[]>) => ({ appState: "app_loaded", appData: response })),
+            startWith({ appState: "app_loading" }),
+            catchError((error: HttpErrorResponse) => of({ appState: "error", error }))
+        )
+    }
+
+    getLatsetTv() {
+        this.latsetTvState$ = this._mediaService.getMediaRecommendedAndLatest('releaseDate', 'tv', this.limitData).pipe(
             map((response: ApiResponse<Media[]>) => ({ appState: "app_loaded", appData: response })),
             startWith({ appState: "app_loading" }),
             catchError((error: HttpErrorResponse) => of({ appState: "error", error }))

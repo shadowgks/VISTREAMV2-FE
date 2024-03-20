@@ -1,0 +1,9 @@
+<ng-container *ngIf="dataMedia as state">
+    <ng-container [ngSwitch]="state.appState">
+        <ng-container *ngSwitchCase="'app_loaded'">
+            <app-card [data]="state.appData?.result"></app-card>
+        </ng-container>
+        <ng-container *ngSwitchCase="'app_loading'"></ng-container>
+        <ng-container *ngSwitchCase="'app_error'"></ng-container>
+    </ng-container>
+</ng-container>

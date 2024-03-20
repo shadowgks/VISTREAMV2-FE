@@ -22,9 +22,10 @@ export class MediaService {
     return this.http.get<ApiResponse<Media>>(`${this.apiServerUrl}/${shortLink}`);
   }
 
-  public getMediaRecommended(typeMedia?: string, limitData?: number): Observable<ApiResponse<Media[]>>{
-    return this.http.get<ApiResponse<Media[]>>(`${this.apiServerUrl}/recommended?type_media=${typeMedia}&limit_data=${limitData}`);
+  public getMediaRecommendedAndLatest(column?: string, typeMedia?: string, limitData?: number): Observable<ApiResponse<Media[]>>{
+    return this.http.get<ApiResponse<Media[]>>(`${this.apiServerUrl}/recommended?type_media=${typeMedia}&limit_data=${limitData}&column=${column}`);
   } 
+  
   
 
   
