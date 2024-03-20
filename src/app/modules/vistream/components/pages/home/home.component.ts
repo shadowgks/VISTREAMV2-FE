@@ -38,7 +38,17 @@ export class HomeComponent implements OnInit {
     }
 
     changeType(value?: number){
-        value == 1 ? this.typeMedia = 'movie' : this.typeMedia = 'tv'
+        let mov = document.getElementById("movie");
+        let tv = document.getElementById("tv");
+        console.log(mov);
+
+        if(value == 1){
+            this.typeMedia = 'movie';
+        }else{
+            this.typeMedia = 'tv'
+        }
+        
+        // value == 1 ? this.typeMedia = 'movie' : this.typeMedia = 'tv'
         this.getRecommendedMedia();
     }
 
