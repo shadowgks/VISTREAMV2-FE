@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SliderComponent } from "./components/slider/slider.component";
 import { MediaService } from 'src/app/core/services/media.service';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';
@@ -56,7 +55,7 @@ export class HomeComponent implements OnInit {
         this.slidersState$ = this._sliderService.getSliderByIsEnabled(this.isEnabeld).pipe(
             map((response: ApiResponse<Slider>) => ({ appState: "app_loaded", appData: response })),
             startWith({ appState: "app_loading" }),
-            catchError((error: HttpErrorResponse) => of({ appState: "error", error }))
+            catchError((error: HttpErrorResponse) => of({ appState: "app_error", error }))
         )
     }
 

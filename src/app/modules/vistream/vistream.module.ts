@@ -8,7 +8,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SliderComponent } from './components/pages/home/components/slider/slider.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { DetailsMediaComponent } from './components/pages/details-media/details-media.component';
 import { AlsoLikesComponent } from './components/pages/details-media/components/also-likes/also-likes.component';
@@ -20,6 +19,10 @@ import { LoadingComponent } from '../vistream-layout/components/pages/loading/lo
 import { RecommendedComponent } from './components/pages/home/components/recommended/recommended.component';
 import { LatestMoviesComponent } from './components/pages/home/components/latest-movies/latest-movies.component';
 import { LatestSeriesComponent } from './components/pages/home/components/latest-series/latest-series.component';
+import { SliderComponent } from './components/pages/home/components/slider/slider.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 // register Swiper custom elements

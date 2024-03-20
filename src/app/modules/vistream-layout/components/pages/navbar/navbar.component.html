@@ -38,6 +38,7 @@
                 </svg>
             </button>
         </div>
+
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
             <div class="relative mt-3 md:hidden">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -69,74 +70,17 @@
                         class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0">TV-Series</a>
                 </li>
                 <li>
-                    <button
-                        class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0"
-                        id="genre-menu-dropdown-button" data-dropdown-toggle="genre-menu-dropdown">Genre</button>
-                    <div id="genre-menu-dropdown"
-                        class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-color-primary-75 rounded-lg shadow-md  md:grid-cols-3">
-                        <div class="p-4 pb-0 text-gray-900 md:pb-4">
-                            <ul class="space-y-4" aria-labelledby="mega-menu-dropdown-button">
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        About Us
+                    <button class="block py-2 pl-3 pr-4 text-gray-400 @yield('link_genres_active') rounded md:hover:bg-transparent hover:text-color-links md:p-0" id="genre-menu-dropdown-button" data-dropdown-toggle="genre-menu-dropdown">Genres</button>
+                    <div id="genre-menu-dropdown" class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-md">
+                        <div class="p-7 pb-0 grid text-gray-900 md:pb-4">
+                            <ul aria-labelledby="mega-menu-dropdown-button">
+                                <li class="grid items-center grid-cols-4 gap-4">
+                                    <!-- foreach here -->
+                                    <a routerLink="" class="text-gray-400  hover:text-color-links">
+                                        dsa
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Library
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Resources
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Pro Version
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="p-4 pb-0 text-gray-900 md:pb-4 ">
-                            <ul class="space-y-4">
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Newsletter
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Playground
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        License
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="p-4 text-gray-900">
-                            <ul class="space-y-4">
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Support Center
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Terms
+                                    <a routerLink="" class="text-gray-400  hover:text-color-links">
+                                        dsa
                                     </a>
                                 </li>
                             </ul>
@@ -218,11 +162,11 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#"
                         class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0">About
                         us</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

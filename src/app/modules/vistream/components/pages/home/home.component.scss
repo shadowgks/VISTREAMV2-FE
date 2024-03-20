@@ -1,3 +1,6 @@
 .mat-mdc-standard-chip.mdc-evolution-chip--disabled{
     opacity: 100;
 }
+.mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled{
+    background-color: rgb(136 24 143 / var(--tw-bg-opacity));
+}
