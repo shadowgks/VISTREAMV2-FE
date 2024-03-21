@@ -16,6 +16,7 @@ const routes: Routes = [
       { path: 'movies', component: MoviesComponent, },
       { path: 'series', component: TvSeriesComponent, },
       { path: 'watch/:short_link', component: DetailsMediaComponent },
+      { path: 'countries/:country', component: Countr, },
       { path: '**', redirectTo: 'error/404' },
     ],
   },
