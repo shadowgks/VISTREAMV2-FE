@@ -53,13 +53,12 @@
                     class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
                     placeholder="Search...">
             </div>
-            
+
             <ul
                 class="flex flex-col p-4 mt-4 rounded-lg bg-color-primary-75 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
                 <li>
-                    <a [routerLink]="['home']"  routerLinkActive="text-white"
-                        class="block py-2 pl-3 pr-4 text-gray-400 bg-color-secondary hover:text-color-links rounded md:bg-transparent md:p-0"
-                        >Home</a>
+                    <a [routerLink]="['home']" routerLinkActive="text-white"
+                        class="block py-2 pl-3 pr-4 text-gray-400 bg-color-secondary hover:text-color-links rounded md:bg-transparent md:p-0">Home</a>
                 </li>
                 <li>
                     <a routerLink="movies" routerLinkActive="text-white"
@@ -70,18 +69,20 @@
                         class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0">TV-Series</a>
                 </li>
                 <li>
-                    <button class="block py-2 pl-3 pr-4 text-gray-400 @yield('link_genres_active') rounded md:hover:bg-transparent hover:text-color-links md:p-0" id="genre-menu-dropdown-button" data-dropdown-toggle="genre-menu-dropdown">Genres</button>
-                    <div id="genre-menu-dropdown" class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-md">
+                    <button
+                        class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0"
+                        id="genre-menu-dropdown-button" data-dropdown-toggle="genre-menu-dropdown">Genres</button>
+                    <div id="genre-menu-dropdown"
+                        class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-md">
                         <div class="p-7 pb-0 grid text-gray-900 md:pb-4">
                             <ul aria-labelledby="mega-menu-dropdown-button">
                                 <li class="grid items-center grid-cols-4 gap-4">
-                                    <!-- foreach here -->
-                                    <a routerLink="" class="text-gray-400  hover:text-color-links">
-                                        dsa
-                                    </a>
-                                    <a routerLink="" class="text-gray-400  hover:text-color-links">
-                                        dsa
-                                    </a>
+                                    <!-- genres here -->
+                                    <ng-container *ngFor="let genre of genres.result">
+                                        <a routerLink="" class="text-gray-400  hover:text-color-links">
+                                            {{genre.name}}
+                                        </a>
+                                    </ng-container>
                                 </li>
                             </ul>
                         </div>
@@ -92,71 +93,16 @@
                         class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0"
                         id="country-menu-dropdown-button" data-dropdown-toggle="country-menu-dropdown">Country</button>
                     <div id="country-menu-dropdown"
-                        class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-color-primary-75 rounded-lg shadow-md md:grid-cols-3">
-                        <div class="p-4 pb-0 text-gray-900 md:pb-4">
-                            <ul class="space-y-4" aria-labelledby="mega-menu-dropdown-button">
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Library
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Resources
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Pro Version
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="p-4 pb-0 text-gray-900 md:pb-4 ">
-                            <ul class="space-y-4">
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Newsletter
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Playground
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        License
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="p-4 text-gray-900">
-                            <ul class="space-y-4">
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Support Center
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-gray-400 hover:text-color-links">
-                                        Terms
-                                    </a>
+                        class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-md">
+                        <div class="p-7 pb-0 grid text-gray-900 md:pb-4">
+                            <ul aria-labelledby="mega-menu-dropdown-button">
+                                <li class="grid items-center grid-cols-4 gap-4">
+                                    <!-- countries here -->
+                                    <ng-container *ngFor="let country of countries.result">
+                                        <a routerLink="" class="text-gray-400  hover:text-color-links">
+                                            {{country.name}}
+                                        </a>
+                                    </ng-container>
                                 </li>
                             </ul>
                         </div>
