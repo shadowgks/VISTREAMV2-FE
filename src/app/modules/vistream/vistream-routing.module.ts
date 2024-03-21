@@ -5,6 +5,8 @@ import { TvSeriesComponent } from './components/pages/tv-series/tv-series.compon
 import { HomeComponent } from './components/pages/home/home.component';
 import { MoviesComponent } from './components/pages/movies/movies.component';
 import { DetailsMediaComponent } from './components/pages/details-media/details-media.component';
+import { CountryComponent } from './components/pages/country/country.component';
+import { GenreComponent } from './components/pages/genre/genre.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,8 @@ const routes: Routes = [
       { path: 'movies', component: MoviesComponent, },
       { path: 'series', component: TvSeriesComponent, },
       { path: 'watch/:short_link', component: DetailsMediaComponent },
-      { path: 'countries/:country', component: Countr, },
+      { path: 'country/:name', component: CountryComponent, },
+      { path: 'genre/:name', component: GenreComponent, },
       { path: '**', redirectTo: 'error/404' },
     ],
   },

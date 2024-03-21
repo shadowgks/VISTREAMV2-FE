@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MediaCardsComponent } from '../details-media/components/media-cards/media-cards.component';
+import { MediaCardsComponent } from '../../media-cards/media-cards.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response';

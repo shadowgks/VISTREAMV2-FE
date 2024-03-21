@@ -6,11 +6,11 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
 import { Page } from 'src/app/core/models/pageable';
 import { MediaService } from 'src/app/core/services/media.service';
-import { DetailsMediaComponent } from '../../details-media.component';
+import { DetailsMediaComponent } from '../pages/details-media/details-media.component';
 import { RouterModule } from '@angular/router';
-import { LoadingComponent } from '../../../../../../vistream-layout/components/pages/loading/loading.component';
+import { LoadingComponent } from '../../../vistream-layout/components/pages/loading/loading.component';
 import { SharedService } from 'src/app/core/services/shared.service';
-import { CardComponent } from '../card/card.component';
+import { CardComponent } from './components/card/card.component';
 
 @Component({
   selector: 'app-media-cards',

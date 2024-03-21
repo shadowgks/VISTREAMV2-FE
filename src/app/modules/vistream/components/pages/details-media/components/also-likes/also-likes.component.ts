@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { CardComponent } from '../card/card.component';
+import { CardComponent } from '../../../../media-cards/components/card/card.component';
 import { Media } from 'src/app/core/models/media';
 
 @Component({

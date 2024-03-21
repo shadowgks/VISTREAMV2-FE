@@ -9,14 +9,14 @@
                 <nav class="flex justify-center mt-14" aria-label="Page navigation example">
                     <ul class="inline-flex -space-x-px">
                         <li [ngClass]="0 == (currentPage$ | async) ? 'disableP' : ''">
-                            <a (click)="clickNextOrPrevious('movie', '', 'previous')"
+                            <a (click)="clickNextOrPrevious(typeMediaSend, '', 'previous')"
                                 class="cursor-pointer px-3 py-2 ml-0 leading-tight border border-gray-300 rounded-l-lg bg-color-primary-75 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">Previous</a>
                         </li>
                         <li
                             *ngFor="let pageNumber of [].constructor(state.appData?.result?.page.totalPages); let i = index">
                             <ng-container *ngIf="i == 10">
                             </ng-container>
-                            <a (click)="clickNumberPagination('movie', '', i)"
+                            <a (click)="clickNumberPagination(typeMediaSend, '', i)"
                                 class="cursor-pointer px-3 py-2 leading-tight border bg-color-primary-75 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
                                 [ngClass]="i == (currentPage$ | async) 
                                 ? 'bg-gray-700 text-white' 
@@ -30,7 +30,7 @@
                         </li> -->
                         <li
                             [ngClass]="(state.appData!.result!.page!.totalPages - 1) == (currentPage$ | async) ? 'disableP' : ''">
-                            <a (click)="clickNextOrPrevious('movie', '', 'next')"
+                            <a (click)="clickNextOrPrevious(typeMediaSend, '', 'next')"
                                 class="disabled cursor-pointer px-3 py-2 ml-0 leading-tight border border-gray-300 rounded-r-lg bg-color-primary-75 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">Next</a>
                         </li>
                     </ul>

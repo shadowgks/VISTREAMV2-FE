@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MediaCardsComponent } from "../details-media/components/media-cards/media-cards.component";
+import { MediaCardsComponent } from "../../media-cards/media-cards.component";
 
 @Component({
     selector: 'app-tv-series',

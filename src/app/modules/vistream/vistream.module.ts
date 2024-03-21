@@ -11,9 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/pages/home/home.component';
 import { DetailsMediaComponent } from './components/pages/details-media/details-media.component';
 import { AlsoLikesComponent } from './components/pages/details-media/components/also-likes/also-likes.component';
-import { CardComponent } from './components/pages/details-media/components/card/card.component';
+import { CardComponent } from './components/media-cards/components/card/card.component';
 import { TvSeriesComponent } from './components/pages/tv-series/tv-series.component';
-import { MediaCardsComponent } from './components/pages/details-media/components/media-cards/media-cards.component';
+import { MediaCardsComponent } from './components/media-cards/media-cards.component';
 import { MoviesComponent } from './components/pages/movies/movies.component';
 import { LoadingComponent } from '../vistream-layout/components/pages/loading/loading.component';
 import { RecommendedComponent } from './components/pages/home/components/recommended/recommended.component';
@@ -22,6 +22,8 @@ import { LatestSeriesComponent } from './components/pages/home/components/latest
 import { SliderComponent } from './components/pages/home/components/slider/slider.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CountryComponent } from './components/pages/country/country.component';
+import { GenreComponent } from './components/pages/genre/genre.component';
 
 
 
@@ -43,7 +45,9 @@ register();
     LoadingComponent,
     RecommendedComponent,
     LatestMoviesComponent,
-    LatestSeriesComponent
+    LatestSeriesComponent,
+    CountryComponent,
+    GenreComponent
   ],
 
   imports: [

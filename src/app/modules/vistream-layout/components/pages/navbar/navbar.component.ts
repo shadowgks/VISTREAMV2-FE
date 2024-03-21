@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { VistreamLayoutRoutingModule } from '../../../vistream-layout-routing.module';
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -207,7 +207,7 @@ import { Country } from 'src/app/core/models/country';
 export class NavbarComponent implements OnInit{
   genres!: ApiResponse<Genre[]>;
   countries!: ApiResponse<Country[]>;
-
+  
 
   constructor(
     private _genreService: GenreService,

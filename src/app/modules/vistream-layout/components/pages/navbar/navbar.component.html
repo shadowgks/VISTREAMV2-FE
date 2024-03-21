@@ -79,7 +79,7 @@
                                 <li class="grid items-center grid-cols-4 gap-4">
                                     <!-- genres here -->
                                     <ng-container *ngFor="let genre of genres.result">
-                                        <a routerLink="" class="text-gray-400  hover:text-color-links">
+                                        <a [routerLink]="'/page/genre/'+genre.name" class="text-gray-400  hover:text-color-links">
                                             {{genre.name}}
                                         </a>
                                     </ng-container>
@@ -99,7 +99,7 @@
                                 <li class="grid items-center grid-cols-4 gap-4">
                                     <!-- countries here -->
                                     <ng-container *ngFor="let country of countries.result">
-                                        <a routerLink="" class="text-gray-400  hover:text-color-links">
+                                        <a [routerLink]="'/page/country/'+country.name" class="text-gray-400  hover:text-color-links">
                                             {{country.name}}
                                         </a>
                                     </ng-container>
