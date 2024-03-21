@@ -17,55 +17,13 @@ export class CountryComponent implements OnInit {
   name!: string;
   mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Media[]>> }>;
 
-  constructor(
-    private _routeActivate: ActivatedRoute,
-    private _serviceMedia: MediaService) { }
-
-  //current page
-  private currentPageSubject = new BehaviorSubject<number>(null!);
-  currentPage$ = this.currentPageSubject.asObservable();
+  constructor(private _routeActivate: ActivatedRoute) { }
 
   ngOnInit(): void {
     //take name from url
     this._routeActivate.params.subscribe(p => {
       this.name = p['name'];
-      this.getMediaByCountry();
     })
   }
-
-
-
-  public getMediaByCountry() {
-    this.mediaState$ = timer(1000).pipe(
-      switchMap(() => this._serviceMedia.getMediaByCountryOrGenre(this.name)),
-      map((response: ApiResponse<Page<Media[]>>) => {
-        this.currentPageSubject.next(response.result.page.number);
-        console.log(response);
-        
-        return ({ appState: "app_loaded", appData: response });
-      }
-      ),
-      startWith({ appState: "app_loading" }),
-      catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
-    )
-  }
-
-  clickNumberPagination(typeMedia: string, searchTerm: string, numPage: number = 0) {
-    this.mediaState$ = this._serviceMedia.getMedia(typeMedia, searchTerm, numPage).pipe(
-      map((response: ApiResponse<Page<Media[]>>) => {
-        this.currentPageSubject.next(numPage);
-        return ({ appState: "app_loaded", appData: response });
-      }
-      ),
-      startWith({ appState: "app_loading" }),
-      catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
-    )
-  }
-
-  public clickNextOrPrevious(typeMedia: string, searchTerm: string, direction?: string) {
-    this.clickNumberPagination(typeMedia, searchTerm, direction === 'next' ?
-      this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
-  }
-
 
 }

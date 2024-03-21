@@ -1,6 +1,5 @@
-<!-- Main Movies-->
+<!-- Main Country-->
 <div class="w-container m-auto min-h-svh">
-    {{(mediaState$ | async | json)}}
     <section class="mt-14">
         <!-- heading -->
         <div class="text-bold flex flex-col gap-5 md:flex-row md:gap-0 md:justify-between md:items-center">
@@ -13,6 +12,7 @@
                         class="fa-solid fa-filter text-[13px]"></i></button>
             </div>
         </div>
+
         <!-- filter -->
         <div id="filters" class="w-full my-10 shadow p-5 rounded-lg bg-color-primary-75 hidden">
             <!-- heading filter -->
@@ -74,9 +74,6 @@
         </div>
 
         <!-- All card -->
-        <app-media-cards></app-media-cards>
-        
+        <app-media-cards [nameSended]="name"></app-media-cards>
     </section>
-    
-    
 </div>
