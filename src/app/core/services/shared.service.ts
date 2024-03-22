@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,8 @@ export class SharedService {
   private onDataSavedSubject = new Subject<void>();
   sharedData !: any;
 
-  onDataSaved$ = this.onDataSavedSubject.asObservable();
-
   //like event
+  onDataSaved$ = this.onDataSavedSubject.asObservable();
   triggerDataSaved() {
     this.onDataSavedSubject.next();
   }
@@ -19,7 +18,7 @@ export class SharedService {
   setData(data: any) {
     this.sharedData = data;
   }
-  getData() {
+  getData() : Observable<any>{
     return this.sharedData;
   }
 
