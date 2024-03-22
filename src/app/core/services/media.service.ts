@@ -14,7 +14,7 @@ export class MediaService {
   constructor(private http: HttpClient) { }
 
 
-  public getMedia(typeMedia: string, searchTerm: string='', numPage: number=0, numSize: number=30): Observable<ApiResponse<Page<Media[]>>>{
+  public getMedia(typeMedia?: string, searchTerm: string='', numPage: number=0, numSize: number=30): Observable<ApiResponse<Page<Media[]>>>{
     return this.http.get<ApiResponse<Page<Media[]>>>(`${this.apiServerUrl}?typeMedia=${typeMedia}&searchTerm=${searchTerm}&numPage=${numPage}&numSize=${numSize}`);
   }
 
@@ -29,6 +29,10 @@ export class MediaService {
   public getMediaByCountryOrGenre(countryOrGenre:string, numPage: number=0, numSize: number=30): Observable<ApiResponse<Page<Media[]>>>{
     return this.http.get<ApiResponse<Page<Media[]>>>(`${this.apiServerUrl}/genre-or-country/${countryOrGenre}?numPage=${numPage}&numSize=${numSize}`);
   } 
+
+  public searchMedia(searchTerm: string='', numPage: number=0, numSize: number=6): Observable<ApiResponse<Page<Media[]>>>{
+    return this.http.get<ApiResponse<Page<Media[]>>>(`${this.apiServerUrl}?searchTerm=${searchTerm}&numPage=${numPage}&numSize=${numSize}`);
+  }
   
   
 
