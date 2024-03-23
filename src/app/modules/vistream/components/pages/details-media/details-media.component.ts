@@ -9,10 +9,6 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Media } from 'src/app/core/models/media';
 import { MediaService } from 'src/app/core/services/media.service';
 import { TrailerComponent } from './components/trailer/trailer.component';
-import { MaterialModule } from 'src/app/material.module';
-import { AlsoLikesComponent } from './components/also-likes/also-likes.component';
-import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
-import { LoadingComponent } from 'src/app/modules/vistream-layout/components/pages/loading/loading.component';
 
 
 @Component({
