@@ -7,25 +7,45 @@ import { Media } from 'src/app/core/models/media';
 import { Page } from 'src/app/core/models/pageable';
 import { MediaService } from 'src/app/core/services/media.service';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-search-input',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss'
 })
 export class SearchInputComponent {
+  eventEmpty: boolean = true; 
   mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Media[]>> }>
 
 
   constructor(
+    private _router: Router,
     private _serviceMedia: MediaService,
     private _sharedService: SharedService) { }  
 
   onKeyUp(event: any) {
-    this.getMedia(event.target.value);    
+    if(event.target.value != ''){
+      this.eventEmpty = false;
+      this.getMedia(event.target.value);    
+    }else{
+      this.eventEmpty = true;
+    }
+    console.log(this.eventEmpty);
+    
+  }
+
+  reloadCurrentRoute(newUrl: string) {
+    // Get the current URL
+    const currentUrl = newUrl;
+
+    // Navigate to the current route
+    this._router.navigateByUrl('/').then(() => {
+      this._router.navigate([currentUrl]);
+    });
   }
 
   public getMedia(searchTerm?: string) {    
