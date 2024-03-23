@@ -5,56 +5,63 @@
             <img src="./assets/images/logo/VISTREAM.png" class="h-12 mr-3 sm:h-14" alt="VISTREAM" />
         </a>
 
-        <div class="flex items-center md:order-2 md:gap-5">
-            <!-- search -->
-            <app-search-input></app-search-input>
+        <div class="flex items-center lg:order-2 lg:gap-5">
+            <!-- Search for desktop -->
+            <div class="relative" *ngIf="!isNotMobile">
+                <app-search-input></app-search-input>
+            </div>
+
             <!-- user -->
             <a href="">
-                <i class="fa-solid fa-circle-user text-white text-2xl md:text-3xl"></i>
+                <i class="fa-solid fa-circle-user text-white text-2xl lg:text-3xl"></i>
             </a>
+
+            <button data-collapse-toggle="navbar-search" type="button"
+                class="inline-flex items-center p-2 text-sm text-white rounded-lg lg:hidden "
+                aria-controls="navbar-search" aria-expanded="false">
+                <span class="sr-only">Open menu</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
         </div>
 
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
-            <div class="relative mt-3 md:hidden">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input type="text" id="search-navbar"
-                    class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                    placeholder="Search...">
+        <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-search">
+            <!-- Search for mobile -->
+            <div class="relative" *ngIf="isNotMobile">
+                <app-search-input></app-search-input>
             </div>
 
             <ul
-                class="flex flex-col p-4 mt-4 rounded-lg bg-color-primary-75 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
+                class="flex flex-col p-4 mt-4 rounded-lg bg-color-primary-75 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0">
                 <li>
-                    <a [routerLink]="['home']" routerLinkActive="text-white"
-                        class="block py-2 pl-3 pr-4 text-gray-400 bg-color-secondary hover:text-color-links rounded md:bg-transparent md:p-0">Home</a>
+                    <a [routerLink]="['home']" routerLinkActive="text-white bg-color-secondary"
+                        class="block py-2 pl-3 pr-4 text-gray-400 rounded hover:text-color-links lg:bg-transparent lg:p-0">Home</a>
                 </li>
                 <li>
-                    <a routerLink="movies" routerLinkActive="text-white"
-                        class="block py-2 pl-3 pr-4 text-gray-400 hover:text-color-links rounded md:bg-transparent md:p-0">Movies</a>
+                    <a routerLink="movies" routerLinkActive="text-white bg-color-secondary"
+                        class="block py-2 pl-3 pr-4 text-gray-400 hover:text-color-links rounded lg:bg-transparent lg:p-0">Movies</a>
                 </li>
                 <li>
-                    <a routerLink="series" routerLinkActive="text-white"
-                        class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0">TV-Series</a>
+                    <a routerLink="series" routerLinkActive="text-white bg-color-secondary"
+                        class="block py-2 pl-3 pr-4 text-gray-400 hover:text-color-links rounded lg:bg-transparent lg:p-0">TV-Series</a>
                 </li>
                 <li>
                     <button
-                        class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0"
+                        class="block py-2 pl-3 pr-4 text-gray-400 rounded lg:hover:bg-transparent hover:text-color-links lg:p-0"
                         id="genre-menu-dropdown-button" data-dropdown-toggle="genre-menu-dropdown">Genres</button>
                     <div id="genre-menu-dropdown"
-                        class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-md">
-                        <div class="p-7 pb-0 grid text-gray-900 md:pb-4">
+                        class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-lg">
+                        <div class="p-7 pb-0 grid text-gray-900 lg:pb-4">
                             <ul aria-labelledby="mega-menu-dropdown-button">
                                 <li class="grid items-center grid-cols-4 gap-4">
                                     <!-- genres here -->
                                     <ng-container *ngFor="let genre of genres.result">
-                                        <a [routerLink]="'/page/genre/'+genre.name"
+                                        <a routerLinkActive="bg-color-secondary py-1 text-white rounded text-center"
+                                            [routerLink]="'/page/genre/'+genre.name"
                                             class="text-gray-400  hover:text-color-links">
                                             {{genre.name}}
                                         </a>
@@ -66,16 +73,17 @@
                 </li>
                 <li>
                     <button
-                        class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0"
+                        class="block py-2 pl-3 pr-4 text-gray-400 rounded lg:hover:bg-transparent hover:text-color-links lg:p-0"
                         id="country-menu-dropdown-button" data-dropdown-toggle="country-menu-dropdown">Country</button>
                     <div id="country-menu-dropdown"
-                        class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-md">
-                        <div class="p-7 pb-0 grid text-gray-900 md:pb-4">
+                        class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-lg">
+                        <div class="p-7 pb-0 grid text-gray-900 lg:pb-4">
                             <ul aria-labelledby="mega-menu-dropdown-button">
                                 <li class="grid items-center grid-cols-4 gap-4">
                                     <!-- countries here -->
                                     <ng-container *ngFor="let country of countries.result">
-                                        <a [routerLink]="'/page/country/'+country.name"
+                                        <a routerLinkActive="bg-color-secondary py-1 text-white rounded text-center"
+                                            [routerLink]="'/page/country/'+country.name"
                                             class="text-gray-400  hover:text-color-links">
                                             {{country.name}}
                                         </a>
@@ -87,7 +95,7 @@
                 </li>
                 <!-- <li>
                     <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-400 rounded md:hover:bg-transparent hover:text-color-links md:p-0">About
+                        class="block py-2 pl-3 pr-4 text-gray-400 rounded lg:hover:bg-transparent hover:text-color-links lg:p-0">About
                         us</a>
                 </li> -->
             </ul>
