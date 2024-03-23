@@ -7,26 +7,27 @@ import { Page } from 'src/app/core/models/pageable';
 import { MediaService } from 'src/app/core/services/media.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { CommonModule } from '@angular/common';
+import { MediaCardsComponent } from '../../media-cards/media-cards.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
-
+  searchTerm!: string;
   mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Media[]>> }>
-  
+
   constructor(
-    private _serviceMedia: MediaService,
-    private _sharedService: SharedService) { }
+    private _activatedRouter: ActivatedRoute) { }
 
 
-    ngOnInit(){
-    }
-
-
+  ngOnInit() {
+    // Navigate to the current route
+    this._activatedRouter.params.subscribe(p => {
+      this.searchTerm = p['term'];
+    })
+  }
 
 }
