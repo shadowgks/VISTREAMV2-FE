@@ -9,6 +9,7 @@ import { Genre } from 'src/app/core/models/genre';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Country } from 'src/app/core/models/country';
 import { SearchInputComponent } from './components/search-input/search-input.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 @Component({
@@ -19,13 +20,22 @@ import { SearchInputComponent } from './components/search-input/search-input.com
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit{
+  isNotMobile = false;
   genres!: ApiResponse<Genre[]>;
   countries!: ApiResponse<Country[]>;
   
 
   constructor(
     private _genreService: GenreService,
-    private _countryService: CountryService) { }
+    private _countryService: CountryService,
+    private breakpointObserver: BreakpointObserver) {
+      this.breakpointObserver.observe([
+        Breakpoints.Handset,
+        Breakpoints.Small
+      ]).subscribe(result => {
+        this.isNotMobile = result.matches;
+      });
+     }
 
     ngOnInit(){
       this.getAllCountry();
