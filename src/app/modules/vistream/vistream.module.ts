@@ -15,7 +15,6 @@ import { CardComponent } from './components/media-cards/components/card/card.com
 import { TvSeriesComponent } from './components/pages/tv-series/tv-series.component';
 import { MediaCardsComponent } from './components/media-cards/media-cards.component';
 import { MoviesComponent } from './components/pages/movies/movies.component';
-import { LoadingComponent } from '../vistream-layout/components/pages/loading/loading.component';
 import { RecommendedComponent } from './components/pages/home/components/recommended/recommended.component';
 import { LatestMoviesComponent } from './components/pages/home/components/latest-movies/latest-movies.component';
 import { LatestSeriesComponent } from './components/pages/home/components/latest-series/latest-series.component';
@@ -24,6 +23,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CountryComponent } from './components/pages/country/country.component';
 import { GenreComponent } from './components/pages/genre/genre.component';
+import { SearchComponent } from './components/pages/search/search.component';
+import { LoadingComponent } from '../vistream-layout/components/pages/loading/loading.component';
 
 
 
@@ -47,7 +48,8 @@ register();
     LatestMoviesComponent,
     LatestSeriesComponent,
     CountryComponent,
-    GenreComponent
+    GenreComponent, 
+    SearchComponent
   ],
 
   imports: [
