@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'watch/:short_link', component: DetailsMediaComponent },
       { path: 'country/:name', component: CountryComponent, },
       { path: 'genre/:name', component: GenreComponent, },
-      { path: 'search', component: SearchComponent, },
+      { path: 'search/:term', component: SearchComponent, },
       { path: '**', redirectTo: 'error/404' },
     ],
   },
