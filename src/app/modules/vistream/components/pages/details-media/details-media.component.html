@@ -2,7 +2,6 @@
     <ng-container [ngSwitch]="state.appState">
         <div class="w-container m-auto min-h-screen">
             <ng-container *ngSwitchCase="'app_loaded'">
-
                 <div *ngIf="state.appData?.result as item">
                     <!-- Breadcrumb -->
                     <app-bread-crumb [data]="item"></app-bread-crumb>
