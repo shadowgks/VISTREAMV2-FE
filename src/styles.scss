@@ -100,27 +100,6 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-//swipper
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  color: #fff;
-  background-color: #88188f;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 auto;
-  font-size: 12px;
-}
-
-.swiper-pagination-bullet {
-  width: 30px;
-  height: 5px;
-  border-radius: 12px;
-  background-color: #fff;
-}
 
 // .swiper {
 //   height: 60vh;
@@ -133,7 +112,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }/*# sourceMappingURL=style.css.map */
 
 
-
+//pagination
 .ngx-pagination .current{
 	background-color: #88188f !important;
 }
@@ -148,3 +127,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	display: flex;
 	justify-content: center;
 }
+
+.swiper .swiper-button-next, .swiper-button-prev{
+	color: red !important;
+}
+
