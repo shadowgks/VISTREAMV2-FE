@@ -1,11 +1,14 @@
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
 ::-webkit-scrollbar
 {
 	display: none;
 }
 
-//swipper
-.swiper-button-prev svg,
-.swiper-button-next svg {
+.swiper-button-prev:after,
+.swiper-button-next:after {
   color: #fff;
   background-color: #88188f;
   border-radius: 50%;
@@ -18,10 +21,41 @@
   font-size: 12px;
 }
 
-:root {
-    --swiper-theme-color: #ff5100;
-  }
+.swiper-pagination-bullet {
+  width: 80px;
+  height: 5px;
+  border-radius: 12px;
+  background-color: #ce36d9;
+}
 
-  .swiper-scrollbar-drag{
-    background-color: #fff;
-  }
+//swipper
+// .swiper-button-prev ,
+// .swiper-button-next  {
+//   color: #fff;
+//   background-color: #88188f;
+//   border-radius: 50%;
+//   width: 30px;
+//   height: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex: 0 0 auto;
+//   font-size: 12px;
+// }
+// /* In your component's CSS file */
+// :host ::ng-deep .swiper-container {
+//   background-color: red !important;
+
+//   /* Custom styles for the Swiper container */
+// }
+
+
+// :host .swiper-button-prev {
+//   color: red !important;
+// }
+
+// :host ::ng-deep .swiper-slide {
+//   background-color: red !important;
+
+//   /* Custom styles for Swiper slides */
+// }

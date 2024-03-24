@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { VistreamRoutingModule } from './vistream-routing.module';
 import { VistreamComponent } from './vistream.component';
-import { register } from 'swiper/element/bundle';
+// import { register } from 'swiper/element/bundle';
 import { MaterialModule } from 'src/app/material.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
@@ -27,10 +27,13 @@ import { SearchComponent } from './components/pages/search/search.component';
 import { LoadingComponent } from '../vistream-layout/components/pages/loading/loading.component';
 import { FilterComponent } from './components/media-cards/components/filter/filter.component';
 import { BreadCrumbComponent } from './components/pages/details-media/components/bread-crumb/bread-crumb.component';
+import { SwiperModule } from 'swiper/angular';
+
+
 
 
 // register Swiper custom elements
-register();
+// register();
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ register();
   ],
 
   imports: [
+    SwiperModule,
     CommonModule, FormsModule,
     VistreamRoutingModule, NgxPaginationModule,
     MaterialModule, MatTabsModule, MatChipsModule
