@@ -8,7 +8,7 @@ import { ApiResponse } from 'src/app/core/models/api-response';
 import { Genre } from 'src/app/core/models/genre';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Country } from 'src/app/core/models/country';
-import { SearchInputComponent } from './components/search-input/search-input.component';
+import { SearchInputComponent } from './components/search/search-input.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
