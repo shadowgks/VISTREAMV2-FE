@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './slider.component.scss'
 })
 export class SliderComponent implements OnInit {
-
   @Input() data: any;
 
   ngOnInit(): void {

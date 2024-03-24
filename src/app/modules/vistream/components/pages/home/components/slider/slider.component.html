@@ -1,4 +1,4 @@
-<swiper-container loop="true" speed="1000" class="swiper mb-10">
+<swiper-container navigation="true" speed="1000" css-mode="true" scrollbar="true" autoplay="true" pagination="true" class="swiper mb-10">
     <!-- Additional required wrapper -->
     <!-- Slides -->
     <ng-container *ngIf="data as state">
@@ -17,12 +17,16 @@
                                 </div>
                                 <div class="p-10">
                                     <span class="font-semibold text-base uppercase">{{item.typeMedia}}</span>
-                                    <span class="text-sm pl-2 pr-2 text-gray-300">{{getDurationInHoursAndMinutes(item.duration)}}</span>
-                                    <span class="bg-color-secondary text-color-links text-xs font-medium mr-2 px-2.5 py-0.5 rounded uppercase">bluray</span>
+                                    <span
+                                        class="text-sm pl-2 pr-2 text-gray-300">{{getDurationInHoursAndMinutes(item.duration)}}</span>
+                                    <span
+                                        class="bg-color-secondary text-color-links text-xs font-medium mr-2 px-2.5 py-0.5 rounded uppercase">bluray</span>
                                     <p class="text-2xl md:text-3xl font-bold mb-2 w-96 truncate">{{item.title}}</p>
                                     <p>
                                     </p>
-                                    <p class="text-sm mt-3 text-gray-300 mb-6 leading-none text-wrap w-80 h-10 overflow-y-scroll">{{item.overview}}</p>
+                                    <p
+                                        class="text-sm mt-3 text-gray-300 mb-6 leading-none text-wrap w-80 h-10 overflow-y-scroll">
+                                        {{item.overview}}</p>
                                     <div class="flex gap-3">
                                         <button [routerLink]="['/page/watch', item.shortLink]"
                                             class="text-[8px] bg-color-secondary py-2 px-8 text-white rounded-full font-bold uppercase md:text-sm hover:bg-gray-200 hover:text-gray-800"><i
