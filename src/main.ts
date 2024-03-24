@@ -11,9 +11,6 @@ import { reducers, metaReducers } from './app/reducers';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEffects } from '@ngrx/effects';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-// import { register as registerSwiperElements } from 'swiper/element/bundle';
-
-// registerSwiperElements();
 
 if (environment.production) {
     enableProdMode()
