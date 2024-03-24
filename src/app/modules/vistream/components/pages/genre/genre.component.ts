@@ -17,4 +17,10 @@ export class GenreComponent {
       this.name = p['name'];
     })
   }
+  
+  toggleFilter: boolean = false;
+
+  btnShowFilter(){
+    this.toggleFilter = !this.toggleFilter;
+  }
 }
