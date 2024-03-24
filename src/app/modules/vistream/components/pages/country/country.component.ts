@@ -26,4 +26,10 @@ export class CountryComponent implements OnInit {
     })
   }
 
+  toggleFilter: boolean = false;
+
+  btnShowFilter(){
+    this.toggleFilter = !this.toggleFilter;
+  }
+
 }
