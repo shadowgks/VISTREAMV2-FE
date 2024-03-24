@@ -5,7 +5,10 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import function to register Swiper custom elements
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+// import Swiper bundle with all modules installed
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
 
 @NgModule({
   declarations: [
