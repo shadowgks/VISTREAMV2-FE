@@ -12,4 +12,10 @@ export class TvSeriesComponent {
   ngOnInit(): void {
     this.typeMedia = "tv";   
   }
+  
+  toggleFilter: boolean = false;
+
+  btnShowFilter(){
+    this.toggleFilter = !this.toggleFilter;
+  }
 }
