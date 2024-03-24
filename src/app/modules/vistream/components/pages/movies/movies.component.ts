@@ -18,4 +18,10 @@ export class MoviesComponent implements OnInit{
   ngOnInit(): void {
     this.typeMedia = "movie";   
   }
+  
+  toggleFilter: boolean = false;
+
+  btnShowFilter(){
+    this.toggleFilter = !this.toggleFilter;
+  }
 }
