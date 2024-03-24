@@ -25,12 +25,12 @@ import { CountryComponent } from './components/pages/country/country.component';
 import { GenreComponent } from './components/pages/genre/genre.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { LoadingComponent } from '../vistream-layout/components/pages/loading/loading.component';
-
+import { FilterComponent } from './components/media-cards/components/filter/filter.component';
+import { BreadCrumbComponent } from './components/pages/details-media/components/bread-crumb/bread-crumb.component';
 
 
 // register Swiper custom elements
 register();
-
 
 @NgModule({
   declarations: [
@@ -49,7 +49,9 @@ register();
     LatestSeriesComponent,
     CountryComponent,
     GenreComponent, 
-    SearchComponent
+    SearchComponent,
+    FilterComponent,
+    BreadCrumbComponent
   ],
 
   imports: [
@@ -57,8 +59,6 @@ register();
     VistreamRoutingModule, NgxPaginationModule,
     MaterialModule, MatTabsModule, MatChipsModule
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VistreamModule { }
