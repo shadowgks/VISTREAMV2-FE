@@ -1,0 +1,88 @@
+<div>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+        </svg>
+        <span class="sr-only">Search icon</span>
+    </div>
+    <input type="text" id="search-navbar" (keyup)="onKeyUp($event)"
+        class="block w-full p-2 pl-10 text-sm outline-none rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white hover:bg-white hover:text-black duration-300"
+        placeholder="Search...">
+
+    <ng-container *ngIf="(mediaState$ | async) as state">
+        <div id="search-results" class="ease-linear">
+            <!-- data here -->
+            <li [ngClass]="eventEmpty ? 'hidden' : 'block'" class="absolute top-11" style="list-style-type: none; left: -50px;">
+                <div
+                    class="block w-72 mr-12 absolute rounded top-full z-50 py-0.5 bg-color-primary-75 border border-gray-700 shadow-md">
+                    <div class="show" >
+                        <ng-container [ngSwitch]="state.appState">
+                            <ng-container *ngSwitchCase="'app_loaded'">
+                                <ng-container *ngIf="state.appData?.result?.page as page">
+                                    <ng-container *ngFor="let item of page.content">
+                                        <div (click)="reloadCurrentRoute('/page/watch/'+item.shortLink)"
+                                            class="flex items-center cursor-pointer border-b border-gray-700 hover:bg-slate-800 bg-opacity-40 py-1">
+                                            <div class="max-w-full w-1/4 text-center">
+                                                <div [style.backgroundImage]="'url(https://image.tmdb.org/t/p/w500' + item.posterPath + ')'"
+                                                    class="background-image">
+                                                </div>
+                                            </div>
+                                            <div class="max-w-full px-2 w-3/4">
+                                                <div class="text-sm text-gray-400 font-bold truncate">{{item.title}}
+                                                </div>
+                                                <div class="text-gray-500 text-xs mt-1">{{item.releaseDate}} |
+                                                    {{item.duration}}min</div>
+                                                <hr class="w-48 h-[1px] border-0 rounded bg-color-three my-1">
+                                                <div class="leading-3">
+                                                    <ng-container *ngFor="let genre of item.genres; let last = last">
+                                                        <span class="text-gray-500 text-xs mt-1">{{genre.name
+                                                            }} {{last ? '' : '-'}}
+                                                        </span>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+
+                                    <!-- If array empty -->
+                                    <ng-container *ngIf="page.content.length == 0">
+                                        <div class="flex justify-center py-6">
+                                            <span>Not Found!</span>
+                                        </div>
+                                    </ng-container>
+
+                                    <!-- Show All Media link -->
+                                    <ng-container *ngIf="page.totalElements > 6">
+                                        <div class="p-3 text-gray-400 text-center font-normal">
+                                            <button (click)="reloadCurrentRoute('/page/search/'+ searchTerm)"
+                                            class="hover:underline">Show All Media ({{page.totalElements}})</button>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="'app_loading'">
+                                <div class="flex justify-center py-6">
+                                    <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-color-three motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                        role="status">
+                                        <span
+                                            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngSwitchCase="'app_error'">
+                                error
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                </div>
+            </li>
+        </div>
+
+    </ng-container>
+
+</div>
