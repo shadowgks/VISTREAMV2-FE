@@ -16,18 +16,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
+  toggleFilter: boolean = false;
   searchTerm!: string;
   mediaState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Media[]>> }>
 
   constructor(
     private _activatedRouter: ActivatedRoute) { }
 
-
   ngOnInit() {
     // Navigate to the current route
     this._activatedRouter.params.subscribe(p => {
       this.searchTerm = p['term'];
     })
+  }
+
+  btnShowFilter(){
+    this.toggleFilter = !this.toggleFilter;
   }
 
 }
