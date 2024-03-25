@@ -1,11 +1,15 @@
+<div class="card flex justify-content-center gap-2">
+
+</div>
+
 <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
     <!-- Header -->
     <div class="mb-4 flex justify-between">
         <div class="inline-block">
-            <h3 class="font-semibold text-gray-900 dark:text-white">Actors</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-white">{{name}}</h3>
             <div class="space-x-1 text-xs font-medium text-gray-400 dark:text-night-300">
                 <a href="" class="hover:text-primary-500">Dashboards</a>
-                <span> - Actors</span>
+                <span> - {{name}}</span>
             </div>
         </div>
         <div class="inline-block space-x-4">
@@ -17,13 +21,14 @@
             <button (click)="FunctionAdd()" id="addCompetitionButton" data-modal-target="addCompetitionModal"
                 data-modal-toggle="addCompetitionModal"
                 class="flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600">
-                Manage Actors
+                Manage {{name}}
             </button>
         </div>
     </div>
+    <!-- Content -->
 
     <!-- Content -->
-    <ng-container *ngIf="(actorState$ | async) as state">
+    <ng-container *ngIf="(creditState$ | async) as state">
         <!-- Table -->
         <div class="md:col-span-2 xl:col-span-3">
             <div class="flex-col text-center rounded-lg bg-white px-8 py-8 dark:bg-night-700 sm:flex-row">
@@ -78,10 +83,10 @@
                             <!--Table head-->
                             <thead class="text-xs uppercase text-gray-400 dark:text-night-300">
                                 <tr>
-                                    <th class="py-3 text-left">Item</th>
-                                    <th class="py-3 text-left">FullName</th>
+                                    <th class="py-3 text-left">#</th>
+                                    <th class="py-3 text-left">Name</th>
                                     <th class="py-3 text-left">Date Birthday</th>
-                                    <th class="py-3 text-center">Action</th>
+                                    <th class="py-3 text-center">Popularity</th>
 
                                 </tr>
                             </thead>
@@ -97,12 +102,12 @@
                                         </td>
                                         <td class="py-2">
                                             <div class="flex items-start text-start">
-                                                <img [src]="item.picture" class="mr-2 h-10 w-10 flex-none rounded-sm"
+                                                <img [src]="'https://image.tmdb.org/t/p/w500'+item.profilePath" class="mr-2 h-10 w-10 flex-none rounded-sm object-cover"
                                                     alt="" />
                                                 <div class="flex flex-col justify-items-start">
                                                     <a href="#"
                                                         class="mb-1 text-sm font-semibold text-gray-900 dark:text-night-100 dark:hover:text-primary-500">{{
-                                                        item.fullName
+                                                        item.name
                                                         }}</a>
                                                 </div>
                                             </div>
@@ -151,8 +156,8 @@
                         <ng-container *ngSwitchCase="'app_error'">
                             <div *ngIf="state.appData?.result?.page?.content.length <= 0" class="text-start">
                                 <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-600 p-4 mt-4" role="alert">
-                                    <p class="font-bold">Actors</p>
-                                    <p>The actors was not found.</p>
+                                    <p class="font-bold">{{name}}</p>
+                                    <p>The {{name}} was not found.</p>
                                 </div>
                             </div>
                         </ng-container>
