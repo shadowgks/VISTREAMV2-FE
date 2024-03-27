@@ -57,14 +57,17 @@
                         class="absolute z-10 hidden w-auto text-sm bg-color-primary-75 rounded-lg shadow-lg">
                         <div class="p-7 pb-0 grid text-gray-900 lg:pb-4">
                             <ul aria-labelledby="mega-menu-dropdown-button">
+
                                 <li class="grid items-center grid-cols-4 gap-4">
                                     <!-- genres here -->
-                                    <ng-container *ngFor="let genre of genres.result">
-                                        <a routerLinkActive="bg-color-secondary py-1 text-white rounded text-center"
-                                            [routerLink]="'/page/genre/'+genre.name"
-                                            class="text-gray-400  hover:text-color-links">
-                                            {{genre.name}}
-                                        </a>
+                                    <ng-container *ngIf="genres">
+                                        <ng-container *ngFor="let genre of genres.result">
+                                            <a routerLinkActive="bg-color-secondary py-1 text-white rounded text-center"
+                                                [routerLink]="'/page/genre/' + genre.name"
+                                                class="text-gray-400 hover:text-color-links">
+                                                {{genre.name}}
+                                            </a>
+                                        </ng-container>
                                     </ng-container>
                                 </li>
                             </ul>
@@ -81,12 +84,14 @@
                             <ul aria-labelledby="mega-menu-dropdown-button">
                                 <li class="grid items-center grid-cols-4 gap-4">
                                     <!-- countries here -->
-                                    <ng-container *ngFor="let country of countries.result">
-                                        <a routerLinkActive="bg-color-secondary py-1 text-white rounded text-center"
-                                            [routerLink]="'/page/country/'+country.name"
-                                            class="text-gray-400  hover:text-color-links">
-                                            {{country.name}}
-                                        </a>
+                                    <ng-container *ngIf="countries">
+                                        <ng-container *ngFor="let country of countries.result">
+                                            <a routerLinkActive="bg-color-secondary py-1 text-white rounded text-center"
+                                                [routerLink]="'/page/country/'+country.name"
+                                                class="text-gray-400  hover:text-color-links">
+                                                {{country.name}}
+                                            </a>
+                                        </ng-container>
                                     </ng-container>
                                 </li>
                             </ul>

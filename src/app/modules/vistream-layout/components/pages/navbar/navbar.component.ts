@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit{
     getAllGenre(){
       this._genreService.getAllGenre().subscribe({
         next: (response: ApiResponse<Genre[]>) => {
+          console.log(response);
           this.genres = response;
         },error: (err: HttpErrorResponse) => {
           console.log(err);

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Actor } from 'src/app/core/models/actor';
 import { ApiResponse } from 'src/app/core/models/api-response';
@@ -34,14 +34,20 @@ export class ModalCreditComponent {
   ngOnInit() {    
     //form
     this.form = this._formBuilder.group({
-      credits: this._formBuilder.array([])
+      id: [],
+      picture: [],
+      name: ['', [Validators.required]],
+      gender: ['2', Validators.required],
+      adult: ['true', Validators.required],
+      popularity: ['', Validators.required],
     });
 
     // Populate form fields if it's edit mode
-    if (this.isEdit) {
+    if (this.isEdit) { 
+      console.log(this.data);
       this.form.patchValue({
         id: this.data.id,
-        fullName: this.data.fullName,
+        name: this.data.name,
         gender: this.data.gender,
         adult: this.data.adult,
         popularity: this.data.popularity
@@ -49,35 +55,13 @@ export class ModalCreditComponent {
     }
   }
 
-  //dynamic from and validations
   get f() {
     return this.form.controls;
   }
 
-  get credits(){
-    return this.form.get('credits') as FormArray;
-  }
-
-  addCredit() {
-    this.credits.push(this._formBuilder.group({
-      id: [],
-      picture: [],
-      fullName: ['', [Validators.required]],
-      gender: ['2', Validators.required],
-      adult: ['0', Validators.required],
-      popularity: ['', Validators.required]
-    }));
-  }
-
-  removeCredit(index: number) {
-    this.credits.removeAt(index);
-  }
-
-
-
   onSubmit() {
     this.submitted = true;
-    const { id, fullName, picture, gender, adult, popularity} = this.form.value;
+    const { id, name, picture, gender, adult, popularity} = this.form.value;
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -85,19 +69,19 @@ export class ModalCreditComponent {
     } else {
       if (this.isEdit) {
         // Logic to update existing data
-        // this.actorService.updateActor(this.data.id, this.form.value).subscribe({
-        //   next: (response: ApiResponse<Actor>) => {
-        //     this.sharedData.triggerDataSaved();
-        //     this.dialog.closeAll();
-        //     console.log(response);
-        //   },
-        //   error: error => {
-        //     this.error = error ? error : '';
-        //   }
-        // });
+        this._creditService.update(this.data.id, this.form.value).subscribe({          
+          next: (response: ApiResponse<string>) => {
+            this.sharedData.triggerDataSaved();
+            this.dialog.closeAll();
+            console.log(response);
+          },
+          error: error => {
+            this.error = error ? error : '';
+          }
+        });
       } else {
-        this._creditService.save(this.form.value.credits).subscribe({
-          next: (response: ApiResponse<Credit[]>) => {
+        this._creditService.save(this.form.value).subscribe({
+          next: (response: ApiResponse<string>) => {
             this.sharedData.triggerDataSaved();
             this.dialog.closeAll();
             console.log(response);
@@ -110,4 +94,3 @@ export class ModalCreditComponent {
     }
   }
 }
-

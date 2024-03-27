@@ -47,8 +47,8 @@ export class ModalComponent implements OnInit {
         birthDate: this.data.birthDate
       });
     }
-
   }
+
   get f() {
     return this.form.controls;
   }

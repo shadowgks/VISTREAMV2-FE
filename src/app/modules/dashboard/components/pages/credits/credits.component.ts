@@ -136,8 +136,8 @@ export class CreditsComponent {
     // )
   }
 
-  edit(id: number, fullName: string, birthDate: string) {
-    this.OpenPopup(1, 'edited actor', { id, fullName, birthDate });
+  edit(id: number, name: string, adult?: string, gender?:string ,popularity?: number) {    
+    this.OpenPopup(1, 'edited actor', { id, name, adult, gender, popularity });
   }
 
   public search() {
