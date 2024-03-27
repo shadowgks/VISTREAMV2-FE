@@ -15,32 +15,35 @@ import { SharedService } from 'src/app/core/services/shared.service';
 import { ModalComponent } from '../../modals/modal-actor/modal-actor.component';
 import { CreditService } from 'src/app/core/services/credit.service';
 import { Credit } from 'src/app/core/models/credit';
-
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
-
-
-
+import { PaginatorModule } from 'primeng/paginator';
+import { PageEventPrimeNg } from 'src/app/core/models/page-event-prime-ng';
+import { ModalCreditComponent } from '../../modals/modal-credit/modal-credit.component';
 
 
 @Component({
   selector: 'app-credits',
   standalone: true,
-  imports: [CommonModule, MatSlideToggleModule, MaterialModule, FormsModule, AngularSvgIconModule, 
-    ],
+  imports: [CommonModule, MatSlideToggleModule, MaterialModule, FormsModule, AngularSvgIconModule, PaginatorModule,
+    ButtonModule],
   templateUrl: './credits.component.html',
   styleUrl: './credits.component.scss'
 })
+
+
 export class CreditsComponent {
   form!: FormGroup;
   submitted = false;
   error = '';
   searchTerm = '';
   name = 'Credits'
+  namee = '';
   creditState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Credit>> }>;
+
+  //paginator PrimeNg
+  first: number = 0;
+  page: number = 0
+  rows: number = 10;
 
   constructor(private dialog: MatDialog,
     private _creditService: CreditService,
@@ -48,6 +51,23 @@ export class CreditsComponent {
 
 
 
+  ngOnInit(): void {
+    this.getCreditsMethode('');
+    this._sharedService.onDataSaved$.subscribe(() => {
+      this.getCreditsMethode();
+    })
+    // this.onPageChange(this.pageCount);
+  }
+
+
+  onPageChange(event: PageEventPrimeNg) {
+    this.first = event.first as number;
+    this.rows = event.rows as number;
+    this.page = event.page as number;
+    console.log(event);
+
+    this.getCreditsMethode('', this.page, this.rows);
+  }
 
 
 
@@ -62,7 +82,7 @@ export class CreditsComponent {
 
   OpenPopup(code: number, title: string, data?: any) {
     // this.store.dispatch(openpopup());
-    this.dialog.open(ModalComponent, {
+    this.dialog.open(ModalCreditComponent, {
       width: '50%',
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '200ms',
@@ -74,19 +94,12 @@ export class CreditsComponent {
     })
   }
 
-
-  ngOnInit(): void {
-    this.getActors();
-    this._sharedService.onDataSaved$.subscribe(() => {
-      this.getActors();
-    })
-  }
-
-
-  public getActors() {
-    this.creditState$ = this._creditService.getCredits().pipe(
+  public getCreditsMethode(searchT?: string, countPage?: number, sizePage?: number) {
+    this.creditState$ = this._creditService.getCredits(searchT, countPage, sizePage).pipe(
       map((response: ApiResponse<Page<Credit>>) => {
         this.currentPageSubject.next(response.result.page.number);
+        console.log(response);
+
         return ({ appState: "app_loaded", appData: response });
       }
       ),
@@ -129,7 +142,7 @@ export class CreditsComponent {
 
   public search() {
     if (this.searchTerm == '') {
-      this.getActors();
+      this.getCreditsMethode();
     } else {
       // this.creditState$ = this._creditService.searchActors(this.searchTerm).pipe(
       //   map((response: ApiResponse<Page<Credit>>) => {

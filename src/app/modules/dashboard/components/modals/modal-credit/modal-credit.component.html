@@ -20,44 +20,81 @@
     </div>
     <!-- Modal body -->
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="grid gap-4 mb-4 sm:grid-cols-2">
-            <div *ngIf="isEdit">
-                <input formControlName="id" type="text" id="id"
-                    class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="">
-            </div>
-            <div class="grid col-span-2">
-                <label for="picture" class="block text-sm font-medium text-gray-900 dark:text-white">Picture</label>
-                <input formControlName="picture" type="file" id="picture"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="">
-            </div>
-            <div>
-                <label for="fullName"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FullName</label>
-                <input formControlName="fullName" type="text" id="name"
-                    [ngClass]="{ 'is__invalid-input': submitted && f['fullName'].errors }"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="">
-                <div *ngIf="submitted && f['fullName'].errors" class="is__invalid-error">
-                    <div *ngIf="f['fullName'].errors['required']">Required field</div>
-                    <div *ngIf="f['fullName'].errors['fullName']">FullName must be an fullName valid</div>
+        <div class="overflow-y-auto max-h-80" formArrayName="credits">
+            <div *ngFor="let creditGroup of credits.controls; let i = index" class="credit-group">
+                    <div [formGroupName]="i" class="grid gap-4 mb-4 sm:grid-cols-2">
+                        <div *ngIf="isEdit">
+                            <input formControlName="id" type="text" id="id"
+                                class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="">
+                        </div>
+                        <div class="grid col-span-2">
+                            <label for="picture"
+                                class="block text-sm font-medium text-gray-900 dark:text-white">Picture</label>
+                            <input formControlName="picture" type="file" id="picture"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="">
+                        </div>
+                        <div>
+                            <label for="fullName"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FullName</label>
+                            <input formControlName="fullName" type="text" id="name"
+                                [ngClass]="{ 'is__invalid-input': submitted && f['fullName'].errors }"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="">
+            
+                        </div>
+                        <div>
+                            <label for="popularity"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Popularity</label>
+                            <input formControlName="popularity" type="number" id="popularity"
+                                [ngClass]="{ 'is__invalid-input': submitted && f['popularity'].errors }"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="">
+                            <div *ngIf="submitted && f['popularity'].errors" class="is__invalid-error">
+                                <div *ngIf="f['popularity'].errors['required']">Required field</div>
+                                <div *ngIf="f['popularity'].errors['popularity']">Popularity must be an Popularity valid
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="gender"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                            <select [ngClass]="{ 'is__invalid-input': submitted && f['gender'].errors }"
+                                formControlName="gender" id="Identity Type" name="gender"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option value="2">Male</option>
+                                <option value="1">Female</option>
+                            </select>
+                            <div *ngIf="submitted && f['gender'].errors" class="is__invalid-error">
+                                <div *ngIf="f['gender'].errors['required']">Required field</div>
+                                <div *ngIf="f['gender'].errors['gender']">Date Birthday must be an Date Birthday valid
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="adult"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adult</label>
+                            <select [ngClass]="{ 'is__invalid-input': submitted && f['adult'].errors }"
+                                formControlName="adult" id="Identity Type" name="adult"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                            <div *ngIf="submitted && f['adult'].errors" class="is__invalid-error">
+                                <div *ngIf="f['adult'].errors['required']">Required field</div>
+                                <div *ngIf="f['adult'].errors['adult']">Date Birthday must be an Date Birthday valid
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- You can include more fields as needed for your Credit object -->
+                    <button type="button" (click)="removeCredit(i)">Remove Credit</button>
                 </div>
             </div>
-            <div>
-                <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
-                    Birthday</label>
-                <input formControlName="birthDate" type="date" id="birthday"
-                    [ngClass]="{ 'is__invalid-input': submitted && f['birthDate'].errors }"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="">
-                <div *ngIf="submitted && f['birthDate'].errors" class="is__invalid-error">
-                    <div *ngIf="f['birthDate'].errors['required']">Required field</div>
-                    <div *ngIf="f['birthDate'].errors['birthDate']">Date Birthday must be an Date Birthday valid</div>
-                </div>
-            </div>
-        </div>
         <div class="flex justify-end space-x-4">
+            <button type="button" (click)="addCredit()">Add Credit</button>
             <button type="submit"
                 class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                 Save
