@@ -22,4 +22,7 @@ export class CreditService {
   public update(id: number, formData: FormData): Observable<ApiResponse<string>>{
     return this.http.put<ApiResponse<string>>(`${this.apiServerUrl}/${id}`, formData);
   }
+  search(searchTerm: string): Observable<ApiResponse<Page<Credit>>>{
+    return this.http.get<ApiResponse<Page<Credit>>>(`${this.apiServerUrl}?searchTerm=${searchTerm}`);
+  }
 }

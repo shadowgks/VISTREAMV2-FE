@@ -9,7 +9,7 @@ import { Page } from 'src/app/core/models/pageable';
 import { Actor } from 'src/app/core/models/actor';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { CreditService } from 'src/app/core/services/credit.service';
@@ -23,8 +23,16 @@ import { ModalCreditComponent } from '../../modals/modal-credit/modal-credit.com
 @Component({
   selector: 'app-credits',
   standalone: true,
-  imports: [CommonModule, MatSlideToggleModule, MaterialModule, FormsModule, AngularSvgIconModule, PaginatorModule,
-    ButtonModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    MatSlideToggleModule,
+    MaterialModule,
+    FormsModule,
+    AngularSvgIconModule,
+    PaginatorModule,
+    ButtonModule
+  ],
   templateUrl: './credits.component.html',
   styleUrl: './credits.component.scss'
 })
@@ -59,13 +67,30 @@ export class CreditsComponent {
   }
 
 
+  //events pagebale and search
   onPageChange(event: PageEventPrimeNg) {
     this.first = event.first as number;
     this.rows = event.rows as number;
     this.page = event.page as number;
     console.log(event);
 
-    this.getCreditsMethode('', this.page, this.rows);
+    this.getCreditsMethode(this.searchTerm, this.page, this.rows);
+  }
+  onKeyUp(event: any) {
+    this.searchTerm = event.target.value;
+    console.log(this.searchTerm);
+    
+    if (this.searchTerm == '') {
+      this.getCreditsMethode();
+    } else {
+      this.creditState$ = this._creditService.search(this.searchTerm).pipe(
+        map((response: ApiResponse<Page<Credit>>) => {
+          return ({ appState: "app_loaded", appData: response });
+        }),
+        startWith({ appState: "app_loading" }),
+        catchError((error: HttpErrorResponse) => of({ appState: "app_error", error })),
+      )
+    }
   }
 
 
@@ -105,15 +130,15 @@ export class CreditsComponent {
     )
   }
 
-  public clickNumberPagination(name?: string, numOfPage: number = 0) {
-    this.creditState$ = this._creditService.getCredits(name, numOfPage).pipe(
-      map((response: ApiResponse<Page<Credit>>) => {
-        return ({ appState: "app_loaded", appData: response });
-      }),
-      startWith({ appState: "app_loaded" }),
-      catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
-    )
-  }
+  // public clickNumberPagination(name?: string, numOfPage: number = 0) {
+  //   this.creditState$ = this._creditService.getCredits(name, numOfPage).pipe(
+  //     map((response: ApiResponse<Page<Credit>>) => {
+  //       return ({ appState: "app_loaded", appData: response });
+  //     }),
+  //     startWith({ appState: "app_loaded" }),
+  //     catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
+  //   )
+  // }
 
   delete(id: number) {
     // this.creditState$ = this._creditService.deleteActor(id).pipe(
@@ -127,21 +152,23 @@ export class CreditsComponent {
     // )
   }
 
-  edit(id: number, name: string, adult?: string, gender?:string ,popularity?: number) {    
+  edit(id: number, name: string, adult?: string, gender?: string, popularity?: number) {
     this.OpenPopup(1, 'edited actor', { id, name, adult, gender, popularity });
   }
 
   public search() {
+    console.log(this.searchTerm);
+
     if (this.searchTerm == '') {
       this.getCreditsMethode();
     } else {
-      // this.creditState$ = this._creditService.searchActors(this.searchTerm).pipe(
-      //   map((response: ApiResponse<Page<Credit>>) => {
-      //     return ({ appState: "app_loaded", appData: response });
-      //   }),
-      //   startWith({ appState: "app_loading" }),
-      //   catchError((error: HttpErrorResponse) => of({ appState: "app_error", error })),
-      // )
+      this.creditState$ = this._creditService.search(this.searchTerm).pipe(
+        map((response: ApiResponse<Page<Credit>>) => {
+          return ({ appState: "app_loaded", appData: response });
+        }),
+        startWith({ appState: "app_loading" }),
+        catchError((error: HttpErrorResponse) => of({ appState: "app_error", error })),
+      )
     }
   }
 }
