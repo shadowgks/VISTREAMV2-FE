@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { Actor } from 'src/app/core/models/actor';
 import { ApiResponse } from 'src/app/core/models/api-response';
-import { Credit } from 'src/app/core/models/credit';
-import { ActorService } from 'src/app/core/services/actor.service';
 import { CreditService } from 'src/app/core/services/credit.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { MaterialModule } from 'src/app/material.module';
@@ -55,6 +52,10 @@ export class ModalCreditComponent {
     }
   }
 
+  btnCloseModal() {
+    this.dialog.closeAll();
+  }
+
   get f() {
     return this.form.controls;
   }
@@ -72,14 +73,14 @@ export class ModalCreditComponent {
   onSubmit() {
     this.submitted = true;
     const { id, file, name, gender, adult, popularity } = this.form.value;
-    
+
     //for sended form data like img
     const formData = new FormData();
     formData.append('file', this.picture);
     formData.append('name', this.form.get("name")?.value);
     formData.append('adult', this.form.get("adult")?.value);
     formData.append('gender', this.form.get("gender")?.value);
-    formData.append('popularity', this.form.get("popularity")?.value);    
+    formData.append('popularity', this.form.get("popularity")?.value);
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -90,7 +91,7 @@ export class ModalCreditComponent {
         this._creditService.update(this.data.id, formData).subscribe({
           next: (response: ApiResponse<string>) => {
             this.sharedData.triggerDataSaved();
-            this.dialog.closeAll();
+            this.btnCloseModal();
             console.log(response);
           },
           error: error => {
@@ -101,7 +102,7 @@ export class ModalCreditComponent {
         this._creditService.save(formData).subscribe({
           next: (response: ApiResponse<string>) => {
             this.sharedData.triggerDataSaved();
-            this.dialog.closeAll();
+            this.btnCloseModal();
             console.log(response);
           },
           error: error => {
