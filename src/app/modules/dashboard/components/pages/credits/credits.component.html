@@ -1,8 +1,5 @@
-<div class="card flex justify-content-center gap-2">
-    <p-toast></p-toast>
-    <p-confirmPopup></p-confirmPopup>
-    <p-button (click)="confirm2($event)" icon="pi pi-times" label="Delete" severity="danger"></p-button>
-</div>
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
 <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
     <!-- Header -->
     <div class="mb-4 flex justify-between">
@@ -110,14 +107,13 @@
                                             <div class="flex gap-2 justify-center">
                                                 <a (click)="edit(item.id, item.name, item.adult, item.gender, item.popularity)"
                                                     class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-gray-200 text-gray-400 dark:bg-night-500 dark:text-night-300">
-                                                    <svg-icon src="assets/icons/heroicons/outline/cog.svg"
-                                                        [svgClass]="'h-5 w-5'"> </svg-icon>
+                                                    <i class="pi pi-spin pi-cog" style="color: #000"></i>
                                                 </a>
-                                                <a (click)="delete(item.id)"
+                                                <button (click)="confirmDelete($event, item.id)"
                                                     class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-gray-200 text-gray-400 dark:bg-night-500 dark:text-night-300">
-                                                    <svg-icon src="assets/icons/heroicons/outline/x.svg"
-                                                        [svgClass]="'h-5 w-5'"> </svg-icon>
-                                                </a>
+                                                    <i class="pi pi-times" style="color: #000"></i>
+                                                </button>
+                                                    
                                             </div>
                                         </td>
                                     </tr>

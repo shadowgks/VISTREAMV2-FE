@@ -101,13 +101,14 @@ export class CreditsComponent {
       )
     }
   }
-  confirm2(event: Event) {
+  confirmDelete(event: Event, id: number) {
     this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Do you want to delete this record?',
         icon: 'pi pi-info-circle',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
+            this.delete(id);
             this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
         },
         reject: () => {
@@ -148,15 +149,15 @@ export class CreditsComponent {
   }
 
   delete(id: number) {
-    // this.creditState$ = this._creditService.deleteActor(id).pipe(
-    //   map((response: ApiResponse<any>) => {
-    //     console.log(response);
-    //     this.getActors();
-    //     return ({ appState: "app_loaded", appData: response });
-    //   }),
-    //   startWith({ appState: "app_loading" }),
-    //   catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
-    // )
+    this.creditState$ = this._creditService.delete(id).pipe(
+      map((response: ApiResponse<any>) => {
+        console.log(response);
+        this.getCreditsMethode();
+        return ({ appState: "app_loaded", appData: response });
+      }),
+      startWith({ appState: "app_loading" }),
+      catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
+    )
   }
 
   edit(id: number, name: string, adult?: string, gender?: string, popularity?: number) {

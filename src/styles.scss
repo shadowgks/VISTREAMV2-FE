@@ -142,3 +142,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background: #2563eb;
     border-color: rgb(239, 246, 255);
 }
+
+.p-button.p-button-danger, .p-buttonset.p-button-danger > .p-button, .p-splitbutton.p-button-danger > .p-button {
+    color: rgb(255, 255, 255);
+    background: rgb(239, 68, 68);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(239, 68, 68);
+    border-image: initial;
+	padding: 5px 16px;
+}
+
+.p-button.p-button-text {
+    background-color: transparent;
+    color: rgb(59, 130, 246);
+    border-color: transparent;
+	padding: 5px 16px;
+}
