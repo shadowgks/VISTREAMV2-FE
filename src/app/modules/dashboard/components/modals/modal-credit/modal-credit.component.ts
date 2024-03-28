@@ -23,6 +23,7 @@ export class ModalCreditComponent {
   form!: FormGroup;
   submitted = false;
   error = '';
+  picture: File = new File([], '')
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -31,11 +32,11 @@ export class ModalCreditComponent {
     private sharedData: SharedService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     //form
     this.form = this._formBuilder.group({
-      id: [],
-      picture: [],
+      id: [null],
+      file: [null],
       name: ['', [Validators.required]],
       gender: ['2', Validators.required],
       adult: ['true', Validators.required],
@@ -43,8 +44,7 @@ export class ModalCreditComponent {
     });
 
     // Populate form fields if it's edit mode
-    if (this.isEdit) { 
-      console.log(this.data);
+    if (this.isEdit) {
       this.form.patchValue({
         id: this.data.id,
         name: this.data.name,
@@ -59,9 +59,27 @@ export class ModalCreditComponent {
     return this.form.controls;
   }
 
+  onImageChange(event: any) {
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      this.picture = file;
+      this.form.patchValue({
+        file: this.picture
+      });
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
-    const { id, name, picture, gender, adult, popularity} = this.form.value;
+    const { id, file, name, gender, adult, popularity } = this.form.value;
+    
+    //for sended form data like img
+    const formData = new FormData();
+    formData.append('file', this.picture);
+    formData.append('name', this.form.get("name")?.value);
+    formData.append('adult', this.form.get("adult")?.value);
+    formData.append('gender', this.form.get("gender")?.value);
+    formData.append('popularity', this.form.get("popularity")?.value);    
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -69,7 +87,7 @@ export class ModalCreditComponent {
     } else {
       if (this.isEdit) {
         // Logic to update existing data
-        this._creditService.update(this.data.id, this.form.value).subscribe({          
+        this._creditService.update(this.data.id, formData).subscribe({
           next: (response: ApiResponse<string>) => {
             this.sharedData.triggerDataSaved();
             this.dialog.closeAll();
@@ -80,7 +98,7 @@ export class ModalCreditComponent {
           }
         });
       } else {
-        this._creditService.save(this.form.value).subscribe({
+        this._creditService.save(formData).subscribe({
           next: (response: ApiResponse<string>) => {
             this.sharedData.triggerDataSaved();
             this.dialog.closeAll();

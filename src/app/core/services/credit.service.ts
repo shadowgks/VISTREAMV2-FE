@@ -16,10 +16,10 @@ export class CreditService {
   public getCredits(searchTerm: string='', numPage: number=0, numSize: number=10): Observable<ApiResponse<Page<Credit>>>{
     return this.http.get<ApiResponse<Page<Credit>>>(`${this.apiServerUrl}?searchTerm=${searchTerm}&numPage=${numPage}&numSize=${numSize}`);
   }
-  public save(credit: Credit): Observable<ApiResponse<string>>{
-    return this.http.post<ApiResponse<string>>(`${this.apiServerUrl}`, credit);
+  public save(formData: FormData): Observable<ApiResponse<string>>{    
+    return this.http.post<ApiResponse<string>>(`${this.apiServerUrl}`, formData);
   }
-  public update(id: number, credit: Credit): Observable<ApiResponse<string>>{
-    return this.http.put<ApiResponse<string>>(`${this.apiServerUrl}/${id}`, credit);
+  public update(id: number, formData: FormData): Observable<ApiResponse<string>>{
+    return this.http.put<ApiResponse<string>>(`${this.apiServerUrl}/${id}`, formData);
   }
 }

@@ -6,4 +6,5 @@ export interface Credit{
     name:        string;
     popularity:  number;
     profilePath: string;
+    file: File
 }
