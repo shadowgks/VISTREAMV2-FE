@@ -13,7 +13,6 @@ export class Menu {
           children: [
             { label: 'Home', route: '/dashboard/home' },
             { label: 'Movies', route: '/dashboard/movies' },
-            { label: 'Actors', route: '/dashboard/actors' },
             { label: 'Credits', route: '/dashboard/credits' }
           ],
         },

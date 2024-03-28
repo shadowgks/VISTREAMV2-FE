@@ -12,7 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SharedService } from 'src/app/core/services/shared.service';
-import { ModalComponent } from '../../modals/modal-actor/modal-actor.component';
 import { CreditService } from 'src/app/core/services/credit.service';
 import { Credit } from 'src/app/core/models/credit';
 import { ButtonModule } from 'primeng/button';
@@ -37,7 +36,7 @@ export class CreditsComponent {
   error = '';
   searchTerm = '';
   name = 'Credits'
-  namee = '';
+  numberElement !: number;
   creditState$!: Observable<{ appState: string, appData?: ApiResponse<Page<Credit>> }>;
 
   //paginator PrimeNg
@@ -97,9 +96,7 @@ export class CreditsComponent {
   public getCreditsMethode(searchT?: string, countPage?: number, sizePage?: number) {
     this.creditState$ = this._creditService.getCredits(searchT, countPage, sizePage).pipe(
       map((response: ApiResponse<Page<Credit>>) => {
-        this.currentPageSubject.next(response.result.page.number);
-        console.log(response);
-
+        this.numberElement = response.result.page.pageable.pageNumber * response.result.page.pageable.pageSize;
         return ({ appState: "app_loaded", appData: response });
       }
       ),
@@ -111,17 +108,11 @@ export class CreditsComponent {
   public clickNumberPagination(name?: string, numOfPage: number = 0) {
     this.creditState$ = this._creditService.getCredits(name, numOfPage).pipe(
       map((response: ApiResponse<Page<Credit>>) => {
-        this.currentPageSubject.next(numOfPage);
         return ({ appState: "app_loaded", appData: response });
       }),
       startWith({ appState: "app_loaded" }),
       catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
     )
-  }
-
-  public clickNextOrPrevious(name?: string, direction?: string) {
-    this.clickNumberPagination(name, direction === 'next' ?
-      this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
   }
 
   delete(id: number) {

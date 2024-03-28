@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/material.module';
-import { ModalComponent } from '../../modals/modal-actor/modal-actor.component';
 
 @Component({
   selector: 'app-movies',
@@ -23,14 +22,14 @@ export class MoviesComponent {
 
   OpenPopup(code: number, title: string) {
     // this.store.dispatch(openpopup());
-    this.dialog.open(ModalComponent, {
-      width: '50%',
-      enterAnimationDuration: '200ms',
-      exitAnimationDuration: '200ms',
-      data: {
-        code: code,
-        title: title
-      }
-    })
+    // this.dialog.open(ModalComponent, {
+    //   width: '50%',
+    //   enterAnimationDuration: '200ms',
+    //   exitAnimationDuration: '200ms',
+    //   data: {
+    //     code: code,
+    //     title: title
+    //   }
+    // })
   }
 }
