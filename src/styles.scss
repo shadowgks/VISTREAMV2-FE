@@ -8,6 +8,7 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+
 /* Order */
 @layer reset, primeng;
 
@@ -18,7 +19,6 @@
         /* CSS to Reset */
     }
 }
-
 
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -128,3 +128,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	justify-content: center;
 }
 
+
+
+//pagination primeNG
+#pagination-dashboard .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    color: #fff;
+    background: #3b82f6;
+    border-color: rgb(239, 246, 255);
+}
+
+#pagination-dashboard .p-paginator .p-paginator-pages .p-paginator-page:hover {
+    color: #fff;
+    background: #2563eb;
+    border-color: rgb(239, 246, 255);
+}

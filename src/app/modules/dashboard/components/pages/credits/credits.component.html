@@ -131,12 +131,20 @@
                             </div>
                         </ng-container>
 
+                        <!-- empty data -->
+                        <div *ngIf="state.appData?.result?.page?.content.length == 0" class="text-start">
+                            <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-600 p-4 mt-4" role="alert">
+                                <p class="font-bold">{{name}}</p>
+                                <p>The {{searchTerm}} was not found.</p>
+                            </div>
+                        </div>
+
                         <!-- error -->
                         <ng-container *ngSwitchCase="'app_error'">
-                            <div *ngIf="state.appData?.result?.page?.content.length <= 0" class="text-start">
-                                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-600 p-4 mt-4" role="alert">
+                            <div class="text-start">
+                                <div class="bg-red-100 border-l-4 border-red-500 text-red-600 p-4 mt-4" role="alert">
                                     <p class="font-bold">{{name}}</p>
-                                    <p>The {{name}} was not found.</p>
+                                    <p>Error Server.</p>
                                 </div>
                             </div>
                         </ng-container>
@@ -147,7 +155,7 @@
         </div>
 
         <!-- pagination -->
-        <div class="flex justify-end w-full bg-white">
+        <div id="pagination-dashboard" class="flex justify-end w-full bg-white">
             <p-paginator (onPageChange)="onPageChange($event)" [first]="first"
                 [rows]="state.appData?.result?.page?.size"
                 [totalRecords]="state.appData?.result?.page?.totalPages * state.appData?.result?.page?.size"
