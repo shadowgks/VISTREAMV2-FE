@@ -1,5 +1,3 @@
-
-
 <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
     <!-- Header -->
     <div class="mb-4 flex justify-between">
@@ -33,8 +31,7 @@
                 <div class="mb-4 flex items-center justify-between">
                     <div class="flex-col items-center">
                         <!--B search -->
-                        <div
-                            class="flex items-center max-w-2xl pe-6 mx-auto">
+                        <div class="flex items-center max-w-2xl pe-6 mx-auto">
                             <label for="" class="sr-only">Search</label>
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -46,20 +43,13 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <input type="text" id="searchTerm" name="searchTerm" [(ngModel)]="searchTerm" (keyup)="onKeyUp($event)"
+                                <input type="text" id="searchTerm" name="searchTerm" [(ngModel)]="searchTerm"
+                                    (keyup)="onKeyUp($event)"
                                     class="bg-gray-50 border pr-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Search... " required="">
                             </div>
-                            <button type="submit" 
-                                class="inline-flex items-center py-2.5  px-3 ml-2 text-sm font-medium text-white bg-blue-500 rounded-lg border border-blue-700 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 ">
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="w-5 h-5 mr-2 -ml-1 bi bi-search" viewBox="0 0 16 16">
-                          <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
-                          </path>
-                        </svg> -->
-                                Search</button>
-                    </div>
+
+                        </div>
                         <!--E search -->
                     </div>
                     <!-- 
@@ -83,8 +73,7 @@
                                 <tr>
                                     <th class="py-3 text-left">#</th>
                                     <th class="py-3 text-left">Name</th>
-                                    <th class="py-3 text-left">Date Birthday</th>
-                                    <th class="py-3 text-center">Popularity</th>
+                                    <th class="py-3 text-center">Actions</th>
 
                                 </tr>
                             </thead>
@@ -100,23 +89,15 @@
                                         </td>
                                         <td class="py-2">
                                             <div class="flex items-start text-start">
-                                                <img [src]="item.profilePath" class="mr-2 h-10 w-10 flex-none rounded-sm object-cover"
-                                                    alt="" />
+                                                <img [src]="item.profilePath"
+                                                    class="mr-2 h-10 w-10 flex-none rounded-sm object-cover" alt="" />
                                                 <div class="flex flex-col justify-items-start">
                                                     <a href="#"
                                                         class="mb-1 text-sm font-semibold text-gray-900 dark:text-night-100 dark:hover:text-primary-500">{{
-                                                        item.name
-                                                        }}</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="py-2">
-                                            <div class="flex items-start text-start">
-                                                <div class="flex flex-col justify-items-start">
-                                                    <a href="#"
-                                                        class="mb-1 text-sm font-semibold text-gray-900 dark:text-night-100 dark:hover:text-primary-500">{{
-                                                        item.birthDate
-                                                        }}</a>
+                                                        item.name}}</a>
+                                                    <span
+                                                        class="text-xs font-semibold text-gray-400 dark:text-night-300">{{
+                                                        item.gender == 2 ? 'Male' : 'Female'}} | {{item.popularity}}</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -167,7 +148,10 @@
 
         <!-- pagination -->
         <div class="flex justify-end w-full bg-white">
-                <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="state.appData?.result?.page?.size" [totalRecords]="state.appData?.result?.page?.totalPages * state.appData?.result?.page?.size" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+            <p-paginator (onPageChange)="onPageChange($event)" [first]="first"
+                [rows]="state.appData?.result?.page?.size"
+                [totalRecords]="state.appData?.result?.page?.totalPages * state.appData?.result?.page?.size"
+                [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
         </div>
     </ng-container>
 </div>
