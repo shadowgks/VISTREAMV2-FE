@@ -8,6 +8,8 @@ import { DetailsMediaComponent } from './components/pages/details-media/details-
 import { CountryComponent } from './components/pages/country/country.component';
 import { GenreComponent } from './components/pages/genre/genre.component';
 import { SearchComponent } from './components/pages/search/search.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,8 @@ const routes: Routes = [
       { path: 'country/:name', component: CountryComponent, },
       { path: 'genre/:name', component: GenreComponent, },
       { path: 'search/:term', component: SearchComponent, },
+      { path: 'auth/login', component: SignInComponent, },
+      { path: 'auth/register', component: SignUpComponent, },
       { path: '**', redirectTo: 'error/404' },
     ],
   },

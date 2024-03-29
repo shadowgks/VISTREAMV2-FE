@@ -8,20 +8,20 @@ import { User } from 'src/app/core/models/user';
 import { Token } from 'src/app/core/models/token';
 
 @Component({
-    selector: 'app-sign-in',
-    templateUrl: './sign-in.component.html',
-    styleUrls: ['./sign-in.component.scss'],
-    standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        RouterLink,
-        AngularSvgIconModule,
-        NgClass,
-        NgIf,
-    ],
+  selector: 'app-sign-in',
+  standalone: true,
+  imports: [        
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    AngularSvgIconModule,
+    NgClass,
+    NgIf
+  ],
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.scss'
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit{
   form!: FormGroup;
   submitted = false;
   passwordTextType!: boolean;

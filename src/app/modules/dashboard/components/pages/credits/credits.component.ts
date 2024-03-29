@@ -109,10 +109,6 @@ export class CreditsComponent {
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
             this.delete(id);
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
-        },
-        reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
         }
     });
 }
@@ -151,8 +147,8 @@ export class CreditsComponent {
   delete(id: number) {
     this.creditState$ = this._creditService.delete(id).pipe(
       map((response: ApiResponse<any>) => {
-        console.log(response);
         this.getCreditsMethode();
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
         return ({ appState: "app_loaded", appData: response });
       }),
       startWith({ appState: "app_loading" }),
@@ -173,7 +169,10 @@ export class CreditsComponent {
           return ({ appState: "app_loaded", appData: response });
         }),
         startWith({ appState: "app_loading" }),
-        catchError((error: HttpErrorResponse) => of({ appState: "app_error", error })),
+        catchError((error: HttpErrorResponse) => { 
+          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+          return of({appState: "app_error", error})
+        }),
       )
     }
   }

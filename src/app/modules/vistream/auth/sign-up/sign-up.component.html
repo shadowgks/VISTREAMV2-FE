@@ -1,0 +1,109 @@
+<!-- Sign up -->
+<div id="signup-page">
+    <div class="max-w-6xl relative z-10 m-auto px-6 mt-16">
+        <div class="flex justify-center items-center login-section">
+            <div class="bg-color-primary-75 text-white p-10 sm:m-auto md:m-auto lg:m-0 shadow order-2"
+                style="min-height: 524px;">
+                <div class="sm:w-full text-left m-auto lg:m-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-3">Sign up Create Account</h1>
+                    <p class="mb-10">Already have an account?
+                        <a routerLink="/page/auth/login" class="no-underline tw-blue text-color-three">Login
+                        </a>
+                    </p>
+                    <div class="w-full">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div>
+                                <label for="firstname" class="block text-sm font-medium leading-8">
+                                    First Name
+                                </label>
+                                <div class="mt-1 rounded-md">
+                                    <input formControlName="firstName"
+                                        [ngClass]="{ 'is__invalid-input': submitted && f['firstName'].errors}"
+                                        id="firstName" value="" type="text" placeholder="Fullname"
+                                        class="appearance-none block w-full px-3 py-2 text-gray-700 rounded-md placeholder-gray-400 focus:outline-none focus:outline-color-three transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                </div>
+                                <div *ngIf="submitted && f['firstName'].errors" class="is__invalid-error">
+                                    <div *ngIf="f['firstName'].errors['required']">Required field</div>
+                                    <div *ngIf="f['firstName'].errors['firstName']">Full name must be an fullname valid
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="username" class="block text-sm font-medium leading-8">
+                                    Last name
+                                </label>
+                                <div class="mt-1 rounded-md">
+                                    <input [ngClass]="{ 'is__invalid-input': submitted && f['lastName'].errors }"
+                                        formControlName="lastName" id="lastname"type="text"
+                                        placeholder="Lastname"
+                                        class="appearance-none block w-full px-3 py-2 text-gray-700 rounded-md placeholder-gray-400 focus:outline-none focus:outline-color-three transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                </div>
+                                <div *ngIf="submitted && f['lastName'].errors" class="is__invalid-error">
+                                    <div *ngIf="f['lastName'].errors['required']">Required field</div>
+                                    <div *ngIf="f['lastName'].errors['lastName']">Full name must be an fullname valid
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="username" class="block text-sm font-medium leading-8">
+                                    Username
+                                </label>
+                                <div class="mt-1 rounded-md">
+                                    <input [ngClass]="{ 'is__invalid-input': submitted && f['userName'].errors }"
+                                        formControlName="userName" id="username" value="" type="text"
+                                        placeholder="Username"
+                                        class="appearance-none block w-full px-3 py-2 text-gray-700 rounded-md placeholder-gray-400 focus:outline-none focus:outline-color-three transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                </div>
+                                <div *ngIf="submitted && f['userName'].errors" class="is__invalid-error">
+                                    <div *ngIf="f['userName'].errors['required']">Required field</div>
+                                    <div *ngIf="f['userName'].errors['userName']">Username must be an fullname valid
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label for="email" class="block text-sm font-medium leading-8">
+                                    Email address
+                                </label>
+                                <div class="mt-1 rounded-md">
+                                    <input [ngClass]="{ 'is__invalid-input': submitted && f['email'].errors }"
+                                        formControlName="email" id="email" type="email" placeholder="Email"
+                                        class="appearance-none block w-full px-3 py-2 text-gray-700 rounded-md placeholder-gray-400 focus:outline-none focus:outline-color-three transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                </div>
+                                <div *ngIf="submitted && f['email'].errors" class="is__invalid-error">
+                                    <div *ngIf="f['email'].errors['required']">Required field</div>
+                                    <div *ngIf="f['email'].errors['email']">Email must be an email address valid</div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label for="password" class="block text-sm font-medium leading-8">
+                                    Password
+                                </label>
+                                <div class="mt-1 rounded-md">
+                                    <input [ngClass]="{ 'is__invalid-input': submitted && f['email'].errors }"
+                                        formControlName="password" type="password" placeholder="Password"
+                                        class="appearance-none block w-full px-3 py-2 text-gray-700 rounded-md placeholder-gray-400 focus:outline-none focus:outline-color-three transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                </div>
+                                
+                                <div *ngIf="submitted && f['password'].errors" class="is__invalid-error">
+                                    <div *ngIf="f['password'].errors['required']">Required field</div>
+                                  </div>
+                            </div>
+                            <div class="mt-10">
+                                <span class="block w-full rounded-md">
+                                    <button type="submit" name="register"
+                                        class="w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-color-secondary hover:bg-color-three transition duration-500">
+                                        Register
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-10 md:pt-0 lg:pt-0 m-auto md:m-0 lg:m-0 hidden md:block lg:block">
+                <img class="rounded-lg md:ml-4 lg:ml-4 h-[524px]" src="./assets/images/login/signup.svg"
+                    alt="svg signup">
+            </div>
+        </div>
+    </div>
+</div>
