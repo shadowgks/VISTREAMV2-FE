@@ -27,7 +27,9 @@ export class SignInComponent implements OnInit{
   passwordTextType!: boolean;
   error = '';
 
-  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router, private _serviceAuth: AuthenticatorService) {}
+  constructor(private readonly _formBuilder: FormBuilder, 
+    private readonly _router: Router, 
+    private _serviceAuth: AuthenticatorService) {}
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({

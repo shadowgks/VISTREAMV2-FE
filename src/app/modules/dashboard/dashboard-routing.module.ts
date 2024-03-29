@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'actors', pathMatch: 'full' },
+      { path: '', redirectTo: 'credits', pathMatch: 'full' },
       { path: 'movies', component: MoviesComponent },
       { path: 'credits', component: CreditsComponent },
       { path: '**', redirectTo: 'error/404' },

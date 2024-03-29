@@ -11,15 +11,17 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
         // add authorization header with jwt token if available
-        const authUserJson = authUtils.currentAccessToken();        
+        const authUserJson = authUtils.localData();
 
         if (authUserJson != null) {
             // Parse the JSON string to an object
             const authUserParse = JSON.parse(authUserJson);
-
             // Extract the accessToken property
-            const accessToken = authUserParse.accessToken;            
-
+            const accessToken = authUserParse.accessToken;
+            // Extract the accessToken property
+            const refreshToken = authUserParse.refreshToken;
+            console.log(refreshToken);
+            
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${accessToken}`

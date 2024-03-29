@@ -1,6 +1,6 @@
 class AuthUtils{
     isLoggedIn() {
-        if(this.currentAccessToken() == null){
+        if(this.localData() == null){
           return false;
         }else{
           return true;
@@ -9,10 +9,9 @@ class AuthUtils{
     
     logout() {
       localStorage.removeItem('authUser');
-      localStorage.clear();
     }
 
-    currentAccessToken(){
+    localData(){
         return localStorage.getItem('authUser');
     }
 }

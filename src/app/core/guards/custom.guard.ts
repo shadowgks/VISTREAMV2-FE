@@ -13,7 +13,7 @@ export class CustomGuard implements CanActivate{
     if(authUtils.isLoggedIn()){
       return true;
     }else{
-      this.router.navigate(['/auth/sign-in'])
+      this.router.navigate(['/page/auth/login'])
       return false;
     }
   }

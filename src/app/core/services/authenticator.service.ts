@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user';
 import { Register } from '../models/register';
 import { Token } from '../models/token';
+import { authUtils } from '../utils/auth.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,46 @@ import { Token } from '../models/token';
 export class AuthenticatorService {
   private apiServerUrl = "http://localhost:8080/api/v1.0.0/auth";
 
-  constructor(private http: HttpClient) { }
+  public $refreshToken = new Subject<boolean>;
+  public $refreshTokenReceived = new Subject<boolean>;
+  
+  constructor(private http: HttpClient) {
+    this.$refreshToken.subscribe((res: any) => {
+      this.getRefreshToken()
+    })
+  }
 
-  login(userObj: User): Observable<Token>{
+  login(userObj: User): Observable<Token> {
     return this.http.post<Token>(`${this.apiServerUrl}/authenticate`, userObj);
   }
 
-  register(userObj: Register): Observable<Token>{
+  register(userObj: Register): Observable<Token> {
     return this.http.post<Token>(`${this.apiServerUrl}/register`, userObj);
+  }
+
+  getRefreshToken() {
+    debugger;
+    let loggedUserData: any;
+    const localData = authUtils.localData();
+
+    if (localData != null) {
+      loggedUserData = JSON.parse(localData);
+    }
+    
+    const obj = {
+      "refreshToken": loggedUserData.refreshToken,
+    };
+    console.log(obj);
+    
+    
+    this.http.post(`${this.apiServerUrl}/refresh-token`, obj).subscribe((response: any) => {
+      
+      this.setLoggedCredentials(response);
+      this.$refreshTokenReceived.next(true);
+    })
+  }
+
+  setLoggedCredentials(token: Token) {
+    localStorage.setItem('authUser', JSON.stringify(token));
   }
 }

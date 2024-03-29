@@ -21,6 +21,7 @@ import { DeleteComponent } from '../../modals/modal-credit/delete/delete.compone
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { AuthenticatorService } from 'src/app/core/services/authenticator.service';
 
 
 
@@ -63,12 +64,16 @@ export class CreditsComponent {
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService ,private dialog: MatDialog,
     private _creditService: CreditService,
-    private _sharedService: SharedService) { }
+    private _sharedService: SharedService,
+    private _authenticatorService: AuthenticatorService) { }
 
 
   ngOnInit(): void {
     this.getCreditsMethode('');
     this._sharedService.onDataSaved$.subscribe(() => {
+      this.getCreditsMethode();
+    })
+    this._authenticatorService.$refreshTokenReceived.subscribe((res:any)=> {
       this.getCreditsMethode();
     })
     // this.onPageChange(this.pageCount);

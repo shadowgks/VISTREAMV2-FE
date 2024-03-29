@@ -1,8 +1,9 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { customInterceptor } from './core/interceptor/custom.interceptor';
 
 const routes: Routes = [
   {
@@ -13,11 +14,11 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
-  {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
-  },
-  { path: '**', redirectTo: 'error/404' },
+  // {
+  //   path: 'auth',
+  //   loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  // },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
@@ -27,11 +28,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   providers: [
-    { 
-      provide: HTTP_INTERCEPTORS, 
-      useClass: JwtInterceptor,
-      multi: true 
-    },
+    provideHttpClient(withInterceptors([customInterceptor]))
   ]
 })
 export class AppRoutingModule {}
