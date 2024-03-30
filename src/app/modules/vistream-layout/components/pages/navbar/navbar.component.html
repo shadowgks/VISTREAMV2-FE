@@ -7,7 +7,7 @@
 
         <div class="flex items-center lg:order-2 lg:gap-5">
             <!-- icon watchlist -->
-            <div class="mx-2 md:m-0">
+            <div *ngIf="isLogged" class="mx-2 md:m-0">
                 <a [routerLink]="['/page/watchlist']" class="relative">
                     <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 64 64"
@@ -48,15 +48,15 @@
                     [ngClass]="dropDown ? 'absolute' : 'hidden'"
                     class="z-10 bg-color-primary-75 divide-y divide-gray-500 rounded-lg shadow w-44 border-1 border-cyan-200 right-20">
                     <div class="px-4 py-3 text-sm text-white">
-                        <div class="uppercase">saad</div>
-                        <div class="font-medium truncate">Admin</div>
+                        <div class="uppercase">{{detailsUser.firstName}} {{detailsUser.lastName}}</div>
+                        <div class="font-medium truncate">{{detailsUser.email}}</div>
                     </div>
                     <ul class="py-2 text-sm text-gray-200" aria-labelledby="avatarButton">
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-black">Dashboard </a>
+                            <a [routerLink]="['/dashboard']" class="block px-4 py-2 hover:bg-gray-100 hover:text-black">Dashboard </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-black">Settings</a>
+                            <a class="block px-4 py-2 hover:bg-gray-100 hover:text-black">Settings</a>
                         </li>
                     </ul>
                     <div class="py-1">

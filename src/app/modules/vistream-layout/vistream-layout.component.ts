@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/core/services/shared.service';
+import { authUtils } from 'src/app/core/utils/auth.utils';
 
 @Component({
     selector: 'app-vistream-layout',
@@ -8,15 +9,15 @@ import { SharedService } from 'src/app/core/services/shared.service';
     styleUrl: './vistream-layout.component.scss',
 })
 
-export class VistreamLayoutComponent{
-    // constructor(private _sharedService: SharedService) { }
-    // backDropUrl !: string;
+export class VistreamLayoutComponent {
+    ngOnInit() {
+        let userDetails: any = {};
 
-    // ngOnInit() {
-    //     this._sharedService.onDataSaved$.subscribe(() => {
-    //         this.backDropUrl = "https://image.tmdb.org/t/p/original" + this._sharedService.getData();
-    //         // console.log(this.backDropMedia);
-    //     })
-    // }
+        //check user if exist
+        if (authUtils.getUser()) {
+            userDetails = authUtils.getUser();
+            console.log(userDetails.roles[0].name.includes('SUPER_ADMIN', 'ADMIN'));
+        }
+    }
 
 }

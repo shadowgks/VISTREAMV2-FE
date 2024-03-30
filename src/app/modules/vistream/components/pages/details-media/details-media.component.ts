@@ -19,6 +19,7 @@ import { TrailerComponent } from './components/trailer/trailer.component';
 export class DetailsMediaComponent implements OnInit {
   mediaDetailsState$!: Observable<{ appState: string, appData?: ApiResponse<Media> }>;
   shortLink!: string;
+  linkMediaStreming!: string;
 
   constructor(private _route: ActivatedRoute,
     private _serviceMedia: MediaService,
@@ -29,7 +30,7 @@ export class DetailsMediaComponent implements OnInit {
     this._route.params.subscribe(p => {
       this.shortLink = p['short_link'];
     })    
-
+  
     this.getDetailsMedia();
 
     window.scrollTo(0, 0);
@@ -41,6 +42,10 @@ export class DetailsMediaComponent implements OnInit {
       startWith({ appState: "app_loading" }),
       catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error }))
     );
+  }
+
+  linkMediaStreaming(value: string) : string{
+    return this.linkMediaStreming = value;
   }
 
   getDurationInHoursAndMinutes(duration: number): string {

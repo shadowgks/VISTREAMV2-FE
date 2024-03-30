@@ -1,9 +1,8 @@
+import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { authUtils } from '../utils/auth.utils';
-import { inject } from '@angular/core';
 
-
-export const authGuard: CanActivateFn = (route, state) => {
+export const accessDashboardGuard: CanActivateFn = (route, state) => {
   const _router = inject(Router);
   let userDetails: any = {};
 
@@ -12,11 +11,9 @@ export const authGuard: CanActivateFn = (route, state) => {
     userDetails = authUtils.getUser();
   }
 
-  if(userDetails && userDetails.isEnabled === true){
+  if(userDetails && userDetails.roles[0].name.includes('SUPER_ADMIN', 'ADMIN', 'MANAGER')){
     return true;
-  }else{    
-    _router.navigate(['/page']);
+  }else{
     return false;
   }
-  
 };

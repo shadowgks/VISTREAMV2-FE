@@ -1,5 +1,7 @@
 export interface ServerPlay {
     id: number;
-    name: string;
+    serverPlay: {
+        name: string;
+    }
     mediaPath: string;
 }

@@ -28,16 +28,16 @@ export class NavbarComponent implements OnInit {
   dropDown: boolean = false;
   isLogged: boolean = authUtils.isLoggedIn();
 
-  public $change = new Subject<boolean>;
+  //store data user
+  readonly detailsUser = authUtils.getUser();
 
 
   constructor(
     private _router: Router,
     private _genreService: GenreService,
     private _countryService: CountryService,
-    private breakpointObserver: BreakpointObserver,
-    private cdr: ChangeDetectorRef //for render component
-    ) {
+    private breakpointObserver: BreakpointObserver) {
+      
     this.breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Small
@@ -50,16 +50,16 @@ export class NavbarComponent implements OnInit {
     this.getAllCountry();
     this.getAllGenre();
 
-    this.$change.subscribe(() => {
+    //get user
+    authUtils.getUser();
+
+    //when user logged
+    authUtils.$isLogged.subscribe(()=>{
       this.isLogged = authUtils.isLoggedIn();
-    })
 
-  }
-
-  ngOnChanges(changes: SimpleChanges): void{      
-      if (changes['isLogged']) {    
-        console.log('hey');  
-      }      
+      //get user if logged again
+      authUtils.getUser();
+    })    
   }
 
   getAllGenre() {
@@ -85,7 +85,6 @@ export class NavbarComponent implements OnInit {
   }
 
   showDropDown() {
-    this.$change.next(true);    
     if(this.isLogged){
       this.dropDown = !this.dropDown;
     }else{
@@ -95,8 +94,8 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     authUtils.logout();
-    this.$change.next(true);
     this.dropDown = false;
+    this.isLogged = false;
     this._router.navigate(['/page/auth/login'])
   }
 }

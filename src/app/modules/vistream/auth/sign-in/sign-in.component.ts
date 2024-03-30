@@ -30,7 +30,6 @@ export class SignInComponent implements OnInit {
   error = '';
 
   constructor(
-    private _cryptoService: CryptoService,
     private readonly _formBuilder: FormBuilder,
     private readonly _router: Router,
     private _serviceAuth: AuthenticatorService) { }
