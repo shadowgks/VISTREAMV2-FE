@@ -12,6 +12,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { noAuthGuard } from 'src/app/core/guards/no-auth.guard';
 import { WatchlistComponent } from './components/pages/watchlist/watchlist.component';
+import { authGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: 'country/:name', component: CountryComponent, },
       { path: 'genre/:name', component: GenreComponent, },
       { path: 'search/:term', component: SearchComponent, },
-      { path: 'watchlist', component: WatchlistComponent, },
+      { path: 'watchlist', component: WatchlistComponent, canActivate: [authGuard]},
       { path: 'auth/login', component: SignInComponent, canActivate: [noAuthGuard]},
       { path: 'auth/register', component: SignUpComponent, canActivate: [noAuthGuard]},
       { path: '**', redirectTo: 'error/404' },

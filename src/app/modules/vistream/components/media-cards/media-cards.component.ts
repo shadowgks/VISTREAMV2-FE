@@ -37,9 +37,7 @@ export class MediaCardsComponent {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    
+  ngOnChanges(changes: SimpleChanges): void {    
     if (changes['nameSended']) {      
       this.getMediaByCountryOrGenre(this.nameSended);
     }

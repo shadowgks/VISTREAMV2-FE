@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  privateKey: 'AqKi2ubiUjRGljNoMb6WOwiWmHyZ6LcT',
+  apiUrl : 'http://localhost:8080/api',
 };
 
 /*

@@ -7,6 +7,8 @@ import { NgClass, NgIf } from '@angular/common';
 import { Register } from 'src/app/core/models/register';
 import { User } from 'src/app/core/models/user';
 import { Token } from 'src/app/core/models/token';
+import { CryptoService } from 'src/app/core/services/crypto.service';
+import { authUtils } from 'src/app/core/utils/auth.utils';
 
 @Component({
   selector: 'app-sign-up',
@@ -28,7 +30,11 @@ export class SignUpComponent {
   passwordTextType!: boolean;
   error = '';
 
-  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router, private _serviceAuth: AuthenticatorService) { }
+  constructor(
+    private _cryptoService: CryptoService,
+    private readonly _formBuilder: FormBuilder,
+    private readonly _router: Router,
+    private _serviceAuth: AuthenticatorService) { }
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
@@ -58,8 +64,16 @@ export class SignUpComponent {
     } else {
       this._serviceAuth.register(this.form.value).subscribe({
         next: (response: Token) => {
-          console.log(response);
-          this.setLoggedCredentials(response);
+          authUtils.setObjLocalStorage(response.accessToken, response.refreshToken);
+          //get user
+          this._serviceAuth.detailsUser().subscribe({
+            next: (res: any) => {
+              const detailsUser = res.result;
+              //stored data in local storage
+              authUtils.setObjLocalStorage(response.accessToken, response.refreshToken, detailsUser);
+            }
+          })
+          //redirect
           this._router.navigate(['/']);
         },
         error: error => {
@@ -67,9 +81,5 @@ export class SignUpComponent {
         }
       });
     }
-  }
-
-  setLoggedCredentials(token: Token) {
-    localStorage.setItem('authUser', JSON.stringify(token));
   }
 }

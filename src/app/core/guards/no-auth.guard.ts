@@ -5,6 +5,7 @@ import { authUtils } from '../utils/auth.utils';
 export const noAuthGuard: CanActivateFn = (route, state) => {
   const _router = inject(Router);
   const localData = authUtils.localData();
+  
   if(!localData){
     return true;
   }else{

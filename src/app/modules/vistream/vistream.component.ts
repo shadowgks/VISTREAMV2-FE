@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { authUtils } from 'src/app/core/utils/auth.utils';
 
 @Component({
   selector: 'app-vistream',
@@ -8,5 +9,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './vistream.component.scss'
 })
 export class VistreamComponent {
-
+  ngOnInit(){    
+  }
 }

@@ -3,6 +3,7 @@ import { ThemeService } from './core/services/theme.service';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { ResponsiveHelperComponent } from './shared/components/responsive-helper/responsive-helper.component';
+import { authUtils } from './core/utils/auth.utils';
 
 
 @Component({

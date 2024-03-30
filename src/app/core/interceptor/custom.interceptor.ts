@@ -18,8 +18,6 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
     // Extract the accessToken property
     const accessToken = loggedUserData.accessToken;
     // Set Authorization header with JWT token
-    console.log(req.url.includes('refresh-token'));
-
     req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${accessToken}`
@@ -29,8 +27,6 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      console.log(error.status);
-
       if (error.status === 401) {
         _authenticatorService.$refreshToken.next(true);
       }

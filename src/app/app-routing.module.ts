@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { customInterceptor } from './core/interceptor/custom.interceptor';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
+    loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule), canActivate: [authGuard]
   },
   // {
   //   path: 'auth',

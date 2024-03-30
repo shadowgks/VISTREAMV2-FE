@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../models/api-response';
 import { Slider } from '../models/slider';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,12 +11,10 @@ import { Slider } from '../models/slider';
 })
 export class SliderService {
 
-  private apiServerUrl = "http://localhost:8080/api/v1.0.0/slider";
+  private apiServerUrl = `${environment.apiUrl}/v1.0.0/slider`;
 
   constructor(private http: HttpClient) { }
-  
 
-  //Sliders
   public getSliders(): Observable<ApiResponse<Slider>> {
     return this.http.get<ApiResponse<Slider>>(`${this.apiServerUrl}`);
   }

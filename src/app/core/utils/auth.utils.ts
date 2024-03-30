@@ -1,4 +1,9 @@
+import { CreditService } from "../services/credit.service";
+import { CryptoService } from "../services/crypto.service";
+
 class AuthUtils {
+  private readonly _cryptoService = new CryptoService();
+
   isLoggedIn() {
     if (this.localData() == null) {
       return false;
@@ -15,14 +20,24 @@ class AuthUtils {
     return localStorage.getItem('authUser');
   }
 
-  setObjLocalStorage(accessToken: string, refreshToken: string, user: object){
+  //Encrypt and Decrypt
+  cryptoEncrypt(obj: any) : any {
+    return this._cryptoService.encrypt(obj)
+  }
+  cryptoDecrypt(obj: any) : any {
+    return JSON.parse(this._cryptoService.decrypt(obj))
+  }
+
+  setObjLocalStorage(accessToken: string, refreshToken: string, user?: object) {
     const object = {
-      "accessToken" : accessToken,
-      "refreshToken" : refreshToken,
-      "detailsUser" : user
+      "accessToken": accessToken,
+      "refreshToken": refreshToken,
+      "detailsUser": this.cryptoEncrypt(user)
     }
     localStorage.setItem('authUser', JSON.stringify(object));
   }
+
+
 }
 
 export const authUtils = new AuthUtils();
