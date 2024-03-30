@@ -2,7 +2,6 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, wit
 import { NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import { customInterceptor } from './core/interceptor/custom.interceptor';
 
 const routes: Routes = [

@@ -8,38 +8,31 @@ import { Router } from '@angular/router';
 export const customInterceptor: HttpInterceptorFn = (req, next) => {
 
   const _authenticatorService = inject(AuthenticatorService);
-  const _route = inject(Router);
+  const _router = inject(Router);
 
   let loggedUserData: any;
-  // const localData = localStorage.getItem('angular17TokenData');
   const authUserJson = authUtils.localData();
-  if (authUserJson != null) {
-    loggedUserData = JSON.parse(authUserJson);
+  // Parse Object
+  loggedUserData = JSON.parse(authUserJson!);
+  if (authUserJson && !req.url.includes("refresh-token")) {
     // Extract the accessToken property
     const accessToken = loggedUserData.accessToken;
-    // Extract the accessToken property
-    const refreshToken = loggedUserData.refreshToken;
-
-    // Check if accessToken exists
     // Set Authorization header with JWT token
     console.log(req.url.includes('refresh-token'));
-    
-    if (!req.url.includes('refresh-token')) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      });
-    }
+
+    req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
   }
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
+      console.log(error.status);
+
       if (error.status === 401) {
-        const isRefrsh = confirm("Your Session is Expred. Do you want to Continue");
-        if (isRefrsh) {
-          _authenticatorService.$refreshToken.next(true);
-        }
+        _authenticatorService.$refreshToken.next(true);
       }
       return throwError(error)
     })

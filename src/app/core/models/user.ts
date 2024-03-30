@@ -1,4 +1,11 @@
+import { Role } from "./role";
+
 export interface User {
-    accessToken?: string;
-    refreshToken?: string;
+    firstName:     string;
+    lastName:      string;
+    userNamee:     string;
+    email:         string;
+    accessionDate: Date;
+    roles:         Role[];
+    watchlists:    any[];
 }

@@ -73,12 +73,11 @@ export class CreditsComponent {
     this._sharedService.onDataSaved$.subscribe(() => {
       this.getCreditsMethode();
     })
-    this._authenticatorService.$refreshTokenReceived.subscribe((res:any)=> {
+    //refresh token
+    this._authenticatorService.$refreshTokenReceived.subscribe(()=> {      
       this.getCreditsMethode();
     })
-    // this.onPageChange(this.pageCount);
   }
-
 
   //events pagebale and search
   onPageChange(event: PageEventPrimeNg) {

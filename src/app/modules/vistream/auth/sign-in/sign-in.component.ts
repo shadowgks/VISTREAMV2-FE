@@ -6,6 +6,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AuthenticatorService } from 'src/app/core/services/authenticator.service';
 import { User } from 'src/app/core/models/user';
 import { Token } from 'src/app/core/models/token';
+import { authUtils } from 'src/app/core/utils/auth.utils';
 
 @Component({
   selector: 'app-sign-in',
@@ -55,20 +56,27 @@ export class SignInComponent implements OnInit{
       return;
     }else{
       this._serviceAuth.login(this.form.value).subscribe({
-          next: (response: Token) => {
+          next: (response: Token) => {                       
             this.setLoggedCredentials(response);
+            //get user
+            this._serviceAuth.detailsUser().subscribe({
+              next: (res: any)=>{     
+                //stored data in local storage
+                authUtils.setObjLocalStorage(response.accessToken, response.refreshToken, res.result);
+              }
+            })
+
             this._router.navigate(['/']);
           },
           error: error => {
             console.log(error.error.bad_credentials);
-            
             this.error = error ? error : '';
           }
         });
     }
   }
 
-  setLoggedCredentials(token: Token) {
+  setLoggedCredentials(token: any) {
     localStorage.setItem('authUser', JSON.stringify(token));
   }
 }

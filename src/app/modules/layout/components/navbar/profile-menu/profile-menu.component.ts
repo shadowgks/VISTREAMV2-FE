@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../../shared/directives/click-outside.directive';
 import { authUtils } from 'src/app/core/utils/auth.utils';
@@ -18,7 +18,7 @@ import { authUtils } from 'src/app/core/utils/auth.utils';
 export class ProfileMenuComponent implements OnInit {
   public isMenuOpen = false;
 
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {}
 
@@ -27,6 +27,7 @@ export class ProfileMenuComponent implements OnInit {
   }
 
   logout() {
+    this._router.navigate(['/page/auth/login']);
     authUtils.logout();
   }
 }

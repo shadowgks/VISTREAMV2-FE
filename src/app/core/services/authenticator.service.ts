@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { Register } from '../models/register';
 import { Token } from '../models/token';
 import { authUtils } from '../utils/auth.utils';
+import { ApiResponse } from '../models/api-response';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,11 @@ export class AuthenticatorService {
     return this.http.post<Token>(`${this.apiServerUrl}/register`, userObj);
   }
 
+  detailsUser(): Observable<ApiResponse<User>>{
+    return this.http.get<ApiResponse<User>>(`http://localhost:8080/api/v1.0.0/user/me`);
+  }
+
   getRefreshToken() {
-    debugger;
     let loggedUserData: any;
     const localData = authUtils.localData();
 
@@ -41,12 +45,9 @@ export class AuthenticatorService {
     
     const obj = {
       "refreshToken": loggedUserData.refreshToken,
-    };
-    console.log(obj);
-    
+    };    
     
     this.http.post(`${this.apiServerUrl}/refresh-token`, obj).subscribe((response: any) => {
-      
       this.setLoggedCredentials(response);
       this.$refreshTokenReceived.next(true);
     })

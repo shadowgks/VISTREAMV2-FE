@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'credits', pathMatch: 'full' },
       { path: 'movies', component: MoviesComponent },
       { path: 'credits', component: CreditsComponent },
-      { path: '**', redirectTo: 'error/404' },
+      { path: '**', redirectTo: 'credits' },
     ],
   },
 ];
