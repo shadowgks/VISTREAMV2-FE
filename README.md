@@ -7,53 +7,56 @@ Une application de streaming de films et de séries, nous avons mis au point un 
 
 #### Features:
 
-1.Authentication
- -Register with email and password.
- -Log in using credentials.
- -Manage user accounts (create, update, delete) as an admin.
+1. **Authentication**
+    - Register with email and password.
+    - Log in using credentials.
+    - Manage user accounts (create, update, delete) as an admin.
 
-2.Actor Management
- -Add new credits to the database.
- -Update credit information (name, bio, image).
- -Delete credits.
- 
-3.Country Management
- -Add new countries.
- -Update country details (name, code, flag).
- -Remove countries.
- 
-4.Genre Management
- -Create new genres.
- -Update genre information (name, description).
- -Delete genres.
+2. **Credits Management**
+    - Add new credits to the database.
+    - Update credit information (name, bio, image).
+    - Delete credit.
 
-5.Movies and Series Management
- -Add new movies and series.
- -Update movie and series details (title, description, release date, cover image).
- -Remove movies and series.
+3. **Country Management**
+    - Add new countries.
+    - Update country details (name, code, flag).
+    - Remove countries.
 
-6.Watchlist Management
- -Create a watchlist.
- -Add or remove movies/series.
- -Update watchlist with new content.
- 
-7.Slider Management
- -Create sliders featuring popular or recommended content.
- -Update slider content regularly.
- -Remove sliders.
- -Validation Forms
+4. **Genre Management**
+    - Create new genres.
+    - Update genre information (name, description).
+    - Delete genres.
 
-8.Statistics
- -View statistics on user engagement, popular content, and platform usage.
- -Generate reports based on user interactions and media consumption.
- 
-9.Filtering Media
- -Filter movies or series based on genres, actors, countries, or release dates.
- -Search for specific content using various filter criteria.
- 
-10.Comments (Disqus Plugin)
- -Comment and engage with others on movie/series pages.
- -Integrate Disqus plugin for efficient and interactive commenting functionality.
+5. **Movies and Series Management**
+    - Add new movies and series.
+    - Update movie and series details (title, description, release date, cover image).
+    - Remove movies and series.
+
+6. **Watchlist Management**
+    - Create a watchlist.
+    - Add or remove movies/series.
+    - Update watchlist with new content.
+
+7. **Slider Management**
+    - Create sliders featuring popular or recommended content.
+    - Update slider content regularly.
+    - Remove sliders.
+
+8. **Validation Forms using Parsley.js**
+    - Implement form validation for correct and required information.
+
+9. **Statistics**
+    - View statistics on user engagement, popular content, and platform usage.
+    - Generate reports based on user interactions and media consumption.
+
+10. **Filtering Media**
+    - Filter movies or series based on genres, actors, countries, or release dates.
+    - Search for specific content using various filter criteria.
+
+11. **Comments (Disqus Plugin)**
+    - Comment and engage with others on movie/series pages.
+    - Integrate Disqus plugin for efficient and interactive commenting functionality.
+
 
 #### Steps to run the application
 
