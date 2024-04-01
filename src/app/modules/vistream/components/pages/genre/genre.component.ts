@@ -14,6 +14,7 @@ export class GenreComponent {
   ngOnInit(): void {
     //take name from url
     this._routeActivate.params.subscribe(p => {
+      console.log(p);
       this.name = p['name'];
     })
   }

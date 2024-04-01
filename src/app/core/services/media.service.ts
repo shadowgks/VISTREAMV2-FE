@@ -33,9 +33,5 @@ export class MediaService {
   public searchMedia(searchTerm: string='', numPage: number=0, numSize: number=6): Observable<ApiResponse<Page<Media[]>>>{
     return this.http.get<ApiResponse<Page<Media[]>>>(`${this.apiServerUrl}?searchTerm=${searchTerm}&numPage=${numPage}&numSize=${numSize}`);
   }
-  
-  
-
-  
 
 }

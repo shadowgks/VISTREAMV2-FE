@@ -12,6 +12,9 @@ import { SearchInputComponent } from './components/search/search-input.component
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { authUtils } from 'src/app/core/utils/auth.utils';
 import { Subject } from 'rxjs';
+import { WatchlistService } from 'src/app/core/services/watchlist.service';
+import { Page } from 'src/app/core/models/pageable';
+import { Media } from 'src/app/core/models/media';
 
 
 @Component({
@@ -27,6 +30,8 @@ export class NavbarComponent implements OnInit {
   countries!: ApiResponse<Country[]>;
   dropDown: boolean = false;
   isLogged: boolean = authUtils.isLoggedIn();
+  watchListData!: ApiResponse<Page<Media[]>>;
+
 
   //store data user
   readonly detailsUser = authUtils.getUser();
@@ -36,6 +41,7 @@ export class NavbarComponent implements OnInit {
     private _router: Router,
     private _genreService: GenreService,
     private _countryService: CountryService,
+    private _serviceWatchList: WatchlistService,
     private breakpointObserver: BreakpointObserver) {
       
     this.breakpointObserver.observe([
@@ -52,6 +58,8 @@ export class NavbarComponent implements OnInit {
 
     //get user
     authUtils.getUser();
+    //get watchlist
+    this.getAllMediaWatchList()
 
     //when user logged
     authUtils.$isLogged.subscribe(()=>{
@@ -59,7 +67,24 @@ export class NavbarComponent implements OnInit {
 
       //get user if logged again
       authUtils.getUser();
-    })    
+    })  
+    
+    this._serviceWatchList.$checkIfDataChangedInWatchList.subscribe({
+      next: (value) => { // Use an arrow function here
+        this.getAllMediaWatchList();
+      },
+    })
+
+  }
+
+  getAllMediaWatchList(){
+    this._serviceWatchList.getAllWatchList().subscribe({
+      next: (response: ApiResponse<Page<Media[]>>) => {
+        this.watchListData = response;
+      },error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    })
   }
 
   getAllGenre() {
@@ -83,6 +108,7 @@ export class NavbarComponent implements OnInit {
       },
     })
   }
+
 
   showDropDown() {
     if(this.isLogged){

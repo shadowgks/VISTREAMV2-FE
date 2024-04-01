@@ -143,6 +143,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: rgb(239, 246, 255);
 }
 
+#pagination-home{
+	justify-content: center;
+	background: transparent;
+}
+
+#pagination-home .p-paginator {
+    background-color: #171c26 !important;
+	border: 1px #E9AAF8 solid;
+	color: #fff;
+}
+
+#pagination-home .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    color: #fff;
+    background: #88188f;
+    border-color: rgb(239, 246, 255);
+}
+
+
+#pagination-home .p-paginator .p-paginator-pages .p-paginator-page:hover {
+    color: #fff;
+    background: #bd5ad4;
+    border-color: rgb(239, 246, 255);
+}
+
 .p-button.p-button-danger, .p-buttonset.p-button-danger > .p-button, .p-splitbutton.p-button-danger > .p-button {
     color: rgb(255, 255, 255);
     background: rgb(239, 68, 68);
@@ -159,3 +183,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: transparent;
 	padding: 5px 16px;
 }
+

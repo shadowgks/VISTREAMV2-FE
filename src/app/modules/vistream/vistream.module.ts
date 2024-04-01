@@ -28,6 +28,8 @@ import { LoadingComponent } from '../vistream-layout/components/pages/loading/lo
 import { FilterComponent } from './components/media-cards/components/filter/filter.component';
 import { BreadCrumbComponent } from './components/pages/details-media/components/bread-crumb/bread-crumb.component';
 import { SwiperModule } from 'swiper/angular';
+import { WatchlistComponent } from './components/pages/watchlist/watchlist.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -54,11 +56,12 @@ import { SwiperModule } from 'swiper/angular';
     GenreComponent, 
     SearchComponent,
     FilterComponent,
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    WatchlistComponent
   ],
 
   imports: [
-    SwiperModule,
+    SwiperModule, PaginatorModule,
     CommonModule, FormsModule,
     VistreamRoutingModule, NgxPaginationModule,
     MaterialModule, MatTabsModule, MatChipsModule

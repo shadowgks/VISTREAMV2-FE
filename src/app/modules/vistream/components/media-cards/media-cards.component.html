@@ -4,9 +4,17 @@
             <!-- All cards -->
             <ng-container *ngIf="state.appData?.result?.page?.content as content">
                 <app-card [data]="content"></app-card>
-                
+
                 <!-- pagination -->
-                <nav class="flex justify-center mt-14" aria-label="Page navigation example">
+                <div id="pagination-home" class="flex justify-end w-full bg-white mt-9">
+                    <p-paginator (onPageChange)="onPageChange($event)" [first]="first"
+                        [rows]="state.appData?.result?.page?.size"
+                        [totalRecords]="state.appData?.result?.page?.totalPages * state.appData?.result?.page?.size"
+                        ></p-paginator>
+                </div>
+
+                <!-- pagination -->
+                <!-- <nav class="flex justify-center mt-14" aria-label="Page navigation example">
                     <ul class="inline-flex -space-x-px">
                         <li [ngClass]="0 == (currentPage$ | async) ? 'disableP' : ''">
                             <a (click)="clickNextOrPrevious(typeMediaSend, '', 'previous')"
@@ -24,17 +32,14 @@
                                 {{i+1}}
                             </a>
                         </li>
-                        <!-- <li>
-                            <a href="#"
-                                class="px-3 py-2 leading-tight border border-gray-300 bg-color-primary-75 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">...</a>
-                        </li> -->
+
                         <li
                             [ngClass]="(state.appData!.result!.page!.totalPages - 1) == (currentPage$ | async) ? 'disableP' : ''">
                             <a (click)="clickNextOrPrevious(typeMediaSend, '', 'next')"
                                 class="disabled cursor-pointer px-3 py-2 ml-0 leading-tight border border-gray-300 rounded-r-lg bg-color-primary-75 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
             </ng-container>
         </ng-container>
 

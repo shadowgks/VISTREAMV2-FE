@@ -12,7 +12,7 @@ export class Menu {
           route: '/dashboard',
           children: [
             { label: 'Home', route: '/dashboard/home' },
-            { label: 'Movies', route: '/dashboard/movies' },
+            // { label: 'Movies', route: '/dashboard/movies' },
             { label: 'Credits', route: '/dashboard/credits' }
           ],
         },

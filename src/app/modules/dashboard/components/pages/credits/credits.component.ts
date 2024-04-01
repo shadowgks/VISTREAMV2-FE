@@ -69,13 +69,13 @@ export class CreditsComponent {
 
 
   ngOnInit(): void {
-    this.getCreditsMethode('');
+    this.getCredits('');
     this._sharedService.onDataSaved$.subscribe(() => {
-      this.getCreditsMethode();
+      this.getCredits();
     })
     //refresh token
     this._authenticatorService.$refreshTokenReceived.subscribe(()=> {      
-      this.getCreditsMethode();
+      this.getCredits();
     })
   }
 
@@ -86,15 +86,14 @@ export class CreditsComponent {
     this.page = event.page as number;
     console.log(event);
 
-    this.getCreditsMethode(this.searchTerm, this.page, this.rows);
+    this.getCredits(this.searchTerm, this.page, this.rows);
   }
 
   onKeyUp(event: any) {
     this.searchTerm = event.target.value;
-    console.log(this.searchTerm);
     
     if (this.searchTerm == '') {
-      this.getCreditsMethode();
+      this.getCredits();
     } else {
       this.creditState$ = this._creditService.search(this.searchTerm).pipe(
         map((response: ApiResponse<Page<Credit>>) => {
@@ -136,7 +135,7 @@ export class CreditsComponent {
     })
   }
 
-  public getCreditsMethode(searchT?: string, countPage?: number, sizePage?: number) {
+  public getCredits(searchT?: string, countPage?: number, sizePage?: number) {
     this.creditState$ = this._creditService.getCredits(searchT, countPage, sizePage).pipe(
       map((response: ApiResponse<Page<Credit>>) => {
         this.numberElement = response.result.page.pageable.pageNumber * response.result.page.pageable.pageSize;
@@ -151,7 +150,7 @@ export class CreditsComponent {
   delete(id: number) {
     this.creditState$ = this._creditService.delete(id).pipe(
       map((response: ApiResponse<any>) => {
-        this.getCreditsMethode();
+        this.getCredits();
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
         return ({ appState: "app_loaded", appData: response });
       }),
@@ -166,7 +165,7 @@ export class CreditsComponent {
 
   public search() {
     if (this.searchTerm == '') {
-      this.getCreditsMethode();
+      this.getCredits();
     } else {
       this.creditState$ = this._creditService.search(this.searchTerm).pipe(
         map((response: ApiResponse<Page<Credit>>) => {

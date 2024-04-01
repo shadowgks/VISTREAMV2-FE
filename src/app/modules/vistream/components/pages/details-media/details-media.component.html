@@ -25,7 +25,7 @@
                         <div class="my-4">
                             <ng-container *ngFor="let server of item.serverPlays">
                                 <button (click)="linkMediaStreaming(server.mediaPath)"
-                                    class="mr-2 bg-color-secondary hover:bg-color-primary-75 hover:border-white hover:border text-white px-3 py-1 rounded-full font-semibold uppercase">{{server.serverPlay.name}}</button>
+                                    class="text-sm mr-2 bg-color-secondary hover:bg-color-primary hover:border-white hover:border text-white px-3 py-1 rounded-full font-semibold uppercase hover:-translate-y-1 hover:scale-110 duration-200 transition ease-in-out delay-150">{{server.serverPlay.name}}</button>
                             </ng-container>
                         </div>
 

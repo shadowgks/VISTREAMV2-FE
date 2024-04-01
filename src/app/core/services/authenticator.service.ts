@@ -20,7 +20,6 @@ export class AuthenticatorService {
   public $refreshTokenReceived = new Subject<boolean>;
 
   constructor(
-    private _cryptoService: CryptoService,
     private http: HttpClient) {
     this.$refreshToken.subscribe((res: any) => {
       this.getRefreshToken()
