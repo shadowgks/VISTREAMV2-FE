@@ -1,56 +1,51 @@
-<swiper
-[spaceBetween]="50"
-[navigation]="true"
-[pagination]="{ clickable: true }"
-[autoplay]="{ delay: 1000 }"
->
-<ng-container *ngIf="data as state">
+<swiper [spaceBetween]="50" [navigation]="true" [pagination]="{ clickable: true }" [autoplay]="{ delay: 1000 }">
+  <ng-container *ngIf="data as state">
     <ng-container [ngSwitch]="state.appState">
-        <ng-container *ngSwitchCase="'app_loaded'">
-            <ng-container *ngIf="state.appData?.result.isEnabled == true">
-                <ng-container *ngFor="let item of state.appData?.result.mediaSet; let i = index">
-                    <ng-template swiperSlide class="swiper-slide relative">
-                        <div class="flex items-center h-screen bg-cover text-white object-cover bg-bottom relative blur-sm brightness-100"
-                            [style.background-image]="'url(' + item.backDropPath + ')'">
-                        </div>
-                        <div
-                            class="text-start flex absolute bottom-52 left-20 backdrop-brightness-50 backdrop-blur-md overflow-hidden rounded-lg max-h-60">
-                            <div class="w-40 bg-center bg-no-repeat bg-cover"
-                                [style.background-image]="'url(' + item.posterPath+ ')'">
-                            </div>
-                            <div class="p-10">
-                                <span class="font-semibold text-base uppercase">{{item.typeMedia}}</span>
-                                <span
-                                    class="text-sm pl-2 pr-2 text-gray-300">{{getDurationInHoursAndMinutes(item.duration)}}</span>
-                                <span
-                                    class="bg-color-secondary text-color-links text-xs font-medium mr-2 px-2.5 py-0.5 rounded uppercase">bluray</span>
-                                <p class="text-2xl md:text-3xl font-bold mb-2 w-96 truncate">{{item.title}}</p>
-                                <p>
-                                </p>
-                                <p
-                                    class="text-sm mt-3 text-gray-300 mb-6 leading-none text-wrap w-80 h-10 overflow-y-scroll">
-                                    {{item.overview}}</p>
-                                <div class="flex gap-3">
-                                    <button [routerLink]="['/page/watch', item.shortLink]"
-                                        class="text-[8px] bg-color-secondary py-2 px-8 text-white rounded-full font-bold uppercase md:text-sm hover:bg-gray-200 hover:text-gray-800"><i
-                                            class="fa-brands fa-google-play"></i> Watch
-                                        Now</button>
-                                    <button
-                                        class="text-[8px] bg-transparent border border-color-three py-2 px-8 text-white rounded-full font-bold uppercase md:text-sm hover:bg-gray-200 hover:text-gray-800"><i
-                                            class="fa-regular fa-heart"></i> Add
-                                        to list</button>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                </ng-container>
-            </ng-container>
+      <ng-container *ngSwitchCase="'app_loaded'">
+        <ng-container *ngIf="state.appData?.result.isEnabled == true">
+          <ng-container *ngFor="let item of state.appData?.result.mediaSet; let i = index">
+            <ng-template swiperSlide class="swiper-slide relative">
+              <div
+                class="flex h-screen items-center bg-cover bg-bottom text-white blur-sm brightness-100"
+                [style.background-image]="'url(' + item.backDropPath + ')'"></div>
+              <div
+                class="absolute bottom-20 left-20 flex max-h-60 overflow-hidden rounded-lg text-start backdrop-blur-md backdrop-brightness-50">
+                <div
+                  class="w-40 bg-cover bg-center bg-no-repeat"
+                  [style.background-image]="'url(' + item.posterPath + ')'"></div>
+                <div class="p-10">
+                  <span class="text-base font-semibold uppercase">{{ item.typeMedia }}</span>
+                  <span class="pl-2 pr-2 text-sm text-gray-300">{{ getDurationInHoursAndMinutes(item.duration) }}</span>
+                  <span
+                    class="mr-2 rounded bg-color-secondary px-2.5 py-0.5 text-xs font-medium uppercase text-color-links"
+                    >bluray</span
+                  >
+                  <p class="mb-2 w-96 truncate text-2xl font-bold md:text-3xl">{{ item.title }}</p>
+                  <p></p>
+                  <p class="mb-6 mt-3 h-10 w-80 overflow-y-scroll text-wrap text-sm leading-none text-gray-300">
+                    {{ item.overview }}
+                  </p>
+                  <div class="flex gap-3">
+                    <button
+                      [routerLink]="['/page/watch', item.shortLink]"
+                      class="rounded-full bg-color-secondary px-8 py-2 text-[8px] font-bold uppercase text-white hover:bg-gray-200 hover:text-gray-800 md:text-sm">
+                      <i class="fa-brands fa-google-play"></i> Watch Now
+                    </button>
+                    <button
+                      class="rounded-full border border-color-three bg-transparent px-8 py-2 text-[8px] font-bold uppercase text-white hover:bg-gray-200 hover:text-gray-800 md:text-sm">
+                      <i class="fa-regular fa-heart"></i> Add to list
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="'app_loading'">
-            <app-loading></app-loading>
-        </ng-container>
-        <ng-container *ngSwitchCase="'app_error'">
-        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'app_loading'">
+        <app-loading></app-loading>
+      </ng-container>
+      <ng-container *ngSwitchCase="'app_error'"> </ng-container>
     </ng-container>
-</ng-container>
+  </ng-container>
 </swiper>

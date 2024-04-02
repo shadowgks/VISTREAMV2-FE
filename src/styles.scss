@@ -8,18 +8,16 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-
 /* Order */
 @layer reset, primeng;
 
 /* Reset CSS */
 @layer reset {
-    button,
-    input {
-        /* CSS to Reset */
-    }
+  button,
+  input {
+    /* CSS to Reset */
+  }
 }
-
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -32,13 +30,15 @@ $angular-tailwind-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$angular-tailwind-theme: mat.define-light-theme((
-  color: (
-    primary: $angular-tailwind-primary,
-    accent: $angular-tailwind-accent,
-    warn: $angular-tailwind-warn,
+$angular-tailwind-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-tailwind-primary,
+      accent: $angular-tailwind-accent,
+      warn: $angular-tailwind-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -52,54 +52,58 @@ $angular-tailwind-theme: mat.define-light-theme((
 @import 'tailwindcss/utilities';
 
 @layer base {
-	[type='text'],
-	[type='email'],
-	[type='url'],
-	[type='password'],
-	[type='number'],
-	[type='date'],
-	[type='datetime-local'],
-	[type='month'],
-	[type='search'],
-	[type='tel'],
-	[type='time'],
-	[type='week'],
-	[multiple],
-	textarea,
-	select {
-		@apply w-full rounded-md border border-gray-300 px-3 py-3 text-xs placeholder-gray-400 focus:z-10  focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-night-500 dark:bg-night-700 dark:text-night-400 dark:placeholder-night-200;
-	}
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full rounded-md border border-gray-300 px-3 py-3 text-xs placeholder-gray-400 focus:z-10  focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-night-500 dark:bg-night-700 dark:text-night-400 dark:placeholder-night-200;
+  }
 
-	[type='checkbox'],
-	[type='radio'] {
-		@apply h-4 w-4 rounded border-gray-300 bg-gray-100 text-green-600 focus:ring-2 focus:ring-green-500 dark:border-night-600 dark:bg-night-700 dark:ring-offset-night-800 dark:focus:ring-green-600;
-	}
+  [type='checkbox'],
+  [type='radio'] {
+    @apply h-4 w-4 rounded border-gray-300 bg-gray-100 text-green-600 focus:ring-2 focus:ring-green-500 dark:border-night-600 dark:bg-night-700 dark:ring-offset-night-800 dark:focus:ring-green-600;
+  }
 }
 
 @layer components {
-	.dropdown-content {
-		@apply pointer-events-none scale-95 opacity-0 duration-100 ease-in;
-	}
+  .dropdown-content {
+    @apply pointer-events-none scale-95 opacity-0 duration-100 ease-in;
+  }
 
-	.dropdown:hover > .dropdown-content {
-		@apply pointer-events-auto block scale-100 animate-fade-in-up opacity-100 duration-200;
-	}
+  .dropdown:hover > .dropdown-content {
+    @apply pointer-events-auto block scale-100 animate-fade-in-up opacity-100 duration-200;
+  }
 }
 
 /** Scroll bar **/
 @supports selector(::-webkit-scrollbar) {
-	.supports-scrollbars\: pr-2 {
-		padding-right: 0.5rem;
-	}
+  .supports-scrollbars\: pr-2 {
+    padding-right: 0.5rem;
+  }
 }
 
 /** Plugins **/
 @import './assets/styles/apexchart.scss';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 // .swiper {
 //   height: 60vh;
@@ -108,79 +112,83 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .img-media {
   height: 350px;
   -o-object-fit: cover;
-     object-fit: cover;
-}/*# sourceMappingURL=style.css.map */
-
+  object-fit: cover;
+} /*# sourceMappingURL=style.css.map */
 
 //pagination
-.ngx-pagination .current{
-	background-color: #88188f !important;
+.ngx-pagination .current {
+  background-color: #88188f !important;
 }
 
-.ngx-pagination a, .ngx-pagination button{
-	color: #fff !important;
+.ngx-pagination a,
+.ngx-pagination button {
+  color: #fff !important;
 }
-.ngx-pagination a:hover{
-	color: #000;
+.ngx-pagination a:hover {
+  color: #000;
 }
-.ngx-pagination{
-	display: flex;
-	justify-content: center;
+.ngx-pagination {
+  display: flex;
+  justify-content: center;
 }
-
-
 
 //pagination primeNG
 #pagination-dashboard .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-    color: #fff;
-    background: #3b82f6;
-    border-color: rgb(239, 246, 255);
+  color: #fff;
+  background: #3b82f6;
+  border-color: rgb(239, 246, 255);
 }
 
 #pagination-dashboard .p-paginator .p-paginator-pages .p-paginator-page:hover {
-    color: #fff;
-    background: #2563eb;
-    border-color: rgb(239, 246, 255);
+  color: #fff;
+  background: #2563eb;
+  border-color: rgb(239, 246, 255);
 }
 
-#pagination-home{
-	justify-content: center;
-	background: transparent;
+#pagination-home {
+  justify-content: center;
+  background: transparent;
 }
 
 #pagination-home .p-paginator {
-    background-color: #171c26 !important;
-	border: 1px #E9AAF8 solid;
-	color: #fff;
+  background-color: #171c26 !important;
+  border: 1px #e9aaf8 solid;
+  color: #fff;
 }
 
 #pagination-home .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-    color: #fff;
-    background: #88188f;
-    border-color: rgb(239, 246, 255);
+  color: #fff;
+  background: #88188f;
+  border-color: rgb(239, 246, 255);
 }
-
 
 #pagination-home .p-paginator .p-paginator-pages .p-paginator-page:hover {
-    color: #fff;
-    background: #bd5ad4;
-    border-color: rgb(239, 246, 255);
+  color: #fff;
+  background: #bd5ad4;
+  border-color: rgb(239, 246, 255);
 }
 
-.p-button.p-button-danger, .p-buttonset.p-button-danger > .p-button, .p-splitbutton.p-button-danger > .p-button {
-    color: rgb(255, 255, 255);
-    background: rgb(239, 68, 68);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(239, 68, 68);
-    border-image: initial;
-	padding: 5px 16px;
+.p-button.p-button-danger,
+.p-buttonset.p-button-danger > .p-button,
+.p-splitbutton.p-button-danger > .p-button {
+  color: rgb(255, 255, 255);
+  background: rgb(239, 68, 68);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(239, 68, 68);
+  border-image: initial;
+  padding: 5px 16px;
 }
 
 .p-button.p-button-text {
-    background-color: transparent;
-    color: rgb(59, 130, 246);
-    border-color: transparent;
-	padding: 5px 16px;
+  background-color: transparent;
+  color: rgb(59, 130, 246);
+  border-color: transparent;
+  padding: 5px 16px;
 }
 
+//swiper
+.swiper {
+  height: 36em !important;
+  position: relative;
+}
